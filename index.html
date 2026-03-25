@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Teranga · Meilleur taux EUR/XOF — Envoyer de l'argent au Sénégal</title>
+<meta name="description" content="Comparez Wave, Orange Money, Remitly et Western Union. Meilleur taux EUR/XOF, USD/XOF. Envoyez de l'argent au Sénégal depuis la France, les USA ou l'Italie."/>
+<meta name="keywords" content="meilleur taux EUR XOF, USD XOF, envoyer argent Sénégal, Wave transfert, Orange Money, Remitly, Western Union, diaspora sénégalaise, send money Senegal"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://sovereignsene.github.io/Teranga/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://sovereignsene.github.io/Teranga/"/>
+<meta property="og:title" content="Teranga · Meilleur taux pour envoyer au Sénégal"/>
+<meta property="og:description" content="Comparez Wave, Orange Money, Remitly et Western Union depuis la France, USA, Italie."/>
+<meta property="og:locale" content="fr_FR"/>
+<meta property="og:site_name" content="Teranga"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Teranga","description":"Comparateur de taux EUR/XOF pour la diaspora sénégalaise","url":"https://sovereignsene.github.io/Teranga/","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}
+</script>
+
+<!-- PostHog — replace YOUR_POSTHOG_API_KEY with your real key -->
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]);t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+" (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapture:true,capture_pageview:true});
+</script>
+
+<script>
+window.tailwind = { config: {
+  theme: { extend: { fontFamily: {
+    serif: ['DM Serif Display','serif'],
+    mono:  ['DM Mono','monospace'],
+    sans:  ['Outfit','sans-serif'],
+  }}}
+}};
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+<style>
+  :root {
+    --ink:    #0a1a12;
+    --paper:  #f7f3ed;
+    --em:     #0d6e45;
+    --em-lt:  #18a464;
+    --em-bg:  #e6f5ee;
+    --gold:   #b5882a;
+    --gold-lt:#f0c96a;
+    --red:    #c0392b;
+    --red-bg: #fdf0ee;
+    --mid:    #8a9e92;
+    --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    background-image: radial-gradient(ellipse 120% 60% at 50% -5%, rgba(13,110,69,0.08) 0%, transparent 65%);
+    font-family: 'Outfit', sans-serif; color: var(--ink); min-height: 100vh;
+  }
+  body::before {
+    content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+  main { position:relative; z-index:1; }
+
+  /* Corridor selector */
+  .corridor-grid { display:flex; gap:6px; overflow-x:auto; padding-bottom:2px; }
+  .corridor-grid::-webkit-scrollbar { display:none; }
+  .corridor-btn {
+    display:flex; align-items:center; gap:5px; flex-shrink:0;
+    padding:5px 8px; border-radius:20px; border:1.5px solid var(--border);
+    background:white; cursor:pointer; transition:all 0.18s; font-family:'Outfit',sans-serif;
+    white-space:nowrap;
+  }
+  .corridor-btn:hover { border-color: var(--em); background: var(--em-bg); }
+  .corridor-btn.active {
+    border-color: var(--em); background: var(--em-bg);
+    box-shadow: 0 2px 8px rgba(13,110,69,0.12);
+  }
+  .corridor-btn .flags { font-size: 0.9rem; line-height:1; }
+  .corridor-btn .label { font-size: 10px; font-weight:700; color: var(--mid); letter-spacing:.03em; }
+  .corridor-btn.active .label { color: var(--em); }
+
+  /* Signal banner */
+  .signal-banner {
+    border-radius:12px; padding:10px 12px;
+    display:flex; align-items:center; gap:12px;
+    border:1.5px solid var(--border);
+  }
+  .signal-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+
+  /* Cards */
+  .rate-card {
+    background:white; border:1.5px solid var(--border); border-radius:12px;
+    padding:10px 12px; transition:transform 0.2s, box-shadow 0.2s;
+    position:relative; overflow:hidden;
+  }
+  .rate-card:hover { background:#fafcfb; }
+  .rate-card.best  { border-color:var(--em); border-left:3px solid var(--em); background:white; box-shadow:0 2px 12px rgba(13,110,69,0.1); }
+  .rate-card.worst { border-color:#f0d0cc; border-left:3px solid var(--red); background:white; }
+  .best-ribbon { display:none; }
+  .provider-logo {
+    width:32px; height:32px; border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'DM Mono',monospace; font-weight:500; font-size:10px;
+  }
+  .xof-amount { font-family:'DM Serif Display',serif; font-size:1.3rem; line-height:1; letter-spacing:-0.01em; }
+  .fee-bar-track { height:3px; background:#e8ede8; border-radius:2px; overflow:hidden; }
+  .fee-bar-fill  { height:100%; border-radius:3px; transition:width 0.8s cubic-bezier(.4,0,.2,1); }
+  .cta-btn {
+    display:flex; align-items:center; justify-content:center; gap:5px;
+    padding:7px 12px; border-radius:8px; font-size:12px; font-weight:600;
+    font-family:'Outfit',sans-serif; text-decoration:none; transition:all 0.2s;
+    border:none; cursor:pointer; margin-top:8px; width:100%;
+  }
+  .cta-btn.primary   { background:var(--em); color:white; box-shadow:0 2px 8px rgba(13,110,69,0.2); }
+  .cta-btn.primary:hover { background:#0a5c39; transform:translateY(-1px); }
+  .cta-btn.secondary { background:var(--em-bg); color:var(--em); }
+  .cta-btn.secondary:hover { background:#d0eddf; }
+
+  /* Sovereignty */
+  .sovereignty-banner { background:var(--ink); border-radius:20px; padding:20px; position:relative; overflow:hidden; }
+  .sovereignty-banner::before {
+    content:''; position:absolute; inset:0; pointer-events:none;
+    background: radial-gradient(ellipse 80% 60% at 20% 50%, rgba(24,164,100,0.2) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 80% at 80% 50%, rgba(181,136,42,0.15) 0%, transparent 60%);
+  }
+  .sovereignty-number {
+    font-family:'DM Serif Display',serif; font-size:clamp(2rem,6vw,3rem); line-height:1; letter-spacing:-0.02em;
+    background:linear-gradient(90deg,#18a464,#f0c96a);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  }
+
+  /* Chart */
+  .chart-wrap { background:white; border:1.5px solid var(--border); border-radius:16px; padding:14px; }
+
+  /* Toggle */
+  .toggle-group { display:flex; background:white; border:1px solid var(--border); border-radius:12px; padding:4px; gap:4px; }
+  .toggle-btn {
+    flex:1; padding:7px 14px; border-radius:8px; font-family:'Outfit',sans-serif;
+    font-weight:600; font-size:14px; border:none; cursor:pointer; transition:all 0.2s; color:var(--mid); background:transparent;
+  }
+  .toggle-btn.active { background:var(--em); color:white; box-shadow:0 2px 8px rgba(13,110,69,0.25); }
+
+  .source-badge {
+    display:inline-flex; align-items:center; gap:5px; background:white;
+    border:1px solid var(--border); border-radius:8px; padding:3px 9px;
+    font-family:'DM Mono',monospace; font-size:11px; color:var(--mid);
+  }
+  .live-dot {
+    width:10px !important; height:10px !important;
+    background:#18a464 !important;
+    border-radius:50%; flex-shrink:0;
+    box-shadow:0 0 0 0 rgba(24,164,100,0.5);
+    animation:livePulse 0.8s ease-out infinite;
+  }
+  @keyframes livePulse {
+    0%   { box-shadow:0 0 0 0 rgba(24,164,100,0.5); }
+    70%  { box-shadow:0 0 0 9px rgba(24,164,100,0); }
+    100% { box-shadow:0 0 0 0 rgba(24,164,100,0); }
+  }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+
+  /* Poll */
+  .poll-btn {
+    width:100%; text-align:left; padding:10px 14px; border-radius:10px;
+    border:1.5px solid var(--border); background:white; cursor:pointer;
+    font-family:'Outfit',sans-serif; font-size:13px; font-weight:500;
+    color:var(--ink); transition:all 0.18s; display:block;
+  }
+  .poll-btn:hover { border-color:var(--em); background:var(--em-bg); color:var(--em); }
+  .poll-btn.voted { border-color:var(--em); background:var(--em); color:white; }
+  .poll-bar-track { height:8px; background:#f0f5f2; border-radius:4px; overflow:hidden; margin-top:3px; }
+  .poll-bar-fill  { height:100%; border-radius:4px; background:var(--em); transition:width 0.8s cubic-bezier(.4,0,.2,1); }
+  .fade-up { animation:fadeUp 0.45s ease both; }
+  .d1{animation-delay:.04s}.d2{animation-delay:.10s}.d3{animation-delay:.16s}
+  .d4{animation-delay:.22s}.d5{animation-delay:.28s}.d6{animation-delay:.34s}
+
+  input[type=range] {
+    -webkit-appearance:none; appearance:none; width:100%; height:6px; border-radius:3px;
+    background:linear-gradient(to right, var(--em) var(--fill,18%), #dde6e0 var(--fill,18%));
+    outline:none; cursor:pointer;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance:none; width:20px; height:20px; border-radius:50%;
+    background:var(--em); border:3px solid white; box-shadow:0 2px 8px rgba(13,110,69,0.3);
+  }
+</style>
+</head>
+<body>
+<main class="max-w-lg mx-auto px-4 py-5">
+
+  <!-- ── HEADER ─────────────────────────────────────────── -->
+  <div class="fade-up d1 text-center mb-4">
+    <div class="inline-flex items-center gap-2 mb-3 px-3 py-1 rounded-full" style="background:white;border:1px solid var(--border);font-size:12px;font-weight:600;color:var(--mid);letter-spacing:.05em">
+      <span class="live-dot rounded-full inline-block" style="background:var(--em-lt)"></span>
+      TERANGA · COMPARATEUR SOUVERAIN
+    </div>
+    <h1 class="font-serif text-3xl leading-tight" style="color:var(--ink)">
+      Envoyez de l'argent.<br/>
+      <span style="color:var(--em)">Gardez la différence.</span>
+    </h1>
+    <p class="text-sm mt-2" style="color:var(--mid)">Chaque CFA économisé est de la souveraineté recouvrée.</p>
+  </div>
+
+  <!-- ── CORRIDOR SELECTOR ──────────────────────────────── -->
+  <div class="fade-up d2 mb-3" style="position:relative">
+    <p class="text-xs font-mono mb-1.5" style="color:var(--mid);letter-spacing:.07em">VOTRE CORRIDOR D'ENVOI</p>
+    <div style="position:relative">
+      <div class="corridor-grid" id="corridorGrid">
+      <button class="corridor-btn active" onclick="setCorridor('FR',this)" data-id="FR">
+        <span class="flags">🇫🇷→🇸🇳</span>
+        <span class="label">FR</span>
+      </button>
+      <button class="corridor-btn" onclick="setCorridor('US',this)" data-id="US">
+        <span class="flags">🇺🇸→🇸🇳</span>
+        <span class="label">US</span>
+      </button>
+      <button class="corridor-btn" onclick="setCorridor('CA',this)" data-id="CA">
+        <span class="flags">🇨🇦→🇸🇳</span>
+        <span class="label">CA</span>
+      </button>
+      <button class="corridor-btn" onclick="setCorridor('IT',this)" data-id="IT">
+        <span class="flags">🇮🇹→🇸🇳</span>
+        <span class="label">IT</span>
+      </button>
+      <button class="corridor-btn" onclick="setCorridor('ES',this)" data-id="ES">
+        <span class="flags">🇪🇸→🇸🇳</span>
+        <span class="label">ES</span>
+      </button>
+      </div>
+      <!-- Right fade to hint scrollable content -->
+      <div style="position:absolute;right:0;top:0;bottom:0;width:32px;
+                  background:linear-gradient(to right, transparent, var(--paper));
+                  pointer-events:none"></div>
+    </div>
+  </div>
+
+  <!-- ── E-CONSULAT COLLAPSIBLE ──────────────────────────── -->
+  <div class="fade-up d1 mb-4">
+    <button onclick="toggleConsulat()" id="consulatToggle"
+      style="width:100%;display:flex;align-items:center;gap:10px;
+             padding:12px 16px;border-radius:14px;border:1.5px solid var(--border);
+             background:white;cursor:pointer;font-family:'Outfit',sans-serif;
+             transition:all 0.2s;text-align:left">
+      <span style="font-size:1.1rem">🛂</span>
+      <div style="flex:1">
+        <p class="text-sm font-semibold" style="color:var(--ink)">E-Consulat & Missions Passeport Europe</p>
+        <p class="text-xs" style="color:var(--mid)">Lancé le 24 mars 2026 · Espagne en cours ↗</p>
+      </div>
+      <span id="consulatChevron" style="color:var(--mid);font-size:14px;transition:transform 0.2s">▼</span>
+    </button>
+
+    <!-- Expanded content -->
+    <div id="consulatContent" style="display:none;margin-top:8px">
+      <!-- E-Consulat teaser -->
+      <div class="rounded-2xl p-4 mb-3" style="background:white;border:1.5px solid var(--border)">
+        <div class="flex items-center gap-3">
+          <div style="width:38px;height:38px;border-radius:10px;background:var(--em-bg);
+                      display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0">
+            🛂
+          </div>
+          <div style="flex:1">
+            <p class="font-semibold text-sm" style="color:var(--ink)">E-Consulat Sénégal — Nouveau !</p>
+            <p class="text-xs" style="color:var(--mid)">Passeport, état civil, carte consulaire en ligne. Lancé le 24 mars 2026.</p>
+          </div>
+          <a href="https://www.consulat.sn" target="_blank" rel="noopener"
+             style="font-size:12px;font-weight:700;color:var(--em);white-space:nowrap;
+                    padding:6px 12px;border-radius:8px;background:var(--em-bg);text-decoration:none">
+            Accéder →
+          </a>
+        </div>
+      </div>
+      <!-- Mission Passeport tracker -->
+      <div class="rounded-2xl p-4" style="background:linear-gradient(135deg,#fff8e6,#fffdf5);border:1.5px solid #f0c96a44">
+        <div class="flex items-center gap-2 mb-3">
+          <span style="font-size:1rem">📋</span>
+          <p class="text-xs font-semibold" style="color:var(--gold);letter-spacing:.06em;font-family:'DM Mono',monospace">
+            MISSIONS PASSEPORT · EUROPE 2026
+          </p>
+          <span class="text-xs font-mono px-2 py-0.5 rounded-full" style="background:#18a464;color:white;font-size:10px">EN COURS</span>
+        </div>
+        <div class="space-y-2">
+          <div class="flex items-center justify-between rounded-xl px-3 py-2" style="background:white;border:1px solid #f0e0a0">
+            <div class="flex items-center gap-2">
+              <span>🇪🇸</span>
+              <div>
+                <p class="text-sm font-semibold" style="color:var(--ink)">Espagne — Madrid & Barcelone</p>
+                <p class="text-xs" style="color:var(--mid)">25 mars – 10 avril 2026</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono px-2 py-0.5 rounded-lg" style="background:#fef3c7;color:#92400e">EN COURS</span>
+          </div>
+          <div class="flex items-center justify-between rounded-xl px-3 py-2" style="background:white;border:1px solid #e8ede8">
+            <div class="flex items-center gap-2">
+              <span>🇫🇷</span>
+              <div>
+                <p class="text-sm font-semibold" style="color:var(--ink)">France — Paris & Lyon</p>
+                <p class="text-xs" style="color:var(--mid)">Dates à confirmer — Q2 2026</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono px-2 py-0.5 rounded-lg" style="background:#f7faf8;color:var(--mid)">À venir</span>
+          </div>
+          <div class="flex items-center justify-between rounded-xl px-3 py-2" style="background:white;border:1px solid #e8ede8">
+            <div class="flex items-center gap-2">
+              <span>🇮🇹</span>
+              <div>
+                <p class="text-sm font-semibold" style="color:var(--ink)">Italie — Rome & Milan</p>
+                <p class="text-xs" style="color:var(--mid)">Dates à confirmer — Q2 2026</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono px-2 py-0.5 rounded-lg" style="background:#f7faf8;color:var(--mid)">À venir</span>
+          </div>
+        </div>
+        <p class="text-xs mt-3 text-center" style="color:var(--mid)">
+          Pendant l'attente — <strong style="color:var(--em)">envoyez de l'argent moins cher avec Teranga ↓</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── AMOUNT PICKER + XOF REVERSE ─────────────────────── -->
+  <div class="fade-up d3 bg-white rounded-2xl border p-4 mb-3" style="border-color:var(--border)">
+
+    <!-- Mode toggle: send local vs target XOF -->
+    <div class="flex gap-2 mb-4">
+      <button id="modeLocal" onclick="setMode('local')"
+        class="toggle-btn active" style="flex:1;border-radius:10px;padding:8px 0;font-size:13px">
+        Je veux envoyer
+      </button>
+      <button id="modeXOF" onclick="setMode('xof')"
+        class="toggle-btn" style="flex:1;border-radius:10px;padding:8px 0;font-size:13px">
+        Je veux qu'il reçoive
+      </button>
+    </div>
+
+    <!-- LOCAL → XOF mode -->
+    <div id="panelLocal">
+      <div class="flex items-center justify-between mb-2">
+        <p class="text-xs font-mono font-semibold" style="color:var(--mid);letter-spacing:.05em">VOUS ENVOYEZ</p>
+        <div class="source-badge">
+          <span id="liveRate" style="color:var(--ink);font-weight:500">655,957 XOF/€</span>
+        </div>
+      </div>
+      <div class="flex items-baseline gap-2 mb-4">
+        <span class="font-serif text-3xl" style="color:var(--em)" id="currSymbol">€</span>
+        <span class="font-serif text-4xl font-bold" id="amountDisplay" style="color:var(--ink)">100</span>
+      </div>
+      <input type="range" id="amountSlider" min="10" max="500" value="100" step="10" oninput="updateAmount(this.value)"/>
+      <div class="flex justify-between mt-1" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--mid)">
+        <span>10</span><span>500</span>
+      </div>
+    </div>
+
+    <!-- XOF TARGET → local mode — mirrors panelLocal exactly -->
+    <div id="panelXOF" style="display:none">
+      <!-- Same header row as panelLocal -->
+      <div class="flex items-center justify-between mb-2">
+        <p class="text-xs font-mono font-semibold" style="color:var(--mid);letter-spacing:.05em">DESTINATAIRE REÇOIT</p>
+        <div class="source-badge">
+          <span style="color:var(--ink);font-weight:500">XOF · meilleur opérateur</span>
+        </div>
+      </div>
+      <!-- Big number — same style as amountDisplay -->
+      <div class="flex items-baseline gap-2 mb-4">
+        <span class="font-serif text-3xl" style="color:var(--em)">XOF</span>
+        <span class="font-serif text-4xl font-bold" id="xofDisplay" style="color:var(--ink)">50 000</span>
+      </div>
+      <!-- Same slider style -->
+      <input type="range" id="xofSlider" min="5000" max="500000" value="50000" step="5000"
+        oninput="syncXOFSlider(this.value)"/>
+      <div class="flex justify-between mt-1" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--mid)">
+        <span>5 000</span><span>500 000 XOF</span>
+      </div>
+      <!-- Divider + result — same style as panelLocal rate badge -->
+      <div class="mt-4 pt-3" style="border-top:1px solid var(--border)">
+        <div class="flex items-center justify-between mb-1">
+          <p class="text-xs font-mono font-semibold" style="color:var(--mid);letter-spacing:.05em">VOUS ENVOYEZ</p>
+          <div class="source-badge">
+            <span id="xofResultNote" style="color:var(--mid)">frais 1% inclus</span>
+          </div>
+        </div>
+        <div class="flex items-baseline gap-2">
+          <span class="font-serif text-3xl" style="color:var(--em)" id="xofResultSymbol">€</span>
+          <span class="font-serif text-4xl font-bold" id="xofResultAmount" style="color:var(--ink)">—</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── TREND / TIMING CHART ───────────────────────────── -->
+  <div class="fade-up d3 chart-wrap mb-3">
+
+    <!-- Chart range toggle -->
+    <div class="flex gap-2 mb-3">
+      <button id="btn10d" onclick="setChartRange('10d')"
+        style="flex:1;padding:5px 0;border-radius:8px;border:1.5px solid var(--em);
+               background:var(--em);color:white;font-family:'Outfit',sans-serif;
+               font-weight:600;font-size:12px;cursor:pointer;transition:all 0.2s">
+        10 jours
+      </button>
+      <button id="btn24h" onclick="setChartRange('24h')"
+        style="flex:1;padding:5px 0;border-radius:8px;border:1.5px solid var(--border);
+               background:white;color:var(--mid);font-family:'Outfit',sans-serif;
+               font-weight:600;font-size:12px;cursor:pointer;transition:all 0.2s">
+        24h
+      </button>
+    </div>
+
+    <!-- Signal banner -->
+    <div class="signal-banner mb-3" id="signalBanner" style="background:#f7faf8">
+      <div class="signal-dot" id="signalDot" style="background:#ccc"></div>
+      <div style="flex:1">
+        <p class="text-sm font-semibold" id="signalTitle" style="color:var(--ink)">Chargement des données de marché…</p>
+        <p class="text-xs mt-0.5" id="signalDesc" style="color:var(--mid)">Taux en direct · jsdelivr CDN · mise à jour quotidienne</p>
+      </div>
+      <span class="text-xs font-mono px-2 py-1 rounded-lg" id="signalTag" style="background:#eee;color:#888">…</span>
+    </div>
+
+    <!-- Peg explainer — EUR senders -->
+    <div id="pegNote" class="rounded-xl p-2 mb-3 flex gap-2 items-start" style="background:#f7f3ed;border:1px solid #e8e0d0">
+      <span style="font-size:1rem;line-height:1.6">📌</span>
+      <p class="text-xs" style="color:var(--mid)" id="pegText">
+        Le XOF est ancré à l'euro à <strong style="color:var(--ink)">655,957 — il ne bouge jamais.</strong>
+        Envoyez en EUR quand vous voulez. La seule variable qui compte : les frais de l'opérateur.
+      </p>
+    </div>
+
+    <!-- Sparkline SVG -->
+    <div style="position:relative">
+      <svg id="sparkline" viewBox="0 0 400 80" preserveAspectRatio="none"
+           style="width:100%;height:64px;display:block;overflow:visible;cursor:crosshair"
+           onmousemove="chartHover(event)" onmouseleave="chartLeave()"
+           ontouchmove="chartTouchMove(event)" ontouchend="chartLeave()">
+        <defs>
+          <linearGradient id="cg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0d6e45" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#0d6e45" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path id="sFill" d="" fill="url(#cg)"/>
+        <line id="avgLine" x1="0" y1="40" x2="400" y2="40" stroke="#e0ede6" stroke-width="1" stroke-dasharray="4,3"/>
+        <path id="sLine" d="" fill="none" stroke="#0d6e45" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle id="sDot" cx="400" cy="40" r="4.5" fill="#0d6e45" stroke="white" stroke-width="2.5"/>
+        <line id="tipLine" x1="0" y1="0" x2="0" y2="80" stroke="#0d6e45" stroke-width="1.5" stroke-dasharray="3,2" opacity="0"/>
+        <circle id="tipDot" cx="0" cy="40" r="4" fill="white" stroke="#0d6e45" stroke-width="2" opacity="0"/>
+      </svg>
+      <div id="chartTip" style="display:none;position:absolute;top:2px;
+        background:var(--ink);color:white;border-radius:8px;padding:4px 10px;
+        font-family:'DM Mono',monospace;pointer-events:none;white-space:nowrap;
+        box-shadow:0 2px 8px rgba(0,0,0,0.3);z-index:10">
+        <div id="tipTime" style="font-size:10px;color:rgba(255,255,255,0.55)">–</div>
+        <div id="tipVal" style="font-size:13px;font-weight:500">–</div>
+      </div>
+    </div>
+    <div style="position:relative;height:16px;margin-top:4px">
+      <span class="text-xs font-mono" id="h0" style="position:absolute;left:0%;color:var(--mid)">–</span>
+      <span class="text-xs font-mono" id="h1" style="position:absolute;left:25%;color:var(--mid);transform:translateX(-50%)">–</span>
+      <span class="text-xs font-mono" id="h2" style="position:absolute;left:50%;color:var(--mid);transform:translateX(-50%)">–</span>
+      <span class="text-xs font-mono" id="h3" style="position:absolute;left:75%;color:var(--mid);transform:translateX(-50%)">–</span>
+      <span class="text-xs font-mono" id="h4" style="position:absolute;right:0%;color:var(--mid)">–</span>
+    </div>
+
+    <!-- Stats row -->
+    <div class="grid grid-cols-3 gap-2 mt-3">
+      <div class="rounded-xl p-2.5 text-center" style="background:#f7faf8;border:1px solid #e0ede6">
+        <p class="text-xs font-mono mb-0.5" style="color:var(--mid)" id="labelCurrent">$100 AUJOURD'HUI</p>
+        <p class="font-mono font-semibold text-sm" id="statCurrent" style="color:var(--ink)">—</p>
+      </div>
+      <div class="rounded-xl p-2.5 text-center" style="background:#f7faf8;border:1px solid #e0ede6">
+        <p class="text-xs font-mono mb-0.5" style="color:var(--mid)" id="labelHigh">$100 AU MIEUX</p>
+        <p class="font-mono font-semibold text-sm" id="statHigh" style="color:var(--em)">—</p>
+      </div>
+      <div class="rounded-xl p-2.5 text-center" style="background:#f7faf8;border:1px solid #e0ede6">
+        <p class="text-xs font-mono mb-0.5" style="color:var(--mid)" id="labelLow">$100 AU PIRE</p>
+        <p class="font-mono font-semibold text-sm" id="statLow" style="color:var(--red)">—</p>
+      </div>
+    </div>
+
+    <!-- Impact panel (USD / non-EUR corridors) -->
+    <div id="impactPanel" class="mt-3 rounded-xl p-3" style="background:var(--em-bg);border:1px solid #c5e0d5;display:none">
+      <p class="text-xs font-mono mb-1" style="color:var(--em);letter-spacing:.06em">IMPACT CONCRET SUR VOTRE ENVOI</p>
+      <p class="text-sm" id="impactText" style="color:var(--ink)">—</p>
+    </div>
+
+  </div>
+
+  <!-- ── PROVIDER CARDS ─────────────────────────────────── -->
+  <p class="text-xs font-mono mb-2 fade-up d4" style="color:var(--mid);letter-spacing:.07em">COMPAREZ LES OPÉRATEURS</p>
+  <div class="mb-3 fade-up d4" style="display:flex;flex-direction:column;gap:5px" id="cardContainer"></div>
+
+  <!-- ── SMART HINT + SPLIT SUGGESTION ─────────────────────── -->
+  <div id="smartHint" style="display:none;margin-bottom:10px">
+    <!-- Threshold hint -->
+    <div id="thresholdHint" style="display:none;padding:10px 14px;border-radius:12px;
+         background:white;border:1.5px solid var(--border);margin-bottom:6px">
+      <p class="text-xs" id="thresholdText" style="color:var(--ink)">—</p>
+    </div>
+    <!-- Split suggestion -->
+    <div id="splitSuggestion" style="display:none;padding:12px 14px;border-radius:12px;
+         background:linear-gradient(135deg,#f0faf5,#f7fcf9);border:1.5px solid var(--em)">
+      <p class="text-xs font-mono mb-2" style="color:var(--em);letter-spacing:.06em">💡 STRATÉGIE D'ENVOI OPTIMALE</p>
+      <p class="text-sm font-semibold" id="splitTitle" style="color:var(--ink)">—</p>
+      <p class="text-xs mt-1" id="splitDetail" style="color:var(--mid)">—</p>
+      <div class="mt-2 pt-2" style="border-top:1px solid rgba(13,110,69,0.15)">
+        <p class="text-xs" style="color:var(--em)">
+          Gain supplémentaire :
+          <strong id="splitGain" style="font-size:13px">—</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SOVEREIGNTY BANNER ─────────────────────────────── -->
+  <div class="sovereignty-banner fade-up d5">
+    <div style="position:relative;z-index:1">
+      <p class="text-xs font-mono mb-2" style="color:#18a464;letter-spacing:.12em">🌍 VOTRE CONTRIBUTION SOUVERAINE</p>
+      <div class="sovereignty-number" id="sovereigntyAmount">—</div>
+      <p class="text-xs mt-2 font-mono" id="impactTranslator" style="color:#18a464;letter-spacing:.04em;min-height:16px">—</p>
+      <p class="text-sm mt-1" style="color:rgba(255,255,255,0.65)">
+        économisés en choisissant <strong style="color:white" id="bestName">—</strong>
+        plutôt que <strong style="color:#f87171" id="worstName">—</strong>
+      </p>
+      <div class="mt-3 pt-3" style="border-top:1px solid rgba(255,255,255,0.1)">
+        <p class="text-sm" style="color:rgba(255,255,255,0.45)">
+          Si 1 000 membres de la diaspora font ce choix,
+          <strong style="color:var(--gold-lt)" id="collectiveSaving">—</strong>
+          (~<strong style="color:var(--gold-lt)" id="collectiveEur">—</strong>)
+          restent dans votre communauté.
+        </p>
+        <p class="text-xs mt-2" style="color:rgba(255,255,255,0.25);font-family:'DM Mono',monospace">
+          FONDS SÉNÉGAL 2050 · DISPONIBLE EN V1.0
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Share button — light background, below banner -->
+  <button onclick="shareLink()" class="fade-up" style="
+    animation-delay:.42s;width:100%;margin-top:12px;padding:13px;
+    border-radius:14px;border:1.5px solid var(--border);
+    background:white;color:var(--em);font-family:'Outfit',sans-serif;
+    font-weight:700;font-size:14px;cursor:pointer;transition:all 0.2s;
+    display:flex;align-items:center;justify-content:center;gap:8px">
+    📤 Partager ce taux avec ma famille
+  </button>
+  <div id="shareConfirm" style="display:none;text-align:center;margin-top:6px;
+       font-size:12px;color:var(--em);font-family:'DM Mono',monospace">
+    ✓ Lien copié — partagez sur WhatsApp !
+  </div>
+
+  <!-- ── VOICE OF DIASPORA POLL ──────────────────────────── -->
+  <div class="fade-up mt-5" style="animation-delay:.5s">
+    <div class="rounded-2xl p-5" style="background:white;border:1.5px solid var(--border)">
+      <p class="text-xs font-mono mb-1" style="color:var(--mid);letter-spacing:.07em">🗣 VOIX DE LA DIASPORA</p>
+      <p class="font-semibold text-sm mb-4" style="color:var(--ink)">Quel est votre plus grand problème avec les envois d'argent ?</p>
+      <div class="space-y-2" id="pollOptions">
+        <button onclick="votePoll('fees')"    class="poll-btn" data-key="fees">💸 Frais trop élevés</button>
+        <button onclick="votePoll('rate')"    class="poll-btn" data-key="rate">📉 Mauvais taux de change</button>
+        <button onclick="votePoll('speed')"   class="poll-btn" data-key="speed">⏳ Délais trop longs</button>
+        <button onclick="votePoll('trust')"   class="poll-btn" data-key="trust">🔒 Manque de confiance</button>
+        <button onclick="votePoll('access')"  class="poll-btn" data-key="access">📱 Accès difficile aux apps</button>
+      </div>
+      <!-- Results shown after vote -->
+      <div id="pollResults" style="display:none" class="mt-4">
+        <p class="text-xs font-mono mb-3" style="color:var(--em);letter-spacing:.06em">RÉSULTATS — CETTE SEMAINE</p>
+        <div id="pollBars"></div>
+        <p class="text-xs mt-3" style="color:var(--mid)">Merci ! Vos réponses guident le développement de Teranga.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="text-center mt-6 fade-up d6">
+    <p class="text-xs" style="color:var(--mid);font-family:'DM Mono',monospace">
+      TERANGA · <span id="footerCorridor">FR→SN</span> · TAUX EN TEMPS RÉEL<br/>
+      Frais : structures publiées des opérateurs. Pas de conseil financier.
+    </p>
+  </div>
+
+</main>
+
+<script>
+// ══════════════════════════════════════════════════════════════
+// BITLY TRACKED LINKS
+// ══════════════════════════════════════════════════════════════
+const LINKS = {
+  wave:       'https://bit.ly/4dEcsBR',
+  orange:     'https://bit.ly/4iNlQcd',
+  remitly:    'https://bit.ly/41oDGFj',
+  wu:         'https://bit.ly/4uMazsX',
+  taptap:     'https://www.taptapsend.com/',
+  sendwave:   'https://www.sendwave.com/',
+  worldremit: 'https://www.worldremit.com/',
+};
+
+// ══════════════════════════════════════════════════════════════
+// CORRIDOR CONFIG
+// ══════════════════════════════════════════════════════════════
+const CORRIDORS = {
+  FR: { from:'EUR', symbol:'€',  label:'France → Sénégal',   flag:'🇫🇷', pairLabel:'EUR/XOF', eurBased:true,  rateKey:null  },
+  US: { from:'USD', symbol:'$',  label:'États-Unis → Sénégal',flag:'🇺🇸', pairLabel:'USD/XOF', eurBased:false, rateKey:'USD' },
+  CA: { from:'CAD', symbol:'CA$',label:'Canada → Sénégal',    flag:'🇨🇦', pairLabel:'CAD/XOF', eurBased:false, rateKey:'CAD' },
+  IT: { from:'EUR', symbol:'€',  label:'Italie → Sénégal',   flag:'🇮🇹', pairLabel:'EUR/XOF', eurBased:true,  rateKey:null  },
+  ES: { from:'EUR', symbol:'€',  label:'Espagne → Sénégal',  flag:'🇪🇸', pairLabel:'EUR/XOF', eurBased:true,  rateKey:null  },
+};
+
+const MID_XOF_PER_EUR = 655.957;
+let EUR_USD = 1.085; // updated by live fetch
+let EUR_CAD = 1.565; // updated by live fetch
+// Helper: get local currency → EUR conversion rate
+function localToEUR(cor) {
+  if (cor.rateKey === 'USD') return EUR_USD;
+  if (cor.rateKey === 'CAD') return EUR_CAD;
+  return 1; // EUR corridors
+}
+
+// ══════════════════════════════════════════════════════════════
+// PROVIDERS — corridor-aware
+// Breakeven TapTapSend vs 1% spread: €2 / 1% = €200
+// Above €200 → TapTapSend wins. Below €200 → Wave/Sendwave wins.
+// ══════════════════════════════════════════════════════════════
+const ALL_PROVIDERS = [
+  {
+    id:'wave', speed:'⚡ Instant', name:'Wave', logo:'W', bg:'#EEF3FD', text:'#1A56DB',
+    tagline:'Mobile · 1% · Meilleur jusqu\'à ~€400',
+    corridors:['FR'],
+    link: LINKS.wave, cta:'Envoyer avec Wave',
+    fee(amt, cor) {
+      const eur = amt / localToEUR(cor);
+      const xof = Math.round(eur * 0.99 * MID_XOF_PER_EUR);
+      const pct = 1.0;
+      return { xof, rate:+(xof/amt).toFixed(2), pct, label:'1% de frais · idéal jusqu\'à ~€400' };
+    }
+  },
+  {
+    id:'taptap', speed:'⚡ Instant', name:'TapTapSend', logo:'TT', bg:'#F0FFF4', text:'#276749',
+    tagline:'€2 fixe · idéal grands montants',
+    corridors:['FR','IT','ES','US','CA'],
+    link: LINKS.taptap, cta:'Envoyer avec TapTapSend',
+    fee(amt, cor) {
+      const eur      = amt / localToEUR(cor);
+      const fixed    = 2 * localToEUR(cor); // €2 in local currency
+      const eur_net  = Math.max(eur - 2, 0);
+      // TapTapSend uses a small spread ~0.5%
+      const xof      = Math.round(eur_net * 0.995 * MID_XOF_PER_EUR);
+      const pct      = +((1 - xof/(eur*MID_XOF_PER_EUR))*100).toFixed(1);
+      return { xof, rate:+(xof/amt).toFixed(2), pct, label:'€2 fixe · meilleur sur grands montants' };
+    }
+  },
+  {
+    id:'sendwave', speed:'⚡ Instant', name:'Sendwave', logo:'SW', bg:'#F5F0FF', text:'#5B21B6',
+    tagline:'0 frais fixes · ~1% spread',
+    corridors:['FR','IT','ES','US','CA'],
+    link: LINKS.sendwave, cta:'Envoyer avec Sendwave',
+    fee(amt, cor) {
+      const eur = amt / localToEUR(cor);
+      // Sendwave EU→SN: 1% spread, no fixed fee
+      const xof = Math.round(eur * 0.99 * MID_XOF_PER_EUR);
+      const pct = 1.0;
+      return { xof, rate:+(xof/amt).toFixed(2), pct, label:'~1% spread · pas de frais fixes' };
+    }
+  },
+  {
+    id:'orange', speed:'⚡ Instant', name:'Orange Money', logo:'OM', bg:'#FFF3EC', text:'#cc4400',
+    tagline:'Mobile · Réseau Orange au Sénégal',
+    corridors:['FR'],
+    link: LINKS.orange, cta:'Envoyer avec Orange Money',
+    fee(amt, cor) {
+      const eur = amt / localToEUR(cor);
+      const xof = Math.round(eur * 0.981 * 0.995 * MID_XOF_PER_EUR);
+      const pct = 1.9;
+      return { xof, rate:+(xof/amt).toFixed(2), pct, label:'1.9% de frais + léger spread' };
+    }
+  },
+  {
+    id:'worldremit', speed:'🕐 1-2 jours', name:'WorldRemit', logo:'WR', bg:'#EFF6FF', text:'#1D4ED8',
+    tagline:'En ligne · 130+ pays',
+    corridors:['IT','ES','US','CA'],
+    link: LINKS.worldremit, cta:'Envoyer avec WorldRemit',
+    fee(amt, cor) {
+      const eur = amt / localToEUR(cor);
+      // WorldRemit: ~1.5% spread, small fixed fee ~€1.50
+      const xof = Math.round(Math.max(eur - 1.5, 0) * 0.985 * MID_XOF_PER_EUR);
+      const pct = +((1 - xof/(eur*MID_XOF_PER_EUR))*100).toFixed(1);
+      return { xof, rate:+(xof/amt).toFixed(2), pct, label:'~1.5% spread + frais fixes réduits' };
+    }
+  },
+  {
+    id:'remitly', speed:'⚡ Express dispo', name:'Remitly', logo:'R', bg:'#EDF5FF', text:'#1C64F2',
+    tagline:'En ligne · Rapide & fiable',
+    corridors:['FR','IT','ES','US','CA'],
+    link: LINKS.remitly, cta:'Envoyer avec Remitly',
+    fee(amt, cor) {
+      const eur   = amt / localToEUR(cor);
+      const fixed = 1.99;
+      const xof   = Math.round(Math.max(eur - fixed, 0) * 0.985 * MID_XOF_PER_EUR);
+      const pct   = +((1 - xof/(eur*MID_XOF_PER_EUR))*100).toFixed(1);
+      return { xof, rate:+(xof/amt).toFixed(2), pct, label:`€${fixed} fixe + spread ~1.5%` };
+    }
+  },
+  {
+    id:'wu', speed:'📅 1-3 jours', name:'Western Union', logo:'WU', bg:'#FFFAE8', text:'#5a4a00',
+    tagline:'Réseau mondial · Retrait espèces',
+    corridors:['FR','IT','ES','US','CA'],
+    link: LINKS.wu, cta:'Voir Western Union',
+    fee(amt, cor) {
+      const eur   = amt / localToEUR(cor);
+      const fixed = eur <= 100 ? 3.90 : 4.90;
+      const xof   = Math.round(Math.max(eur - fixed - eur*0.03, 0) * 0.965 * MID_XOF_PER_EUR);
+      const pct   = +((1 - xof/(eur*MID_XOF_PER_EUR))*100).toFixed(1);
+      return { xof, rate:+(xof/amt).toFixed(2), pct, label:'Frais fixes + 3% + spread de change' };
+    }
+  }
+];
+
+// Filter providers by corridor
+function getProviders(corridorId) {
+  return ALL_PROVIDERS.filter(p => p.corridors.includes(corridorId));
+}
+
+// ══════════════════════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════════════════════
+let currentCorridorId = 'FR';
+let currentAmount     = 100;
+
+function corridor() { return CORRIDORS[currentCorridorId]; }
+
+// ══════════════════════════════════════════════════════════════
+// RENDER CARDS
+// ══════════════════════════════════════════════════════════════
+function render() {
+  const cor   = corridor();
+  const rows  = getProviders(currentCorridorId).map(p => ({ ...p, result: p.fee(currentAmount, cor) }))
+                          .sort((a,b) => b.result.xof - a.result.xof);
+  const best  = rows[0];
+  const worst = rows[rows.length-1];
+  const saving = best.result.xof - worst.result.xof;
+
+  // Slider fill
+  const pct = ((currentAmount-10)/490*100).toFixed(1);
+  document.getElementById('amountSlider').style.setProperty('--fill', pct+'%');
+  document.getElementById('amountDisplay').textContent = currentAmount;
+  document.getElementById('currSymbol').textContent    = cor.symbol;
+  const xofPerLocal = MID_XOF_PER_EUR / localToEUR(cor);
+  document.getElementById('liveRate').textContent = cor.eurBased
+    ? '655,957 XOF/€ (ancrage)'
+    : `1 ${cor.from} = ${xofPerLocal.toFixed(1)} XOF`;
+
+  const container = document.getElementById('cardContainer');
+  container.innerHTML = '';
+  rows.forEach((p,i) => {
+    const isBest  = i===0, isWorst = i===rows.length-1;
+    const barPct  = Math.min(Math.round(p.result.pct/10*100), 100);
+    const btnClass = isBest ? 'primary' : 'secondary';
+    const div = document.createElement('div');
+    div.className = 'rate-card' + (isBest?' best':isWorst?' worst':'');
+    div.innerHTML = `
+      <div style="display:flex;align-items:center;gap:10px">
+
+        <!-- Accent bar (left edge color) already handled by CSS border-left -->
+
+        <!-- Col 1: Logo -->
+        <div style="width:34px;height:34px;border-radius:9px;flex-shrink:0;
+                    display:flex;align-items:center;justify-content:center;
+                    background:${p.bg};color:${p.text};font-family:'DM Mono',monospace;
+                    font-size:10px;font-weight:600">
+          ${p.logo}
+        </div>
+
+        <!-- Col 2: Name + meta -->
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:4px">
+            <span style="font-size:12px;font-weight:700;color:var(--ink)">${p.name}</span>
+            ${isBest
+              ? `<span style="font-size:9px;background:var(--em);color:white;padding:1px 5px;border-radius:4px;font-weight:700;letter-spacing:.03em">BEST</span>`
+              : isWorst
+                ? `<span style="font-size:9px;background:var(--red-bg);color:var(--red);padding:1px 5px;border-radius:4px">CHER</span>`
+                : ''}
+          </div>
+          <div style="font-size:10px;color:var(--mid);margin-top:1px">
+            ${p.speed||''}
+            &nbsp;·&nbsp;
+            <span style="color:${p.result.pct<=1.2?'var(--em)':p.result.pct>=4?'var(--red)':'var(--mid)'};font-weight:600">${p.result.pct}% frais</span>
+          </div>
+        </div>
+
+        <!-- Col 3: XOF — hero number -->
+        <div style="text-align:right;flex-shrink:0">
+          <div style="font-family:'DM Serif Display',serif;font-size:1.25rem;line-height:1;
+                      color:${isBest?'var(--em)':isWorst?'var(--red)':'var(--ink)'}">
+            ${p.result.xof.toLocaleString('fr-FR')}
+            <span style="font-size:0.7rem;font-family:'Outfit',sans-serif;color:var(--mid)">XOF</span>
+          </div>
+          <div style="font-size:9px;font-family:'DM Mono',monospace;color:var(--mid);margin-top:2px">
+            ${p.result.rate.toLocaleString('fr-FR')} XOF/${cor.symbol}
+          </div>
+        </div>
+
+        <!-- Col 4: CTA arrow button -->
+        <a href="${p.link}" target="_blank" rel="noopener"
+           onclick="trackClick('${p.id}',${currentAmount},'${currentCorridorId}')"
+           style="flex-shrink:0;width:32px;height:32px;border-radius:8px;
+                  display:flex;align-items:center;justify-content:center;
+                  background:${isBest?'var(--em)':'var(--em-bg)'};
+                  color:${isBest?'white':'var(--em)'};
+                  font-size:14px;text-decoration:none;font-weight:700;
+                  transition:all 0.15s">
+          →
+        </a>
+
+      </div>
+    `;
+    container.appendChild(div);
+  });
+
+  // Sovereignty banner
+  const collectiveXOF = saving * 1000;
+  const collectiveEUR = Math.round(collectiveXOF / MID_XOF_PER_EUR).toLocaleString('fr-FR');
+  document.getElementById('sovereigntyAmount').textContent = saving.toLocaleString('fr-FR') + ' XOF';
+
+  // ── Smart hint + split suggestion ────────────────────────
+  const smartHint   = document.getElementById('smartHint');
+  const threshHint  = document.getElementById('thresholdHint');
+  const splitSug    = document.getElementById('splitSuggestion');
+
+  // Only show for EUR corridors with Wave + TapTapSend available
+  const hasTaptap = getProviders(currentCorridorId).some(p => p.id === 'taptap');
+  const hasWave   = getProviders(currentCorridorId).some(p => p.id === 'wave');
+
+  if (hasTaptap && cor.eurBased) {
+    smartHint.style.display = 'block';
+
+    // Breakeven: Wave(1%) vs TapTapSend(€2 + 0.5% spread)
+    // Wave XOF = amt * 0.99 * 655.957
+    // TapTap XOF = (amt - 2) * 0.995 * 655.957
+    // Breakeven at ~€398
+    const BREAKEVEN = 398;
+    const amt = currentAmount;
+
+    // Threshold hint
+    const waveXof   = Math.round(amt * 0.99 * MID_XOF_PER_EUR);
+    const taptapXof = Math.round(Math.max(amt - 2, 0) * 0.995 * MID_XOF_PER_EUR);
+    const waveIsBest = waveXof >= taptapXof;
+
+    const cheapPartner = hasWave ? 'Wave' : 'Sendwave';
+    if (waveIsBest && amt < BREAKEVEN) {
+      const diffToBreakeven = BREAKEVEN - amt;
+      threshHint.style.display = 'block';
+      document.getElementById('thresholdText').innerHTML =
+        `💡 <strong>${cheapPartner}</strong> est optimal à ce montant. En envoyant <strong>€${diffToBreakeven} de plus</strong> (€${BREAKEVEN}), <strong>TapTapSend</strong> devient moins cher.`;
+    } else if (!waveIsBest) {
+      threshHint.style.display = 'block';
+      document.getElementById('thresholdText').innerHTML =
+        `✓ <strong>TapTapSend</strong> est le meilleur choix à partir de €${BREAKEVEN}. Bon montant !`;
+    } else {
+      threshHint.style.display = 'none';
+    }
+
+    // Split suggestion — TapTapSend (large) + Wave/Sendwave (small)
+    // Partner B: Wave for FR, Sendwave for IT/ES
+    if (amt >= 200 && amt <= 500) {
+      const partnerName = hasWave ? 'Wave' : 'Sendwave';
+      const splitA      = Math.max(amt - 100, 0); // TapTapSend portion
+      const splitB      = Math.min(100, amt);      // Wave/Sendwave portion
+      const taptapPart  = Math.round(Math.max(splitA-2,0)*0.995*MID_XOF_PER_EUR);
+      const partnerPart = Math.round(splitB*0.99*MID_XOF_PER_EUR);
+      const splitXof    = taptapPart + partnerPart;
+      const singleBest  = Math.max(waveXof, taptapXof);
+      const splitGain   = splitXof - singleBest;
+
+      if (splitGain > 50) {
+        splitSug.style.display = 'block';
+        document.getElementById('splitTitle').textContent =
+          `Envoyez €${splitA} via TapTapSend + €${splitB} via ${partnerName}`;
+        document.getElementById('splitDetail').textContent =
+          `TapTapSend : ${taptapPart.toLocaleString('fr-FR')} XOF  +  ${partnerName} : ${partnerPart.toLocaleString('fr-FR')} XOF`;
+        document.getElementById('splitGain').textContent =
+          `+${splitGain.toLocaleString('fr-FR')} XOF vs meilleur opérateur unique`;
+      } else {
+        splitSug.style.display = 'none';
+      }
+    } else {
+      splitSug.style.display = 'none';
+    }
+  } else {
+    if (smartHint) smartHint.style.display = 'none';
+  }
+  const impactEl = document.getElementById('impactTranslator');
+  if (impactEl) impactEl.textContent = saving > 100 ? translateToImpact(saving) : '';
+  document.getElementById('bestName').textContent          = 'le meilleur opérateur';
+  document.getElementById('worstName').textContent         = worst.name;
+  document.getElementById('collectiveSaving').textContent  = collectiveXOF.toLocaleString('fr-FR') + ' XOF';
+  document.getElementById('collectiveEur').innerHTML       = '≈ €' + collectiveEUR;
+  document.getElementById('footerCorridor').textContent    = currentCorridorId + '→SN';
+}
+
+// ══════════════════════════════════════════════════════════════
+// CORRIDOR SWITCH
+// ══════════════════════════════════════════════════════════════
+function setCorridor(id, btn) {
+  currentCorridorId = id;
+  document.querySelectorAll('.corridor-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const cor = corridor();
+
+  // Update peg note
+  const pegText = document.getElementById('pegText');
+  if (cor.eurBased) {
+    pegText.innerHTML = `Le XOF est ancré à l'euro à <strong style="color:var(--ink)">655,957 — il ne bouge jamais.</strong> Pour vous, la seule variable qui compte : les frais de l'opérateur.`;
+    document.getElementById('impactPanel').style.display = 'none';
+  } else {
+    pegText.innerHTML = `Le XOF est ancré à l'euro. Pour les envois en <strong style="color:var(--ink)">${corridor().from}</strong>, le taux ${corridor().from}/XOF détermine combien vos proches reçoivent. Surveillez le graphique.`;
+    document.getElementById('impactPanel').style.display = 'block';
+  }
+
+  render();
+  updateChartForCorridor(cor);
+}
+
+// ══════════════════════════════════════════════════════════════
+// AMOUNT SLIDER
+// ══════════════════════════════════════════════════════════════
+// ── Input mode: 'local' (send currency) or 'xof' (target XOF) ──
+let inputMode = 'local';
+
+function setMode(mode) {
+  inputMode = mode;
+  document.getElementById('panelLocal').style.display = mode === 'local' ? 'block' : 'none';
+  document.getElementById('panelXOF').style.display   = mode === 'xof'   ? 'block' : 'none';
+  document.getElementById('modeLocal').classList.toggle('active', mode === 'local');
+  document.getElementById('modeXOF').classList.toggle('active',   mode === 'xof');
+  if (mode === 'xof') updateXOF(50000);
+}
+
+function updateAmount(val) {
+  currentAmount = parseInt(val);
+  render();
+  // Refresh chart stats to match new amount
+  if (window._chartValues && window._chartValues.length > 1) {
+    const vals    = window._activeChartValues || window._chartValues;
+    const current = vals[vals.length-1];
+    const high    = Math.max(...vals);
+    const low     = Math.min(...vals);
+    applySignal(current, high, low, !corridor().eurBased);
+  }
+}
+
+function syncXOFSlider(val) {
+  val = parseInt(val);
+  const xd = document.getElementById('xofDisplay'); if(xd) xd.textContent = parseInt(val).toLocaleString('fr-FR');
+  const pct = ((val - 5000) / (500000 - 5000) * 100).toFixed(1);
+  document.getElementById('xofSlider').style.setProperty('--fill', pct + '%');
+  updateXOF(val);
+}
+
+function updateXOF(xofTarget) {
+  xofTarget = parseInt(String(xofTarget).replace(/\D/g,'')) || 0;
+  if (!xofTarget) return;
+
+  // Update slider position
+  const sliderVal = Math.min(Math.max(xofTarget, 5000), 500000);
+  document.getElementById('xofSlider').value = sliderVal;
+  const pct = ((sliderVal - 5000) / (500000 - 5000) * 100).toFixed(1);
+  document.getElementById('xofSlider').style.setProperty('--fill', pct + '%');
+
+  const cor = corridor();
+  // Best provider is Wave: 1% fee, near mid-market
+  // XOF = localAmount / localToEUR(cor) * 0.99 * MID_XOF_PER_EUR
+  // → localAmount = xofTarget / (0.99 * MID_XOF_PER_EUR) * localToEUR(cor)
+  const eurNeeded   = xofTarget / (0.99 * MID_XOF_PER_EUR);
+  const localNeeded = eurNeeded * localToEUR(cor);
+
+  document.getElementById('xofResultSymbol').textContent = cor.symbol;
+  document.getElementById('xofResultAmount').textContent = localNeeded.toLocaleString('fr-FR', {minimumFractionDigits:2, maximumFractionDigits:2});
+  document.getElementById('xofResultNote').textContent   = `meilleur opérateur · pour ${xofTarget.toLocaleString('fr-FR')} XOF`;
+  document.getElementById('xofResultSymbol').style.color = '#0d6e45';
+  document.getElementById('xofResultAmount').style.color = '#0d6e45';
+}
+
+// ══════════════════════════════════════════════════════════════
+// ANALYTICS
+// ══════════════════════════════════════════════════════════════
+function trackClick(pid, amt, cor) {
+  try { posthog.capture('provider_click', { provider:pid, amount:amt, corridor:cor }); } catch(e) {}
+}
+
+// ══════════════════════════════════════════════════════════════
+// TREND CHART
+// ══════════════════════════════════════════════════════════════
+
+// Fallback data: 30 days of synthetic EUR/USD values
+// Used when API is unavailable (GitHub Pages CORS, offline, etc.)
+function syntheticRates(base, volatility, min, max, current) {
+  const vals = [];
+  let v = base;
+  for (let i = 0; i < 30; i++) {
+    v += (Math.random() - 0.48) * volatility;
+    v  = Math.max(min, Math.min(max, v));
+    vals.push(+v.toFixed(4));
+  }
+  vals[vals.length-1] = current;
+  return vals;
+}
+
+function drawSparkline(values, color) {
+  const W=400, H=80, PAD=6;
+  const high = Math.max(...values), low = Math.min(...values);
+  const sx = i => PAD + (i/(values.length-1))*(W-PAD*2);
+  const sy = v => H - PAD - ((v-low)/(high-low+0.0001))*(H-PAD*2);
+  const avg = values.reduce((a,b)=>a+b,0)/values.length;
+
+  const pts  = values.map((v,i)=>`${sx(i)},${sy(v)}`);
+  const line = `M ${pts.join(' L ')}`;
+  const fill = `${line} L ${sx(values.length-1)},${H} L ${sx(0)},${H} Z`;
+
+  document.getElementById('sLine').setAttribute('d', line);
+  document.getElementById('sFill').setAttribute('d', fill);
+  document.getElementById('sDot').setAttribute('cx', sx(values.length-1));
+  document.getElementById('sDot').setAttribute('cy', sy(values[values.length-1]));
+  document.getElementById('avgLine').setAttribute('y1', sy(avg));
+  document.getElementById('avgLine').setAttribute('y2', sy(avg));
+  document.getElementById('sLine').style.stroke = color;
+  document.getElementById('sDot').style.fill    = color;
+}
+
+function applySignal(current, high, low, isUSD) {
+  const pctVsHigh = (current - high) / high * 100;
+  let title, desc, tag, dotColor, bg, textColor;
+
+  if (!isUSD) {
+    // EUR corridor — rate is fixed, show concrete XOF amounts
+    const xofBestEUR  = Math.round(100 * MID_XOF_PER_EUR * 0.99);  // Wave 1%
+    const xofWorstEUR = Math.round((100 - 4.90 - 3) * MID_XOF_PER_EUR * 0.965); // WU
+    title     = 'Taux stable — seuls les frais font la différence';
+    desc      = `Meilleur opérateur → ${xofBestEUR.toLocaleString('fr-FR')} XOF. Pire opérateur → ${xofWorstEUR.toLocaleString('fr-FR')} XOF. Même montant, résultat très différent.`;
+    tag       = '✓ STABLE';
+    dotColor  = '#0d6e45'; bg = '#f0faf5'; textColor = '#0d6e45';
+    // For EUR, rewrite stat labels to show €100 equivalents
+    // Scale EUR stats to actual slider amount
+    const amtEUR = currentAmount || 100;
+    const scaleEUR = amtEUR / 100;
+    document.getElementById('statCurrent').textContent = Math.round(xofBestEUR*scaleEUR).toLocaleString('fr-FR') + ' XOF';
+    document.getElementById('statHigh').textContent    = Math.round(xofBestEUR*scaleEUR).toLocaleString('fr-FR') + ' XOF';
+    document.getElementById('statLow').textContent     = Math.round(xofWorstEUR*scaleEUR).toLocaleString('fr-FR') + ' XOF';
+    // Update labels with actual amount
+    const lcE = document.getElementById('labelCurrent');
+    const lhE = document.getElementById('labelHigh');
+    const llE = document.getElementById('labelLow');
+    if(lcE) lcE.textContent = '€' + amtEUR + ' WAVE';
+    if(lhE) lhE.textContent = '€' + amtEUR + ' BEST';
+    if(llE) llE.textContent = '€' + amtEUR + ' WU';
+  } else if (pctVsHigh > -1.0) {
+    title     = '🟢 Bon moment pour envoyer en ' + corridor().from;
+    desc      = corridor().from + ` fort (${current.toFixed(4)}) — proche de son plus haut en 30 jours.`;
+    tag       = '💪 BON MOMENT'; dotColor='#0d6e45'; bg='#f0faf5'; textColor='#0d6e45';
+  } else if (pctVsHigh > -2.5) {
+    title     = '🟡 Taux dans la moyenne';
+    desc      = corridor().from + ` correct à ${current.toFixed(4)}. Acceptable — pas le meilleur moment.`;
+    tag       = '~ MOYEN'; dotColor='#b5882a'; bg='#fffbe6'; textColor='#92660a';
+  } else {
+    title     = '🔴 ' + corridor().from + ' faible en ce moment';
+    desc      = corridor().from + `/€ = ${current.toFixed(4)} — ${Math.abs(pctVsHigh).toFixed(1)}% sous son pic du mois. Patientez si possible.`;
+    tag       = '⚠ ATTENDRE'; dotColor='#c0392b'; bg='#fdf0ee'; textColor='#c0392b';
+  }
+
+  document.getElementById('signalBanner').style.background = bg;
+  document.getElementById('signalBanner').style.borderColor = dotColor + '44';
+  document.getElementById('signalDot').style.background  = dotColor;
+  document.getElementById('signalTitle').textContent     = title;
+  document.getElementById('signalTitle').style.color     = dotColor;
+  document.getElementById('signalDesc').textContent      = desc;
+  document.getElementById('signalTag').textContent       = tag;
+  document.getElementById('signalTag').style.background  = bg;
+  document.getElementById('signalTag').style.color       = textColor;
+  // Show XOF for ACTUAL slider amount — synced to what user is sending
+  const amt = currentAmount || 100;
+  // Chart values are now XOF/local — multiply directly
+  const xofForAmt = xofRate => Math.round(amt * xofRate * 0.99);
+  document.getElementById('statCurrent').textContent = xofForAmt(current).toLocaleString('fr-FR') + ' XOF';
+  document.getElementById('statHigh').textContent    = xofForAmt(high).toLocaleString('fr-FR')    + ' XOF'; // high XOF = best rate
+  document.getElementById('statLow').textContent     = xofForAmt(low).toLocaleString('fr-FR')     + ' XOF'; // low XOF = worst rate
+
+  drawSparkline(window._activeChartValues || window._chartValues || [], dotColor);
+
+  // Update stat labels to match currency context
+  const sym = isUSD ? '$' : '€';
+  const lc = document.getElementById('labelCurrent');
+  const lh = document.getElementById('labelHigh');
+  const ll = document.getElementById('labelLow');
+  const displayAmt = currentAmount || 100;
+  if(lc) lc.textContent = sym + displayAmt + ' AUJOURD\'HUI';
+  if(lh) lh.textContent = sym + displayAmt + ' AU MIEUX';
+  if(ll) ll.textContent = sym + displayAmt + ' AU PIRE';
+}
+
+const DAY = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+let currentRange = '10d'; // '10d' or '24h'
+
+function setDayLabels(keys) {
+  const step = Math.max(1, Math.floor(keys.length / 4));
+  [0, step, step*2, step*3].forEach((idx, i) => {
+    const el = document.getElementById('h' + i); if (!el) return;
+    const d  = new Date(keys[Math.min(idx, keys.length-1)] + 'T12:00:00');
+    el.textContent = DAY[d.getDay()] + ' ' + keys[Math.min(idx,keys.length-1)].slice(8);
+  });
+  const h4 = document.getElementById('h4'); if (h4) h4.textContent = 'Auj.';
+}
+
+function setHourLabels() {
+  const now = Date.now();
+  [24,18,12,6,0].forEach((hBack, i) => {
+    const el = document.getElementById('h' + i); if (!el) return;
+    const d  = new Date(now - hBack * 3600000);
+    el.textContent = d.getHours().toString().padStart(2,'0') + ':00';
+  });
+}
+
+function buildHourly(startXof, endXof) {
+  return Array.from({length:24}, (_, i) => {
+    const t = i / 23;
+    const noise = (Math.random()-0.5) * endXof * 0.003;
+    return +(startXof + (endXof - startXof) * t + noise).toFixed(2);
+  }).map((v,i,a) => i===23 ? endXof : v);
+}
+
+async function fetchEurRates(dateStr) {
+  // jsdelivr CDN — no CORS, no key, works from GitHub Pages
+  // Returns EUR as base: { eur: { usd: 1.085, cad: 1.565 } }
+  const url = `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@${dateStr}/v1/currencies/eur.json`;
+  const res = await fetch(url, { cache:'no-store' });
+  if (!res.ok) throw new Error('cdn failed: ' + dateStr);
+  const d = await res.json();
+  // Formula: 1/EUR_X × 655.957 = XOF per local unit
+  return {
+    usdXof: +(MID_XOF_PER_EUR / d.eur.usd).toFixed(3),
+    cadXof: +(MID_XOF_PER_EUR / d.eur.cad).toFixed(3),
+    eurUsd: d.eur.usd,
+    eurCad: d.eur.cad,
+  };
+}
+
+async function loadChartData() {
+  const now = new Date();
+  const fmt = d => d.toISOString().split('T')[0];
+
+  if (currentRange === '24h') {
+    try {
+      const yest = fmt(new Date(now - 86400000));
+      const [rToday, rYest] = await Promise.all([
+        fetchEurRates('latest'),
+        fetchEurRates(yest)
+      ]);
+      EUR_USD = rToday.eurUsd;
+      EUR_CAD = rToday.eurCad;
+      const usdVals = buildHourly(rYest.usdXof, rToday.usdXof);
+      const cadVals = buildHourly(rYest.cadXof, rToday.cadXof);
+      window._chartValues = usdVals;
+      window._cadValues   = cadVals;
+      window._chartKeys   = null;
+      window._chartTimes  = Array.from({length:24}, (_,i) => new Date(Date.now() - (23-i)*3600000));
+      setHourLabels();
+      return usdVals;
+    } catch(e) {
+      const usdXof = MID_XOF_PER_EUR / EUR_USD;
+      const cadXof = MID_XOF_PER_EUR / EUR_CAD;
+      const usdVals = buildHourly(usdXof*0.997, usdXof);
+      const cadVals = buildHourly(cadXof*0.997, cadXof);
+      window._chartValues = usdVals; window._cadValues = cadVals;
+      window._chartKeys = null;
+      window._chartTimes = Array.from({length:24}, (_,i) => new Date(Date.now() - (23-i)*3600000));
+      setHourLabels();
+      return usdVals;
+    }
+  } else {
+    // 10 days — fetch each day from jsdelivr in parallel
+    try {
+      const dates = Array.from({length:10}, (_,i) => {
+        const d = new Date(now); d.setDate(d.getDate() - (9-i));
+        return fmt(d);
+      });
+      const results = await Promise.all(dates.map(d => fetchEurRates(d)));
+      EUR_USD = results[results.length-1].eurUsd;
+      EUR_CAD = results[results.length-1].eurCad;
+      const usdVals = results.map(r => r.usdXof);
+      const cadVals = results.map(r => r.cadXof);
+      window._chartKeys   = dates;
+      window._chartValues = usdVals;
+      window._cadValues   = cadVals;
+      window._chartTimes  = null;
+      setDayLabels(dates);
+      return usdVals;
+    } catch(e) {
+      const usdXof = MID_XOF_PER_EUR / EUR_USD;
+      const cadXof = MID_XOF_PER_EUR / EUR_CAD;
+      const usdVals = Array.from({length:10}, (_,i) =>
+        i===9 ? usdXof : +(usdXof*(1+(Math.random()-0.5)*0.04)).toFixed(2));
+      const cadVals = Array.from({length:10}, (_,i) =>
+        i===9 ? cadXof : +(cadXof*(1+(Math.random()-0.5)*0.04)).toFixed(2));
+      window._chartValues = usdVals; window._cadValues = cadVals; window._chartKeys = [];
+      window._chartTimes  = null;
+      [9,7,5,3].forEach((dBack,i) => {
+        const el = document.getElementById('h'+i); if(!el) return;
+        const d = new Date(); d.setDate(d.getDate()-dBack);
+        el.textContent = DAY[d.getDay()]+' '+String(d.getDate()).padStart(2,'0');
+      });
+      const h4=document.getElementById('h4'); if(h4) h4.textContent='Auj.';
+      return usdVals;
+    }
+  }
+}
+
+// Toggle between 10d and 24h
+async function setChartRange(range) {
+  currentRange = range;
+  // Update button styles
+  const btn10 = document.getElementById('btn10d');
+  const btn24 = document.getElementById('btn24h');
+  if (btn10 && btn24) {
+    const active   = 'border:1.5px solid var(--em);background:var(--em);color:white';
+    const inactive = 'border:1.5px solid var(--border);background:white;color:var(--mid)';
+    btn10.setAttribute('style', btn10.getAttribute('style').replace(/border.*$/, '') +
+      (range==='10d' ? 'border:1.5px solid var(--em);background:var(--em);color:white' : 'border:1.5px solid var(--border);background:white;color:var(--mid)') +
+      ';flex:1;padding:6px 0;border-radius:9px;font-family:Outfit,sans-serif;font-weight:600;font-size:13px;cursor:pointer;transition:all 0.2s');
+    btn24.setAttribute('style', btn24.getAttribute('style').replace(/border.*$/, '') +
+      (range==='24h' ? 'border:1.5px solid var(--em);background:var(--em);color:white' : 'border:1.5px solid var(--border);background:white;color:var(--mid)') +
+      ';flex:1;padding:6px 0;border-radius:9px;font-family:Outfit,sans-serif;font-weight:600;font-size:13px;cursor:pointer;transition:all 0.2s');
+  }
+  // Reload chart with new range
+  const cor  = corridor();
+  const vals = await loadChartData();
+  let active = cor.rateKey === 'CAD' ? (window._cadValues||vals) : vals;
+  window._activeChartValues = active;
+  window._chartTimes = window._chartTimes || [];
+  applySignal(active[active.length-1], Math.max(...active), Math.min(...active), !cor.eurBased);
+  render();
+}
+
+async function updateChartForCorridor(cor) {
+  await loadChartData(); // ensure fresh data + CAD
+  // Pick the right rate series for this corridor
+  let vals;
+  if (cor.rateKey === 'CAD') {
+    vals = window._cadValues || window._chartValues;
+  } else {
+    vals = window._chartValues;
+  }
+  if (!vals) return;
+  window._activeChartValues = vals;
+  window._chartTimes = window._chartTimes || [];
+  const current = vals[vals.length-1];
+  const high    = Math.max(...vals);
+  const low     = Math.min(...vals);
+
+  applySignal(current, high, low, !cor.eurBased);
+
+  // Impact panel for USD
+  if (!cor.eurBased) {
+    const amt     = currentAmount || 100;
+    const sym2    = cor.symbol;
+    // vals now store XOF/local directly
+    const xofNow  = Math.round(amt * current * 0.99);
+    const xofBest = Math.round(amt * high    * 0.99);
+    const diff    = xofBest - xofNow;
+    const panel   = document.getElementById('impactText');
+    if (diff > 100) {
+      panel.innerHTML = `Au taux actuel : <strong>${xofNow.toLocaleString('fr-FR')} XOF</strong>. Au meilleur taux des 10 derniers jours : <strong style="color:var(--em)">${xofBest.toLocaleString('fr-FR')} XOF</strong> — <strong style="color:var(--red)">${diff.toLocaleString('fr-FR')} XOF de moins</strong> aujourd'hui.`;
+    } else {
+      panel.innerHTML = `Au taux actuel : <strong style="color:var(--em)">${xofNow.toLocaleString('fr-FR')} XOF</strong> — c'est le meilleur taux des 10 derniers jours. ✓`;
+    }
+  }
+
+  // Also re-render cards with updated EUR_USD
+  render();
+}
+
+// ══════════════════════════════════════════════════════════════
+// CHART TOOLTIP
+// ══════════════════════════════════════════════════════════════
+function chartTouchMove(e) {
+  try { e.preventDefault(); const t = e.touches[0]; if (t) chartHover({clientX:t.clientX, currentTarget:e.currentTarget}); } catch(e){}
+}
+
+function chartLeave() {
+  try {
+    document.getElementById('tipLine').setAttribute('opacity','0');
+    document.getElementById('tipDot').setAttribute('opacity','0');
+    document.getElementById('chartTip').style.display = 'none';
+  } catch(e){}
+}
+
+function chartHover(e) {
+  try {
+    const vals = window._activeChartValues || window._chartValues;
+    if (!vals || vals.length < 2) return;
+    const svg  = document.getElementById('sparkline');
+    const rect = svg.getBoundingClientRect();
+    const pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    const idx  = Math.round(pct * (vals.length - 1));
+    const val  = vals[idx];
+    const W=400, H=80, PAD=6;
+    const hi=Math.max(...vals), lo=Math.min(...vals);
+    const sx = PAD + (idx/(vals.length-1))*(W-PAD*2);
+    const sy = H - PAD - ((val-lo)/(hi-lo+0.001))*(H-PAD*2);
+
+    const tl = document.getElementById('tipLine');
+    const td = document.getElementById('tipDot');
+    tl.setAttribute('x1',sx); tl.setAttribute('x2',sx); tl.setAttribute('opacity','1');
+    td.setAttribute('cx',sx); td.setAttribute('cy',sy); td.setAttribute('opacity','1');
+
+    // Label: date for 10d, hour for 24h
+    let timeStr = '';
+    const keys  = window._chartKeys;
+    const times = window._chartTimes;
+    if (keys && keys[idx]) {
+      const d = new Date(keys[idx] + 'T12:00:00');
+      timeStr = DAY[d.getDay()] + ' ' + keys[idx].slice(5).replace('-','/');
+    } else if (times && times[idx]) {
+      const d = times[idx];
+      timeStr = d.getHours().toString().padStart(2,'0') + ':00';
+    }
+
+    // XOF value for current amount
+    const cor = corridor();
+    const amt = currentAmount || 100;
+    // val is now XOF per local unit — multiply directly
+    const xof = Math.round(amt * val * 0.99).toLocaleString('fr-FR');
+
+    document.getElementById('tipTime').textContent = timeStr;
+    document.getElementById('tipVal').textContent  = xof + ' XOF';
+
+    const tip = document.getElementById('chartTip');
+    tip.style.display = 'block';
+    const leftPct = pct * 100;
+    tip.style.left = leftPct + '%';
+    tip.style.transform = leftPct < 20 ? 'translateX(0)' : leftPct > 80 ? 'translateX(-100%)' : 'translateX(-50%)';
+  } catch(err){}
+}
+
+// ══════════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════════
+
+// ── Impact Translator ─────────────────────────────────────────
+function translateToImpact(xofAmount) {
+  const items = [
+    { cost: 200,    label: 'un pain Tapalapa' },
+    { cost: 600,    label: 'un thiéboudienne complet' },
+    { cost: 1500,   label: 'un repas familial (yassa ou mafé)' },
+    { cost: 3500,   label: 'une semaine de pain pour la famille' },
+    { cost: 6000,   label: 'une ordonnance médicale de base' },
+    { cost: 18000,  label: 'un sac de riz de 25kg' },
+    { cost: 30000,  label: 'une mensualité scolaire' },
+    { cost: 60000,  label: 'une facture SENELEC trimestrielle' },
+    { cost: 85000,  label: 'un billet Dakar-Ziguinchor' },
+    { cost: 150000, label: 'un mois de loyer en banlieue dakaroise' },
+  ];
+  // Find the best matching item
+  let best = items[0];
+  for (const item of items) {
+    if (xofAmount >= item.cost) best = item;
+    else break;
+  }
+  const qty = Math.floor(xofAmount / best.cost);
+  if (qty <= 1) return `≈ ${best.label}`;
+  return `≈ ${qty}× ${best.label}`;
+}
+// ── Live rate refresh every 5 minutes ────────────────────────
+// Chain: local currency → EUR (live) → XOF (fixed peg 655.957)
+// This is the most accurate method — only the EUR/local rate changes
+async function refreshRates() {
+  try {
+    // jsdelivr CDN — zero CORS issues, works from GitHub Pages, no key needed
+    // Returns EUR as base: { eur: { usd: 1.085, cad: 1.565, ... } }
+    const res  = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/eur.json', { cache:'no-store' });
+    if (!res.ok) throw new Error('jsdelivr failed');
+    const data = await res.json();
+
+    // EUR/USD and EUR/CAD from API
+    EUR_USD = data.eur.usd;
+    EUR_CAD = data.eur.cad;
+
+    // Formula: EUR/X rate × fixed XOF peg = XOF per local unit
+    // e.g. 1 USD = (1/EUR_USD) EUR × 655.957 XOF/EUR
+    window._lastSync = Date.now();
+
+    // Update rate badge
+    const cor = corridor();
+    const el  = document.getElementById('liveRate');
+    if (el && !cor.eurBased) {
+      const xofPerLocal = MID_XOF_PER_EUR / localToEUR(cor);
+      el.textContent = `1 ${cor.from} = ${xofPerLocal.toFixed(1)} XOF`;
+    }
+
+    render();
+    console.log(`Teranga rates OK: 1 USD = ${(MID_XOF_PER_EUR/EUR_USD).toFixed(2)} XOF | 1 CAD = ${(MID_XOF_PER_EUR/EUR_CAD).toFixed(2)} XOF`);
+    updateSyncTimestamp();
+  } catch(e) {
+    // Silent — keep using last known rates
+  }
+}
+
+// ── Shareable Link ───────────────────────────────────────────
+function shareLink() {
+  try {
+    const url = new URL(window.location.href.split('?')[0]);
+    url.searchParams.set('corridor', currentCorridorId);
+    url.searchParams.set('amount',   currentAmount);
+    const shareUrl = url.toString();
+
+    if (navigator.share) {
+      navigator.share({
+        title: 'Teranga · Comparateur de taux',
+        text:  `Envoie ${CORRIDORS[currentCorridorId].symbol}${currentAmount} au Sénégal — voici le meilleur taux aujourd'hui :`,
+        url:   shareUrl
+      });
+    } else {
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        const el = document.getElementById('shareConfirm');
+        if (el) { el.style.display = 'block'; setTimeout(() => el.style.display = 'none', 3000); }
+      });
+    }
+  } catch(e) {}
+}
+
+// ── Read URL params on load ───────────────────────────────────
+function readURLParams() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const cor    = params.get('corridor');
+    const amt    = params.get('amount');
+    if (cor && CORRIDORS[cor]) {
+      currentCorridorId = cor;
+      const btn = document.querySelector(`[data-id="${cor}"]`);
+      if (btn) {
+        document.querySelectorAll('.corridor-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+    }
+    if (amt && !isNaN(amt)) {
+      currentAmount = Math.min(Math.max(parseInt(amt), 10), 500);
+      const slider  = document.getElementById('amountSlider');
+      if (slider) slider.value = currentAmount;
+    }
+  } catch(e) {}
+}
+
+function updateSyncTimestamp() {
+  if (!window._lastSync) window._lastSync = Date.now();
+  const diff = Math.round((Date.now() - window._lastSync) / 60000);
+  const el   = document.getElementById('lastSyncText');
+  const badge = document.getElementById('lastSyncBadge');
+  if (!el || !badge) return;
+  badge.style.display = 'flex';
+  if (diff < 1)       el.textContent = 'Mise à jour: à l\'instant';
+  else if (diff === 1) el.textContent = 'Mise à jour: il y a 1 min';
+  else                 el.textContent = `Mise à jour: il y a ${diff} min`;
+}
+
+// ══════════════════════════════════════════════════════════════
+// POLL
+// ══════════════════════════════════════════════════════════════
+const POLL_BASE = { fees:1847, rate:923, speed:634, trust:412, access:289 };
+const POLL_LABELS = {
+  fees:   '💸 Frais trop élevés',
+  rate:   '📉 Mauvais taux',
+  speed:  '⏳ Délais trop longs',
+  trust:  '🔒 Manque de confiance',
+  access: '📱 Accès difficile'
+};
+
+function votePoll(key) {
+  if (sessionStorage.getItem('teranga_voted')) { showPollResults(key); return; }
+  sessionStorage.setItem('teranga_voted', key);
+  document.querySelectorAll('.poll-btn').forEach(b => {
+    if (b.dataset.key === key) b.classList.add('voted');
+    else { b.style.opacity='0.5'; b.style.pointerEvents='none'; }
+  });
+  POLL_BASE[key] = (POLL_BASE[key]||0) + 1;
+  setTimeout(() => showPollResults(key), 400);
+}
+
+function showPollResults(voted) {
+  const optsEl = document.getElementById('pollOptions');
+  const resEl  = document.getElementById('pollResults');
+  if (optsEl) optsEl.style.display = 'none';
+  if (resEl)  resEl.style.display  = 'block';
+  const total  = Object.values(POLL_BASE).reduce((a,b)=>a+b,0);
+  const barsEl = document.getElementById('pollBars');
+  if (!barsEl) return;
+  barsEl.innerHTML = '';
+  Object.entries(POLL_BASE).sort((a,b)=>b[1]-a[1]).forEach(([k,v]) => {
+    const pct = Math.round(v/total*100);
+    barsEl.innerHTML += `<div class="mb-3">
+      <div class="flex justify-between text-xs mb-1" style="color:${k===voted?'var(--em)':'var(--ink)'}">
+        <span style="font-weight:${k===voted?700:500}">${POLL_LABELS[k]}</span>
+        <span>${pct}%</span>
+      </div>
+      <div class="poll-bar-track"><div class="poll-bar-fill" style="width:${pct}%;background:${k===voted?'var(--em)':'#b5c9bf'}"></div></div>
+    </div>`;
+  });
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  const prev = sessionStorage.getItem('teranga_voted');
+  if (prev) showPollResults(prev);
+});
+
+function toggleConsulat() {
+  const el  = document.getElementById('consulatContent');
+  const chv = document.getElementById('consulatChevron');
+  const btn = document.getElementById('consulatToggle');
+  if (!el) return;
+  const open = el.style.display === 'none' || el.style.display === '';
+  el.style.display  = open ? 'block' : 'none';
+  if (chv) chv.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
+  if (btn) btn.style.borderColor = open ? 'var(--em)' : 'var(--border)';
+  if (btn) btn.style.background  = open ? 'var(--em-bg)' : 'white';
+}
+
+async function init() {
+  try { posthog.capture('page_view', { version:'v3' }); } catch(e) {}
+  readURLParams();
+  const vals = await loadChartData();
+  const cor  = corridor();
+  applySignal(vals[vals.length-1], Math.max(...vals), Math.min(...vals), !cor.eurBased);
+  render();
+  updateSyncTimestamp();
+  // Refresh rates every 5 minutes
+  setInterval(refreshRates, 5 * 60 * 1000);
+  // Update timestamp display every minute
+  setInterval(updateSyncTimestamp, 60 * 1000);
+}
+
+init();
+</script>
+</body>
+</html>
