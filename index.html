@@ -289,6 +289,22 @@ window.tailwind = { config: {
   <!-- ── TREND / TIMING CHART ───────────────────────────── -->
   <div class="fade-up d3 chart-wrap mb-4">
 
+    <!-- Chart range toggle -->
+    <div class="flex gap-2 mb-4">
+      <button id="btn10d" onclick="setChartRange('10d')"
+        style="flex:1;padding:6px 0;border-radius:9px;border:1.5px solid var(--em);
+               background:var(--em);color:white;font-family:'Outfit',sans-serif;
+               font-weight:600;font-size:13px;cursor:pointer;transition:all 0.2s">
+        10 jours
+      </button>
+      <button id="btn24h" onclick="setChartRange('24h')"
+        style="flex:1;padding:6px 0;border-radius:9px;border:1.5px solid var(--border);
+               background:white;color:var(--mid);font-family:'Outfit',sans-serif;
+               font-weight:600;font-size:13px;cursor:pointer;transition:all 0.2s">
+        24h
+      </button>
+    </div>
+
     <!-- Signal banner -->
     <div class="signal-banner mb-4" id="signalBanner" style="background:#f7faf8">
       <div class="signal-dot" id="signalDot" style="background:#ccc"></div>
@@ -761,10 +777,11 @@ function applySignal(current, high, low, isUSD) {
   document.getElementById('signalTag').style.color       = textColor;
   // Show XOF for ACTUAL slider amount — synced to what user is sending
   const amt = currentAmount || 100;
-  const xofForAmt = rate => Math.round((amt / rate) * MID_XOF_PER_EUR * 0.99); // via Wave
+  // Chart values are now XOF/local — multiply directly
+  const xofForAmt = xofRate => Math.round(amt * xofRate * 0.99);
   document.getElementById('statCurrent').textContent = xofForAmt(current).toLocaleString('fr-FR') + ' XOF';
-  document.getElementById('statHigh').textContent    = xofForAmt(low).toLocaleString('fr-FR')     + ' XOF'; // low rate = strong local = more XOF
-  document.getElementById('statLow').textContent     = xofForAmt(high).toLocaleString('fr-FR')    + ' XOF'; // high rate = weak local = less XOF
+  document.getElementById('statHigh').textContent    = xofForAmt(high).toLocaleString('fr-FR')    + ' XOF'; // high XOF = best rate
+  document.getElementById('statLow').textContent     = xofForAmt(low).toLocaleString('fr-FR')     + ' XOF'; // low XOF = worst rate
 
   drawSparkline(window._activeChartValues || window._chartValues || [], dotColor);
 
@@ -779,78 +796,140 @@ function applySignal(current, high, low, isUSD) {
   if(ll) ll.textContent = sym + displayAmt + ' AU PIRE';
 }
 
-function makeHourly(startRate, endRate, n) {
-  // Interpolate n points from start to end with tiny noise
-  return Array.from({length: n}, (_, i) => {
-    const t = i / (n - 1);
-    const noise = (Math.random() - 0.5) * endRate * 0.002;
-    return +(startRate + (endRate - startRate) * t + noise).toFixed(5);
-  }).map((v, i, a) => i === a.length - 1 ? endRate : v);
+const DAY = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+let currentRange = '10d'; // '10d' or '24h'
+
+function setDayLabels(keys) {
+  const step = Math.max(1, Math.floor(keys.length / 4));
+  [0, step, step*2, step*3].forEach((idx, i) => {
+    const el = document.getElementById('h' + i); if (!el) return;
+    const d  = new Date(keys[Math.min(idx, keys.length-1)] + 'T12:00:00');
+    el.textContent = DAY[d.getDay()] + ' ' + keys[Math.min(idx,keys.length-1)].slice(8);
+  });
+  const h4 = document.getElementById('h4'); if (h4) h4.textContent = 'Auj.';
 }
 
-function setHourLabels(now) {
-  // h0=index 0 (24h ago), h1=index 6 (18h ago), h2=index 12 (12h ago),
-  // h3=index 18 (6h ago), h4=index 23 (now)
-  // left% matches: 0/23*100=0, 6/23*100=26≈25, 12/23*100=52≈50, 18/23*100=78≈75, 100
-  [24, 18, 12, 6, 0].forEach((hBack, i) => {
-    const el = document.getElementById('h' + i);
-    if (!el) return;
-    const d = new Date(now - hBack * 3600000);
+function setHourLabels() {
+  const now = Date.now();
+  [24,18,12,6,0].forEach((hBack, i) => {
+    const el = document.getElementById('h' + i); if (!el) return;
+    const d  = new Date(now - hBack * 3600000);
     el.textContent = d.getHours().toString().padStart(2,'0') + ':00';
   });
 }
 
+function buildHourly(startXof, endXof) {
+  return Array.from({length:24}, (_, i) => {
+    const t = i / 23;
+    const noise = (Math.random()-0.5) * endXof * 0.003;
+    return +(startXof + (endXof - startXof) * t + noise).toFixed(2);
+  }).map((v,i,a) => i===23 ? endXof : v);
+}
+
 async function loadChartData() {
-  const now   = new Date();
-  const today = now.toISOString().split('T')[0];
-  const yest  = new Date(now - 86400000).toISOString().split('T')[0];
+  const today = new Date();
+  const fmt   = d => d.toISOString().split('T')[0];
 
-  try {
-    const res = await fetch(
-      `https://api.frankfurter.app/${yest}..${today}?from=EUR&to=USD,CAD`,
-      { cache:'no-store' }
-    );
-    if (!res.ok) throw new Error('frankfurter failed');
-    const data = await res.json();
-    const keys = Object.keys(data.rates).sort();
+  if (currentRange === '24h') {
+    // ── 24h: fetch yesterday + today, interpolate 24 hourly points ──
+    const yest = new Date(today - 86400000);
+    try {
+      const res  = await fetch(
+        `https://api.frankfurter.app/${fmt(yest)}..${fmt(today)}?from=EUR&to=USD,CAD`,
+        { cache:'no-store' }
+      );
+      if (!res.ok) throw new Error();
+      const data = await res.json();
+      const keys = Object.keys(data.rates).sort();
+      const last = keys[keys.length-1], prev = keys.length>1 ? keys[keys.length-2] : keys[0];
+      EUR_USD = data.rates[last].USD;
+      EUR_CAD = data.rates[last].CAD;
+      const usdVals = buildHourly(MID_XOF_PER_EUR/data.rates[prev].USD, MID_XOF_PER_EUR/EUR_USD);
+      const cadVals = buildHourly(MID_XOF_PER_EUR/data.rates[prev].CAD, MID_XOF_PER_EUR/EUR_CAD);
+      window._chartValues = usdVals;
+      window._cadValues   = cadVals;
+      window._chartKeys   = null; // hours, not dates
+      window._chartTimes  = Array.from({length:24}, (_,i) => new Date(Date.now() - (23-i)*3600000));
+      setHourLabels();
+      return usdVals;
+    } catch(e) {
+      const usdXof = MID_XOF_PER_EUR / EUR_USD;
+      const cadXof = MID_XOF_PER_EUR / EUR_CAD;
+      const usdVals = buildHourly(usdXof*0.997, usdXof);
+      const cadVals = buildHourly(cadXof*0.997, cadXof);
+      window._chartValues = usdVals; window._cadValues = cadVals;
+      window._chartKeys = null;
+      window._chartTimes = Array.from({length:24}, (_,i) => new Date(Date.now() - (23-i)*3600000));
+      setHourLabels();
+      return usdVals;
+    }
 
-    const lastKey = keys[keys.length - 1];
-    const prevKey = keys.length > 1 ? keys[keys.length - 2] : keys[0];
-
-    const usdEnd   = data.rates[lastKey].USD;
-    const usdStart = data.rates[prevKey].USD;
-    const cadEnd   = data.rates[lastKey].CAD;
-    const cadStart = data.rates[prevKey].CAD;
-
-    EUR_USD = usdEnd;
-    EUR_CAD = cadEnd;
-
-    const usdVals = makeHourly(usdStart, usdEnd, 24);
-    const cadVals = makeHourly(cadStart, cadEnd, 24);
-
-    // Build per-point timestamps (last 24h, hourly)
-    const timestamps = Array.from({length: 24}, (_, i) =>
-      new Date(now - (23 - i) * 3600000)
-    );
-    window._chartValues  = usdVals;
-    window._cadValues    = cadVals;
-    window._chartTimes   = timestamps;
-
-    setHourLabels(now);
-    return usdVals;
-
-  } catch(e) {
-    const usdVals = makeHourly(EUR_USD * 0.995, EUR_USD, 24);
-    const cadVals = makeHourly(EUR_CAD * 0.995, EUR_CAD, 24);
-    const timestamps = Array.from({length: 24}, (_, i) =>
-      new Date(now - (23 - i) * 3600000)
-    );
-    window._chartValues = usdVals;
-    window._cadValues   = cadVals;
-    window._chartTimes  = timestamps;
-    setHourLabels(now);
-    return usdVals;
+  } else {
+    // ── 10 days: real daily data, meaningful swings ──
+    const past = new Date(); past.setDate(today.getDate() - 10);
+    try {
+      const res  = await fetch(
+        `https://api.frankfurter.app/${fmt(past)}..${fmt(today)}?from=EUR&to=USD,CAD`,
+        { cache:'no-store' }
+      );
+      if (!res.ok) throw new Error();
+      const data = await res.json();
+      const keys = Object.keys(data.rates).sort();
+      if (keys.length < 3) throw new Error();
+      const last = keys[keys.length-1];
+      EUR_USD = data.rates[last].USD;
+      EUR_CAD = data.rates[last].CAD;
+      const usdVals = keys.map(k => MID_XOF_PER_EUR / data.rates[k].USD);
+      const cadVals = keys.map(k => MID_XOF_PER_EUR / data.rates[k].CAD);
+      window._chartKeys   = keys;
+      window._chartValues = usdVals;
+      window._cadValues   = cadVals;
+      window._chartTimes  = null;
+      setDayLabels(keys);
+      return usdVals;
+    } catch(e) {
+      const usdXof = MID_XOF_PER_EUR / EUR_USD;
+      const cadXof = MID_XOF_PER_EUR / EUR_CAD;
+      const usdVals = Array.from({length:10}, (_,i) =>
+        i===9 ? usdXof : +(usdXof*(1+(Math.random()-0.5)*0.04)).toFixed(2));
+      const cadVals = Array.from({length:10}, (_,i) =>
+        i===9 ? cadXof : +(cadXof*(1+(Math.random()-0.5)*0.04)).toFixed(2));
+      window._chartValues = usdVals; window._cadValues = cadVals; window._chartKeys = [];
+      window._chartTimes  = null;
+      const [d9,d7,d5,d3] = [9,7,5,3].map(n => { const d=new Date(); d.setDate(d.getDate()-n); return d; });
+      [[d9,0],[d7,1],[d5,2],[d3,3]].forEach(([d,i]) => {
+        const el = document.getElementById('h'+i); if(el) el.textContent = DAY[d.getDay()]+' '+String(d.getDate()).padStart(2,'0');
+      });
+      const h4=document.getElementById('h4'); if(h4) h4.textContent='Auj.';
+      return usdVals;
+    }
   }
+}
+
+// Toggle between 10d and 24h
+async function setChartRange(range) {
+  currentRange = range;
+  // Update button styles
+  const btn10 = document.getElementById('btn10d');
+  const btn24 = document.getElementById('btn24h');
+  if (btn10 && btn24) {
+    const active   = 'border:1.5px solid var(--em);background:var(--em);color:white';
+    const inactive = 'border:1.5px solid var(--border);background:white;color:var(--mid)';
+    btn10.setAttribute('style', btn10.getAttribute('style').replace(/border.*$/, '') +
+      (range==='10d' ? 'border:1.5px solid var(--em);background:var(--em);color:white' : 'border:1.5px solid var(--border);background:white;color:var(--mid)') +
+      ';flex:1;padding:6px 0;border-radius:9px;font-family:Outfit,sans-serif;font-weight:600;font-size:13px;cursor:pointer;transition:all 0.2s');
+    btn24.setAttribute('style', btn24.getAttribute('style').replace(/border.*$/, '') +
+      (range==='24h' ? 'border:1.5px solid var(--em);background:var(--em);color:white' : 'border:1.5px solid var(--border);background:white;color:var(--mid)') +
+      ';flex:1;padding:6px 0;border-radius:9px;font-family:Outfit,sans-serif;font-weight:600;font-size:13px;cursor:pointer;transition:all 0.2s');
+  }
+  // Reload chart with new range
+  const cor  = corridor();
+  const vals = await loadChartData();
+  let active = cor.rateKey === 'CAD' ? (window._cadValues||vals) : vals;
+  window._activeChartValues = active;
+  window._chartTimes = window._chartTimes || [];
+  applySignal(active[active.length-1], Math.max(...active), Math.min(...active), !cor.eurBased);
+  render();
 }
 
 async function updateChartForCorridor(cor) {
@@ -875,8 +954,9 @@ async function updateChartForCorridor(cor) {
   if (!cor.eurBased) {
     const amt     = currentAmount || 100;
     const sym2    = cor.symbol;
-    const xofNow  = Math.round((amt / current) * MID_XOF_PER_EUR * 0.99);
-    const xofBest = Math.round((amt / low)     * MID_XOF_PER_EUR * 0.99);
+    // vals now store XOF/local directly
+    const xofNow  = Math.round(amt * current * 0.99);
+    const xofBest = Math.round(amt * high    * 0.99);
     const diff    = xofBest - xofNow;
     const panel   = document.getElementById('impactText');
     if (diff > 100) {
@@ -924,10 +1004,14 @@ function chartHover(e) {
     tl.setAttribute('x1',sx); tl.setAttribute('x2',sx); tl.setAttribute('opacity','1');
     td.setAttribute('cx',sx); td.setAttribute('cy',sy); td.setAttribute('opacity','1');
 
-    // Time label
-    const times = window._chartTimes;
+    // Label: date for 10d, hour for 24h
     let timeStr = '';
-    if (times && times[idx]) {
+    const keys  = window._chartKeys;
+    const times = window._chartTimes;
+    if (keys && keys[idx]) {
+      const d = new Date(keys[idx] + 'T12:00:00');
+      timeStr = DAY[d.getDay()] + ' ' + keys[idx].slice(5).replace('-','/');
+    } else if (times && times[idx]) {
       const d = times[idx];
       timeStr = d.getHours().toString().padStart(2,'0') + ':00';
     }
@@ -935,7 +1019,8 @@ function chartHover(e) {
     // XOF value for current amount
     const cor = corridor();
     const amt = currentAmount || 100;
-    const xof = Math.round(amt * (MID_XOF_PER_EUR / val) * 0.99).toLocaleString('fr-FR');
+    // val is now XOF per local unit — multiply directly
+    const xof = Math.round(amt * val * 0.99).toLocaleString('fr-FR');
 
     document.getElementById('tipTime').textContent = timeStr;
     document.getElementById('tipVal').textContent  = xof + ' XOF';
@@ -951,15 +1036,45 @@ function chartHover(e) {
 // ══════════════════════════════════════════════════════════════
 // INIT
 // ══════════════════════════════════════════════════════════════
+// ── Live rate refresh every 5 minutes ────────────────────────
+// Chain: local currency → EUR (live) → XOF (fixed peg 655.957)
+// This is the most accurate method — only the EUR/local rate changes
+async function refreshRates() {
+  try {
+    const res  = await fetch('https://api.frankfurter.app/latest?from=EUR&to=USD,CAD', { cache:'no-store' });
+    if (!res.ok) throw new Error('refresh failed');
+    const data = await res.json();
+    EUR_USD = data.rates.USD;
+    EUR_CAD = data.rates.CAD;
+
+    // Update rate badge
+    const cor = corridor();
+    const el  = document.getElementById('liveRate');
+    if (el && !cor.eurBased) {
+      const xofPerLocal = MID_XOF_PER_EUR / localToEUR(cor);
+      el.textContent = `1 ${cor.from} = ${xofPerLocal.toFixed(1)} XOF`;
+    }
+
+    // Re-render cards with fresh rates
+    render();
+    console.log('Teranga rates refreshed: 1 USD =', (MID_XOF_PER_EUR/EUR_USD).toFixed(2), 'XOF | 1 CAD =', (MID_XOF_PER_EUR/EUR_CAD).toFixed(2), 'XOF');
+  } catch(e) {
+    // Silent — keep using last known rates
+  }
+}
+
 async function init() {
   try { posthog.capture('page_view', { version:'v3' }); } catch(e) {}
   const vals = await loadChartData();
   const cor  = corridor();
   applySignal(vals[vals.length-1], Math.max(...vals), Math.min(...vals), !cor.eurBased);
   render();
+  // Refresh rates every 5 minutes
+  setInterval(refreshRates, 5 * 60 * 1000);
 }
 
 init();
 </script>
 </body>
+</html>
 </html>
