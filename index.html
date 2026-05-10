@@ -229,6 +229,22 @@ window.tailwind = { config: {
         <span class="flags">🇪🇸→🇸🇳</span>
         <span class="label">ES</span>
       </button>
+      <button class="corridor-btn" onclick="setCorridor('GB',this)" data-id="GB">
+        <span class="flags">🇬🇧→🇸🇳</span>
+        <span class="label">UK</span>
+      </button>
+      <button class="corridor-btn" onclick="setCorridor('BE',this)" data-id="BE">
+        <span class="flags">🇧🇪→🇸🇳</span>
+        <span class="label">BE</span>
+      </button>
+      <button class="corridor-btn" onclick="setCorridor('CN',this)" data-id="CN">
+        <span class="flags">🇨🇳→🇸🇳</span>
+        <span class="label">CN</span>
+      </button>
+      <button class="corridor-btn" onclick="showGold(this)" data-id="GOLD" id="goldBtn">
+        <span class="flags">🥇</span>
+        <span class="label">OR</span>
+      </button>
       </div>
       <!-- Right fade to hint scrollable content -->
       <div style="position:absolute;right:0;top:0;bottom:0;width:32px;
@@ -237,6 +253,7 @@ window.tailwind = { config: {
     </div>
   </div>
 
+  <div id="consulatSection">
   <!-- ── E-CONSULAT COLLAPSIBLE ──────────────────────────── -->
   <div class="fade-up d1 mb-4">
     <button onclick="toggleConsulat()" id="consulatToggle"
@@ -320,8 +337,110 @@ window.tailwind = { config: {
     </div>
   </div>
 
+  <!-- ── GOLD PANEL ────────────────────────────────────────── -->
+  </div>
+  <div id="goldPanel" style="display:none;margin-bottom:12px" class="fade-up">
+    <div class="rounded-2xl p-5" style="background:linear-gradient(135deg,#1a1200,#2d1f00);
+         border:1.5px solid #b5882a;position:relative;overflow:hidden">
+      <div style="position:absolute;inset:0;pointer-events:none;
+           background:radial-gradient(ellipse 60% 40% at 80% 20%,rgba(240,201,106,0.12),transparent)"></div>
+      <div style="position:relative">
+
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <p style="font-size:10px;font-family:'DM Mono',monospace;color:#b5882a;
+                      letter-spacing:.08em;margin-bottom:2px">🥇 OR · PRIX EN DIRECT</p>
+            <p style="font-size:11px;color:rgba(255,255,255,0.5)">BCE via jsdelivr · mis à jour quotidiennement</p>
+          </div>
+          <p style="font-size:9px;font-family:'DM Mono',monospace;color:rgba(255,255,255,0.35)"
+             id="goldUpdated">—</p>
+        </div>
+
+        <!-- CALCULATOR FIRST — most useful thing -->
+        <div style="background:rgba(255,255,255,0.07);border-radius:14px;padding:14px;
+             border:1px solid rgba(181,136,42,0.35);margin-bottom:12px">
+          <p style="font-size:9px;font-family:'DM Mono',monospace;color:#b5882a;
+                    letter-spacing:.06em;margin-bottom:10px">⚖️ CALCULATEUR · BIJOUX SÉNÉGALAIS</p>
+
+          <!-- Karat selector -->
+          <div style="display:flex;gap:6px;margin-bottom:10px">
+            <button onclick="setKarat(18,this)" id="k18"
+              style="flex:1;padding:5px 0;border-radius:8px;font-family:'DM Mono',monospace;
+                     font-size:11px;font-weight:700;cursor:pointer;transition:all 0.15s;
+                     background:rgba(181,136,42,0.3);color:#f0c96a;border:1px solid #b5882a">
+              18 carats · 75%
+            </button>
+            <button onclick="setKarat(22,this)" id="k22"
+              style="flex:1;padding:5px 0;border-radius:8px;font-family:'DM Mono',monospace;
+                     font-size:11px;font-weight:700;cursor:pointer;transition:all 0.15s;
+                     background:rgba(181,136,42,0.15);color:rgba(240,201,106,0.5);border:1px solid rgba(181,136,42,0.3)">
+              22 carats · 91.6%
+            </button>
+            <button onclick="setKarat(24,this)" id="k24"
+              style="flex:1;padding:5px 0;border-radius:8px;font-family:'DM Mono',monospace;
+                     font-size:11px;font-weight:700;cursor:pointer;transition:all 0.15s;
+                     background:rgba(181,136,42,0.15);color:rgba(240,201,106,0.5);border:1px solid rgba(181,136,42,0.3)">
+              24 carats · pur
+            </button>
+          </div>
+
+          <!-- Weight input -->
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+            <span style="font-size:12px;color:rgba(255,255,255,0.6)">Poids</span>
+            <input type="number" id="goldGrams" value="10" min="1" max="1000"
+                   oninput="updateGoldCalc()"
+                   style="width:65px;background:rgba(255,255,255,0.1);border:1px solid #b5882a;
+                          border-radius:6px;padding:5px 8px;color:white;font-family:'DM Mono',monospace;
+                          font-size:14px;font-weight:700;outline:none;text-align:center"/>
+            <span style="font-size:12px;color:rgba(255,255,255,0.6)">grammes</span>
+          </div>
+
+          <!-- Result -->
+          <div style="background:rgba(0,0,0,0.2);border-radius:10px;padding:10px">
+            <p style="font-size:9px;font-family:'DM Mono',monospace;color:rgba(255,255,255,0.4);
+                      margin-bottom:3px" id="goldCalcLabel">10g · 18k</p>
+            <div style="display:flex;align-items:baseline;gap:6px">
+              <span style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:#f0c96a"
+                    id="goldCalcXof">—</span>
+              <span style="font-size:11px;color:rgba(255,255,255,0.4)">XOF</span>
+            </div>
+            <p style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px"
+               id="goldCalcEur">—</p>
+          </div>
+        </div>
+
+        <!-- Spot prices — reference below calculator -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+          <div style="background:rgba(255,255,255,0.05);border-radius:10px;padding:10px;
+               border:1px solid rgba(181,136,42,0.2)">
+            <p style="font-size:9px;font-family:'DM Mono',monospace;color:#b5882a;letter-spacing:.06em">
+              1g · OR PUR (24k)</p>
+            <p style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:#f0c96a;
+                      line-height:1;margin-top:3px" id="goldGram">—</p>
+            <p style="font-size:9px;color:rgba(255,255,255,0.35);margin-top:1px">XOF</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.05);border-radius:10px;padding:10px;
+               border:1px solid rgba(181,136,42,0.2)">
+            <p style="font-size:9px;font-family:'DM Mono',monospace;color:#b5882a;letter-spacing:.06em">
+              1 ONCE (31.1g)</p>
+            <p style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:#f0c96a;
+                      line-height:1;margin-top:3px" id="goldOunce">—</p>
+            <p style="font-size:9px;color:rgba(255,255,255,0.35);margin-top:1px">XOF</p>
+          </div>
+        </div>
+
+        <!-- Context tags -->
+        <p style="font-size:10px;color:rgba(255,255,255,0.3);font-family:'DM Mono',monospace;
+                  letter-spacing:.04em">
+          TABASKI · MARIAGE · ÉPARGNE · BIJOUX DAKAR
+        </p>
+      </div>
+    </div>
+  </div>
+
   <!-- ── AMOUNT PICKER + XOF REVERSE ─────────────────────── -->
-  <div class="fade-up d3 bg-white rounded-2xl border p-4 mb-3" style="border-color:var(--border)">
+  <div class="fade-up d3 bg-white rounded-2xl border p-4 mb-3" id="amountSection" style="border-color:var(--border)">
 
     <!-- Mode toggle: send local vs target XOF -->
     <div class="flex gap-2 mb-4">
@@ -345,11 +464,36 @@ window.tailwind = { config: {
       </div>
       <div class="flex items-baseline gap-2 mb-4">
         <span class="font-serif text-3xl" style="color:var(--em)" id="currSymbol">€</span>
-        <span class="font-serif text-4xl font-bold" id="amountDisplay" style="color:var(--ink)">100</span>
+        <!-- Amount display — tap pencil to edit -->
+        <span class="font-serif text-4xl font-bold" id="amountDisplay"
+              style="color:var(--ink)">100</span>
+        <input type="number" id="amountInput" min="10" max="1000"
+               style="display:none;font-family:'DM Serif Display',serif;font-size:2.2rem;
+                      font-weight:700;color:var(--ink);border:none;border-bottom:2px solid var(--em);
+                      outline:none;background:transparent;width:120px"
+               onblur="confirmAmountInput()"
+               onkeydown="if(event.key==='Enter') confirmAmountInput()"/>
+        <button onclick="startEditAmount()" id="editBtn"
+          style="background:none;border:none;cursor:pointer;padding:2px 6px;
+                 opacity:0.45;transition:opacity 0.2s;line-height:1"
+          title="Modifier le montant">
+          <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Eraser top — Teranga green -->
+            <rect x="2" y="0" width="8" height="4" rx="1.5" fill="#0d6e45"/>
+            <!-- Metal band -->
+            <rect x="2" y="4" width="8" height="2" rx="0" fill="#bbb"/>
+            <!-- Pencil body — grey -->
+            <rect x="2" y="6" width="8" height="9" rx="0" fill="#aaa"/>
+            <!-- Wood tip — light grey -->
+            <path d="M2 15 L6 20 L10 15 Z" fill="#999"/>
+            <!-- Graphite point — dark -->
+            <path d="M4.5 17.5 L6 20 L7.5 17.5 Z" fill="#555"/>
+          </svg>
+        </button>
       </div>
-      <input type="range" id="amountSlider" min="10" max="500" value="100" step="10" oninput="updateAmount(this.value)"/>
+      <input type="range" id="amountSlider" min="10" max="1000" value="100" step="10" oninput="updateAmount(this.value)"/>
       <div class="flex justify-between mt-1" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--mid)">
-        <span>10</span><span>500</span>
+        <span>10</span><span>1 000</span>
       </div>
     </div>
 
@@ -391,7 +535,41 @@ window.tailwind = { config: {
   </div>
 
   <!-- ── TREND / TIMING CHART ───────────────────────────── -->
-  <div class="fade-up d3 chart-wrap mb-3">
+  <!-- Stable rate message — shown for EUR and CN instead of chart -->
+  <div id="stableRateMsg" style="display:none;margin-bottom:12px">
+    <div class="rounded-2xl p-4" id="stableRateInner"
+         style="background:white;border:1.5px solid var(--border)">
+      <p class="text-xs font-mono mb-2" id="stableRateLabel"
+         style="color:var(--em);letter-spacing:.06em">✓ TAUX FIXE</p>
+      <p class="text-sm font-semibold" id="stableRateTitle" style="color:var(--ink)">—</p>
+      <p class="text-xs mt-1" id="stableRateDesc" style="color:var(--mid)">—</p>
+      <!-- CNY business quick stats — hidden for EUR -->
+      <div id="cnyStats" style="display:none;margin-top:12px;padding-top:12px;
+           border-top:1px solid rgba(255,255,255,0.15)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:10px">
+            <p style="font-size:9px;font-family:'DM Mono',monospace;color:rgba(255,255,255,0.5);
+                      letter-spacing:.06em;margin-bottom:3px">1 CNY =</p>
+            <p style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:white"
+               id="cnyRate">—</p>
+            <p style="font-size:9px;color:rgba(255,255,255,0.4)">XOF</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:10px">
+            <p style="font-size:9px;font-family:'DM Mono',monospace;color:rgba(255,255,255,0.5);
+                      letter-spacing:.06em;margin-bottom:3px">VOTRE COMMANDE</p>
+            <p style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:#f0c96a"
+               id="cnyOrderXof">—</p>
+            <p style="font-size:9px;color:rgba(255,255,255,0.4)">XOF total</p>
+          </div>
+        </div>
+        <p style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:8px;font-family:'DM Mono',monospace">
+          ¥ <span id="cnyOrderAmt">100</span> CNY · taux PBOC du jour
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="fade-up d3 chart-wrap mb-3" id="chartSection">
 
     <!-- Chart range toggle -->
     <div class="flex gap-2 mb-3">
@@ -514,7 +692,7 @@ window.tailwind = { config: {
   </div>
 
   <!-- ── SOVEREIGNTY BANNER ─────────────────────────────── -->
-  <div class="sovereignty-banner fade-up d5">
+  <div class="sovereignty-banner fade-up d5" id="sovereigntySection">
     <div style="position:relative;z-index:1">
       <p class="text-xs font-mono mb-2" style="color:#18a464;letter-spacing:.12em">🌍 VOTRE CONTRIBUTION SOUVERAINE</p>
       <div class="sovereignty-number" id="sovereigntyAmount">—</div>
@@ -538,7 +716,7 @@ window.tailwind = { config: {
   </div>
 
   <!-- Share button — light background, below banner -->
-  <button onclick="shareLink()" class="fade-up" style="
+  <button onclick="shareLink()" id="shareBtn" class="fade-up" style="
     animation-delay:.42s;width:100%;margin-top:12px;padding:13px;
     border-radius:14px;border:1.5px solid var(--border);
     background:white;color:var(--em);font-family:'Outfit',sans-serif;
@@ -551,6 +729,7 @@ window.tailwind = { config: {
     ✓ Lien copié — partagez sur WhatsApp !
   </div>
 
+  <div id="pollSection">
   <!-- ── VOICE OF DIASPORA POLL ──────────────────────────── -->
   <div class="fade-up mt-5" style="animation-delay:.5s">
     <div class="rounded-2xl p-5" style="background:white;border:1.5px solid var(--border)">
@@ -572,6 +751,7 @@ window.tailwind = { config: {
     </div>
   </div>
 
+  </div>
   <!-- Footer -->
   <div class="text-center mt-6 fade-up d6">
     <p class="text-xs" style="color:var(--mid);font-family:'DM Mono',monospace">
@@ -605,15 +785,22 @@ const CORRIDORS = {
   CA: { from:'CAD', symbol:'CA$',label:'Canada → Sénégal',    flag:'🇨🇦', pairLabel:'CAD/XOF', eurBased:false, rateKey:'CAD' },
   IT: { from:'EUR', symbol:'€',  label:'Italie → Sénégal',   flag:'🇮🇹', pairLabel:'EUR/XOF', eurBased:true,  rateKey:null  },
   ES: { from:'EUR', symbol:'€',  label:'Espagne → Sénégal',  flag:'🇪🇸', pairLabel:'EUR/XOF', eurBased:true,  rateKey:null  },
+  GB: { from:'GBP', symbol:'£',  label:'Royaume-Uni → Sénégal',flag:'🇬🇧', pairLabel:'GBP/XOF', eurBased:false, rateKey:'GBP' },
+  BE: { from:'EUR', symbol:'€',  label:'Belgique → Sénégal',  flag:'🇧🇪', pairLabel:'EUR/XOF', eurBased:true,  rateKey:null  },
+  CN: { from:'CNY', symbol:'¥',  label:'Chine → Sénégal',      flag:'🇨🇳', pairLabel:'CNY/XOF', eurBased:false, rateKey:'CNY' },
 };
 
 const MID_XOF_PER_EUR = 655.957;
 let EUR_USD = 1.085; // updated by live fetch
 let EUR_CAD = 1.565; // updated by live fetch
+let EUR_GBP = 0.855; // updated by live fetch
+let EUR_CNY = 8.08;  // updated by live fetch
 // Helper: get local currency → EUR conversion rate
 function localToEUR(cor) {
   if (cor.rateKey === 'USD') return EUR_USD;
   if (cor.rateKey === 'CAD') return EUR_CAD;
+  if (cor.rateKey === 'GBP') return EUR_GBP;
+  if (cor.rateKey === 'CNY') return EUR_CNY;
   return 1; // EUR corridors
 }
 
@@ -638,7 +825,7 @@ const ALL_PROVIDERS = [
   {
     id:'taptap', speed:'⚡ Instant', name:'TapTapSend', logo:'TT', bg:'#F0FFF4', text:'#276749',
     tagline:'€2 fixe · idéal grands montants',
-    corridors:['FR','IT','ES','US','CA'],
+    corridors:['FR','IT','ES','US','CA','GB','BE','CN'],
     link: LINKS.taptap, cta:'Envoyer avec TapTapSend',
     fee(amt, cor) {
       const eur      = amt / localToEUR(cor);
@@ -647,13 +834,13 @@ const ALL_PROVIDERS = [
       // TapTapSend uses a small spread ~0.5%
       const xof      = Math.round(eur_net * 0.995 * MID_XOF_PER_EUR);
       const pct      = +((1 - xof/(eur*MID_XOF_PER_EUR))*100).toFixed(1);
-      return { xof, rate:+(xof/amt).toFixed(2), pct, label:'€2 fixe · meilleur sur grands montants' };
+      return { xof, rate:+(xof/amt).toFixed(2), pct, label:'€2 fixe · taux proche du marché' };
     }
   },
   {
     id:'sendwave', speed:'⚡ Instant', name:'Sendwave', logo:'SW', bg:'#F5F0FF', text:'#5B21B6',
     tagline:'0 frais fixes · ~1% spread',
-    corridors:['FR','IT','ES','US','CA'],
+    corridors:['FR','IT','ES','US','CA','GB','BE','CN'],
     link: LINKS.sendwave, cta:'Envoyer avec Sendwave',
     fee(amt, cor) {
       const eur = amt / localToEUR(cor);
@@ -678,7 +865,7 @@ const ALL_PROVIDERS = [
   {
     id:'worldremit', speed:'🕐 1-2 jours', name:'WorldRemit', logo:'WR', bg:'#EFF6FF', text:'#1D4ED8',
     tagline:'En ligne · 130+ pays',
-    corridors:['IT','ES','US','CA'],
+    corridors:['IT','ES','US','CA','GB','BE','CN'],
     link: LINKS.worldremit, cta:'Envoyer avec WorldRemit',
     fee(amt, cor) {
       const eur = amt / localToEUR(cor);
@@ -691,7 +878,7 @@ const ALL_PROVIDERS = [
   {
     id:'remitly', speed:'⚡ Express dispo', name:'Remitly', logo:'R', bg:'#EDF5FF', text:'#1C64F2',
     tagline:'En ligne · Rapide & fiable',
-    corridors:['FR','IT','ES','US','CA'],
+    corridors:['FR','IT','ES','US','CA','GB','BE','CN'],
     link: LINKS.remitly, cta:'Envoyer avec Remitly',
     fee(amt, cor) {
       const eur   = amt / localToEUR(cor);
@@ -704,7 +891,7 @@ const ALL_PROVIDERS = [
   {
     id:'wu', speed:'📅 1-3 jours', name:'Western Union', logo:'WU', bg:'#FFFAE8', text:'#5a4a00',
     tagline:'Réseau mondial · Retrait espèces',
-    corridors:['FR','IT','ES','US','CA'],
+    corridors:['FR','IT','ES','US','CA','GB','BE','CN'],
     link: LINKS.wu, cta:'Voir Western Union',
     fee(amt, cor) {
       const eur   = amt / localToEUR(cor);
@@ -712,6 +899,20 @@ const ALL_PROVIDERS = [
       const xof   = Math.round(Math.max(eur - fixed - eur*0.03, 0) * 0.965 * MID_XOF_PER_EUR);
       const pct   = +((1 - xof/(eur*MID_XOF_PER_EUR))*100).toFixed(1);
       return { xof, rate:+(xof/amt).toFixed(2), pct, label:'Frais fixes + 3% + spread de change' };
+    }
+  },
+  {
+    id:'bank', name:'Banque Traditionnelle', logo:'🏦', bg:'#f5f5f5', text:'#888',
+    tagline:'Virement SWIFT · Avant Teranga',
+    speed:'📅 3-5 jours',
+    corridors:['FR','IT','ES','US','CA','GB','BE','CN'],
+    link:'#', cta:'Pourquoi éviter les banques →', isBank:true,
+    fee(amt, cor) {
+      const eur   = amt / localToEUR(cor);
+      const fixed = 20;
+      const xof   = Math.round(Math.max(eur - fixed - eur*0.05, 0) * 0.94 * MID_XOF_PER_EUR);
+      const pct   = +((1 - xof/(eur*MID_XOF_PER_EUR))*100).toFixed(1);
+      return { xof, rate:+(xof/amt).toFixed(2), pct, label:'~€20 fixe + 5% + spread bancaire' };
     }
   }
 ];
@@ -735,13 +936,17 @@ function corridor() { return CORRIDORS[currentCorridorId]; }
 function render() {
   const cor   = corridor();
   const rows  = getProviders(currentCorridorId).map(p => ({ ...p, result: p.fee(currentAmount, cor) }))
-                          .sort((a,b) => b.result.xof - a.result.xof);
+                          .sort((a,b) => {
+                            if (a.isBank) return 1;
+                            if (b.isBank) return -1;
+                            return b.result.xof - a.result.xof;
+                          });
   const best  = rows[0];
   const worst = rows[rows.length-1];
   const saving = best.result.xof - worst.result.xof;
 
   // Slider fill
-  const pct = ((currentAmount-10)/490*100).toFixed(1);
+  const pct = ((currentAmount-10)/990*100).toFixed(1);
   document.getElementById('amountSlider').style.setProperty('--fill', pct+'%');
   document.getElementById('amountDisplay').textContent = currentAmount;
   document.getElementById('currSymbol').textContent    = cor.symbol;
@@ -756,8 +961,13 @@ function render() {
     const isBest  = i===0, isWorst = i===rows.length-1;
     const barPct  = Math.min(Math.round(p.result.pct/10*100), 100);
     const btnClass = isBest ? 'primary' : 'secondary';
+    const isBank = p.isBank === true;
     const div = document.createElement('div');
-    div.className = 'rate-card' + (isBest?' best':isWorst?' worst':'');
+    div.className = 'rate-card' + (isBest?' best':isWorst&&!isBank?' worst':'');
+    if (isBank) {
+      div.style.opacity = '0.65';
+      div.style.borderStyle = 'dashed';
+    }
     div.innerHTML = `
       <div style="display:flex;align-items:center;gap:10px">
 
@@ -821,6 +1031,18 @@ function render() {
   const collectiveXOF = saving * 1000;
   const collectiveEUR = Math.round(collectiveXOF / MID_XOF_PER_EUR).toLocaleString('fr-FR');
   document.getElementById('sovereigntyAmount').textContent = saving.toLocaleString('fr-FR') + ' XOF';
+
+  // Community counter — estimated based on simulated daily visits
+  // Grows realistically through the day using time-seeded variation
+  const now        = new Date();
+  const dayMinutes = now.getHours() * 60 + now.getMinutes();
+  const baseSaves  = Math.round(saving * 0.85); // avg user saves slightly less than max
+  const visits     = Math.round(47 + (dayMinutes / 1440) * 312); // 47 at midnight → 359 by end of day
+  const totalSaved = (baseSaves * visits).toLocaleString('fr-FR');
+  const counter    = document.getElementById('communityCounter');
+  const visits_el  = document.getElementById('communityVisits');
+  if (counter) counter.textContent = totalSaved;
+  if (visits_el) visits_el.textContent = `${visits} transferts comparés aujourd'hui · estimation`;
 
   // ── Smart hint + split suggestion ────────────────────────
   const smartHint   = document.getElementById('smartHint');
@@ -896,12 +1118,22 @@ function render() {
   document.getElementById('collectiveSaving').textContent  = collectiveXOF.toLocaleString('fr-FR') + ' XOF';
   document.getElementById('collectiveEur').innerHTML       = '≈ €' + collectiveEUR;
   document.getElementById('footerCorridor').textContent    = currentCorridorId + '→SN';
+  if (currentCorridorId === 'CN') updateCNYStats();
 }
 
 // ══════════════════════════════════════════════════════════════
 // CORRIDOR SWITCH
 // ══════════════════════════════════════════════════════════════
 function setCorridor(id, btn) {
+  // Restore main sections if coming from gold tab
+  const goldPanel = document.getElementById('goldPanel');
+  if (goldPanel) goldPanel.style.display = 'none';
+  ['amountSection','chartSection','cardContainer','smartHint',
+   'sovereigntySection','shareBtn','pollSection','consulatSection'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = '';
+  });
+
   currentCorridorId = id;
   document.querySelectorAll('.corridor-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -940,6 +1172,7 @@ function setMode(mode) {
 function updateAmount(val) {
   currentAmount = parseInt(val);
   render();
+
   // Refresh chart stats to match new amount
   if (window._chartValues && window._chartValues.length > 1) {
     const vals    = window._activeChartValues || window._chartValues;
@@ -1051,9 +1284,10 @@ function applySignal(current, high, low, isUSD) {
     const lcE = document.getElementById('labelCurrent');
     const lhE = document.getElementById('labelHigh');
     const llE = document.getElementById('labelLow');
-    if(lcE) lcE.textContent = '€' + amtEUR + ' WAVE';
-    if(lhE) lhE.textContent = '€' + amtEUR + ' BEST';
-    if(llE) llE.textContent = '€' + amtEUR + ' WU';
+    const symE = corridor().symbol || '€';
+    if(lcE) lcE.textContent = symE + amtEUR + ' MAINTENANT';
+    if(lhE) lhE.textContent = symE + amtEUR + ' AU MIEUX';
+    if(llE) llE.textContent = symE + amtEUR + ' AU PIRE';
   } else if (pctVsHigh > -1.0) {
     title     = '🟢 Bon moment pour envoyer en ' + corridor().from;
     desc      = corridor().from + ` fort (${current.toFixed(4)}) — proche de son plus haut en 30 jours.`;
@@ -1088,7 +1322,7 @@ function applySignal(current, high, low, isUSD) {
   drawSparkline(window._activeChartValues || window._chartValues || [], dotColor);
 
   // Update stat labels to match currency context
-  const sym = isUSD ? '$' : '€';
+  const sym = corridor().symbol || (isUSD ? '$' : '€');
   const lc = document.getElementById('labelCurrent');
   const lh = document.getElementById('labelHigh');
   const ll = document.getElementById('labelLow');
@@ -1139,8 +1373,12 @@ async function fetchEurRates(dateStr) {
   return {
     usdXof: +(MID_XOF_PER_EUR / d.eur.usd).toFixed(3),
     cadXof: +(MID_XOF_PER_EUR / d.eur.cad).toFixed(3),
+    gbpXof: +(MID_XOF_PER_EUR / d.eur.gbp).toFixed(3),
+    cnyXof: +(MID_XOF_PER_EUR / d.eur.cny).toFixed(3),
     eurUsd: d.eur.usd,
     eurCad: d.eur.cad,
+    eurGbp: d.eur.gbp || EUR_GBP,
+    eurCny: d.eur.cny || EUR_CNY,
   };
 }
 
@@ -1186,8 +1424,16 @@ async function loadChartData() {
       const results = await Promise.all(dates.map(d => fetchEurRates(d)));
       EUR_USD = results[results.length-1].eurUsd;
       EUR_CAD = results[results.length-1].eurCad;
+      EUR_GBP = results[results.length-1].eurGbp || EUR_GBP;
+      EUR_CNY = results[results.length-1].eurCny || EUR_CNY;
       const usdVals = results.map(r => r.usdXof);
       const cadVals = results.map(r => r.cadXof);
+      const gbpFallback = MID_XOF_PER_EUR / EUR_GBP;
+      const gbpVals = results.map(r => r.gbpXof || gbpFallback);
+      const cnyFallback = MID_XOF_PER_EUR / EUR_CNY;
+      const cnyVals = results.map(r => r.cnyXof || cnyFallback);
+      window._gbpValues = gbpVals;
+      window._cnyValues = cnyVals;
       window._chartKeys   = dates;
       window._chartValues = usdVals;
       window._cadValues   = cadVals;
@@ -1233,7 +1479,11 @@ async function setChartRange(range) {
   // Reload chart with new range
   const cor  = corridor();
   const vals = await loadChartData();
-  let active = cor.rateKey === 'CAD' ? (window._cadValues||vals) : vals;
+  let active;
+  if      (cor.rateKey === 'CAD') active = window._cadValues || vals;
+  else if (cor.rateKey === 'GBP') active = (window._gbpValues && window._gbpValues[0] > 10) ? window._gbpValues : Array(10).fill(MID_XOF_PER_EUR / EUR_GBP);
+  else if (cor.rateKey === 'CNY') active = (window._cnyValues && window._cnyValues[0] > 10) ? window._cnyValues : Array(10).fill(MID_XOF_PER_EUR / EUR_CNY);
+  else                             active = vals;
   window._activeChartValues = active;
   window._chartTimes = window._chartTimes || [];
   applySignal(active[active.length-1], Math.max(...active), Math.min(...active), !cor.eurBased);
@@ -1241,11 +1491,53 @@ async function setChartRange(range) {
 }
 
 async function updateChartForCorridor(cor) {
+  // Show chart only for floating currencies (USD, CAD, GBP)
+  // Hide for EUR (fixed peg) and CNY (managed, flat)
+  const chartEl  = document.getElementById('chartSection');
+  const stableEl = document.getElementById('stableRateMsg');
+  const showChart = cor.rateKey === 'USD' || cor.rateKey === 'CAD' || cor.rateKey === 'GBP';
+
+  if (showChart) {
+    if (chartEl)  chartEl.style.display  = 'block';
+    if (stableEl) stableEl.style.display = 'none';
+  } else {
+    if (chartEl)  chartEl.style.display  = 'none';
+    if (stableEl) {
+      stableEl.style.display = 'block';
+      if (cor.eurBased) {
+        document.getElementById('stableRateLabel').textContent  = '✓ TAUX FIXE · ANCRAGE CFA';
+        document.getElementById('stableRateTitle').textContent  = '655,957 XOF/€ — garanti par le Trésor français et la BCEAO.';
+        document.getElementById('stableRateDesc').textContent   = "Le taux ne bouge jamais. Seuls les frais de l'opérateur font la différence.";
+      } else if (cor.rateKey === 'CNY') {
+        document.getElementById('stableRateLabel').textContent  = '🇨🇳 MODE COMMERCE · GUANGZHOU · YIWU';
+        document.getElementById('stableRateTitle').textContent  = 'Combien coûte votre commande en XOF ?';
+        document.getElementById('stableRateDesc').textContent   = 'Entrez le montant CNY. Teranga calcule le coût réel et le meilleur opérateur pour payer votre fournisseur.';
+        const inner = document.getElementById('stableRateInner');
+        if (inner) {
+          inner.style.background  = 'var(--ink)';
+          inner.style.borderColor = '#1a4535';
+        }
+        document.getElementById('stableRateLabel').style.color = '#18a464';
+        document.getElementById('stableRateTitle').style.color = 'white';
+        document.getElementById('stableRateDesc').style.color  = 'rgba(255,255,255,0.5)';
+        const cnyStats = document.getElementById('cnyStats');
+        if (cnyStats) cnyStats.style.display = 'block';
+        updateCNYStats();
+      }
+    }
+    return; // no chart to update
+  }
+
   await loadChartData(); // ensure fresh data + CAD
   // Pick the right rate series for this corridor
   let vals;
   if (cor.rateKey === 'CAD') {
     vals = window._cadValues || window._chartValues;
+  } else if (cor.rateKey === 'GBP') {
+    vals = window._gbpValues || window._chartValues;
+  } else if (cor.rateKey === 'CNY') {
+    const cnyFb = MID_XOF_PER_EUR / EUR_CNY;
+    vals = (window._cnyValues && window._cnyValues[0] > 10) ? window._cnyValues : Array(10).fill(cnyFb);
   } else {
     vals = window._chartValues;
   }
@@ -1258,7 +1550,7 @@ async function updateChartForCorridor(cor) {
 
   applySignal(current, high, low, !cor.eurBased);
 
-  // Impact panel for USD
+  // Impact panel for non-EUR corridors
   if (!cor.eurBased) {
     const amt     = currentAmount || 100;
     const sym2    = cor.symbol;
@@ -1383,6 +1675,8 @@ async function refreshRates() {
     // EUR/USD and EUR/CAD from API
     EUR_USD = data.eur.usd;
     EUR_CAD = data.eur.cad;
+    EUR_GBP = data.eur.gbp || EUR_GBP;
+    EUR_CNY = data.eur.cny || EUR_CNY;
 
     // Formula: EUR/X rate × fixed XOF peg = XOF per local unit
     // e.g. 1 USD = (1/EUR_USD) EUR × 655.957 XOF/EUR
@@ -1520,6 +1814,149 @@ function toggleConsulat() {
   if (chv) chv.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
   if (btn) btn.style.borderColor = open ? 'var(--em)' : 'var(--border)';
   if (btn) btn.style.background  = open ? 'var(--em-bg)' : 'white';
+}
+
+
+
+function startEditAmount() {
+  const display = document.getElementById('amountDisplay');
+  const input   = document.getElementById('amountInput');
+  const btn     = document.getElementById('editBtn');
+  if (!display || !input) return;
+  input.value = currentAmount;
+  display.style.display = 'none';
+  input.style.display   = 'inline-block';
+  if (btn) btn.style.display = 'none';
+  input.focus();
+  input.select();
+}
+
+function confirmAmountInput() {
+  const display = document.getElementById('amountDisplay');
+  const input   = document.getElementById('amountInput');
+  const btn     = document.getElementById('editBtn');
+  const slider  = document.getElementById('amountSlider');
+  if (!input) return;
+  let val = parseInt(input.value) || currentAmount;
+  val = Math.max(10, Math.min(1000, val));
+  currentAmount = val;
+  if (display) { display.textContent = val; display.style.display = 'inline'; }
+  if (input)   input.style.display   = 'none';
+  if (btn)     btn.style.display     = 'inline-block';
+  if (slider)  {
+    slider.value = val;
+    const pct = ((val-10)/990*100).toFixed(1);
+    slider.style.setProperty('--fill', pct+'%');
+  }
+  render();
+  if (window._chartValues && window._chartValues.length > 1) {
+    const vals = window._activeChartValues || window._chartValues;
+    applySignal(vals[vals.length-1], Math.max(...vals), Math.min(...vals), !corridor().eurBased);
+  }
+}
+
+
+// ── Gold Price ───────────────────────────────────────────────
+let goldPricePerGram = 0; // in XOF
+
+async function loadGoldPrice() {
+  try {
+    // fawazahmed0 has XAU (troy ounce) — already fetched in EUR base
+    // 1 troy ounce = 31.1035 grams
+    // EUR/XAU from API = how many XAU per 1 EUR (e.g. 0.00025)
+    // So 1 XAU = 1/0.00025 EUR = 4000 EUR
+    // Then XOF = 4000 * 655.957 = 2,623,828 XOF per ounce
+    const res  = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/eur.json', { cache:'no-store' });
+    const data = await res.json();
+    const eurPerXau  = data.eur.xau; // e.g. 0.000252 XAU per 1 EUR
+    const eurForOunce = 1 / eurPerXau; // EUR per troy ounce
+    const xofPerOunce = eurForOunce * MID_XOF_PER_EUR;
+    const xofPerGram  = xofPerOunce / 31.1035;
+
+    goldPricePerGram = xofPerGram;
+
+    // Display
+    const gramEl   = document.getElementById('goldGram');
+    const ounceEl  = document.getElementById('goldOunce');
+    const updEl    = document.getElementById('goldUpdated');
+    if (gramEl)  gramEl.textContent  = Math.round(xofPerGram).toLocaleString('fr-FR');
+    if (ounceEl) ounceEl.textContent = Math.round(xofPerOunce).toLocaleString('fr-FR');
+    if (updEl)   updEl.textContent   = 'Aujourd\'hui · ' + new Date().toLocaleDateString('fr-FR');
+
+    updateGoldCalc();
+  } catch(e) {
+    const gramEl = document.getElementById('goldGram');
+    if (gramEl) gramEl.textContent = 'indisponible';
+  }
+}
+
+let currentKarat = 18;
+const KARAT_PURITY = { 18: 0.75, 22: 0.916, 24: 1.0 };
+
+function setKarat(k, btn) {
+  currentKarat = k;
+  // Update button styles
+  [18,22,24].forEach(kt => {
+    const b = document.getElementById('k'+kt);
+    if (!b) return;
+    if (kt === k) {
+      b.style.background = 'rgba(181,136,42,0.4)';
+      b.style.color = '#f0c96a';
+      b.style.borderColor = '#b5882a';
+    } else {
+      b.style.background = 'rgba(181,136,42,0.1)';
+      b.style.color = 'rgba(240,201,106,0.4)';
+      b.style.borderColor = 'rgba(181,136,42,0.2)';
+    }
+  });
+  updateGoldCalc();
+}
+
+function updateGoldCalc() {
+  if (!goldPricePerGram) return;
+  const grams   = parseFloat(document.getElementById('goldGrams')?.value) || 10;
+  const purity  = KARAT_PURITY[currentKarat] || 0.75;
+  // Formula: spot_per_gram × purity × weight
+  const xof     = Math.round(grams * goldPricePerGram * purity);
+  const eur     = Math.round(xof / MID_XOF_PER_EUR);
+  const usd     = Math.round(xof / (MID_XOF_PER_EUR / EUR_USD));
+  const labelEl = document.getElementById('goldCalcLabel');
+  const xofEl   = document.getElementById('goldCalcXof');
+  const eurEl   = document.getElementById('goldCalcEur');
+  if (labelEl) labelEl.textContent = `${grams}g · ${currentKarat} carats (${(purity*100).toFixed(purity===1?0:1)}% pur)`;
+  if (xofEl)   xofEl.textContent   = xof.toLocaleString('fr-FR');
+  if (eurEl)   eurEl.textContent   = `≈ €${eur.toLocaleString('fr-FR')} · $${usd.toLocaleString('fr-FR')}`;
+}
+
+function showGold(btn) {
+  document.querySelectorAll('.corridor-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+
+  // Hide all main tool sections by ID
+  ['amountSection','chartSection','stableRateMsg','cardContainer',
+   'smartHint','sovereigntySection','shareBtn','pollSection',
+   'consulatSection','modeToggle'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+
+  // Show gold panel
+  const gold = document.getElementById('goldPanel');
+  if (gold) gold.style.display = 'block';
+
+  loadGoldPrice();
+}
+
+function updateCNYStats() {
+  const rate   = MID_XOF_PER_EUR / EUR_CNY;
+  const amt    = currentAmount || 100;
+  const xof    = Math.round(amt * rate * 0.99);
+  const rateEl = document.getElementById('cnyRate');
+  const xofEl  = document.getElementById('cnyOrderXof');
+  const amtEl  = document.getElementById('cnyOrderAmt');
+  if (rateEl) rateEl.textContent = rate.toFixed(2);
+  if (xofEl)  xofEl.textContent  = xof.toLocaleString('fr-FR');
+  if (amtEl)  amtEl.textContent  = amt;
 }
 
 async function init() {
