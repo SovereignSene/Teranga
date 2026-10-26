@@ -288,7 +288,7 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
 
       <div id="panelRecv" class="xof-rev hidden">
         <p style="font-size:13px;color:var(--grey)">Montant en FCFA que ta famille doit toucher :</p>
-        <input id="xofTarget" type="number" placeholder="Ex: 100 000" min="1000" step="1000" oninput="render()"/>
+        <input id="xofTarget" type="number" inputmode="numeric" placeholder="Ex: 100 000" min="1000" step="1000" oninput="render()"/>
         <p class="out" id="xofOut">—</p>
       </div>
 
@@ -303,7 +303,7 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
   <section class="wu" style="margin-top:22px">
     <span class="stamp">SIGNALEMENT</span>
     <p class="micro">⚠ Frais réels constatés</p>
-    <p><strong>18 695 FCFA perdus sur un seul transfert.</strong> C'est un mois de lait pour ta famille. Arrête de financer les yachts de Western Union.</p>
+    <p><strong><span id="wuLostAmount">18 695</span> FCFA perdus sur un seul transfert.</strong> <span id="wuOutcome">C'est un mois de lait pour ta famille.</span> Arrête de financer les yachts de Western Union.</p>
   </section>
 
   <!-- ══ WAITLIST · tâche 4 ══ -->
@@ -597,8 +597,25 @@ function render(){
       + '</div>';
   }).join('');
 
-  /* souveraineté */
+  /* souveraineté + WU Warning (TÂCHE 1) */
   var saved = best.xof - worst.xof;
+  
+  // Mise à jour du bandeau d'avertissement dynamique
+  $('wuLostAmount').textContent = fmt(saved);
+  var outcomeText = "";
+  if (saved < 5000) {
+      outcomeText = "C'est un carton de Nescafé pour ta famille.";
+  } else if (saved >= 5000 && saved < 12000) {
+      outcomeText = "C'est un sac de riz de 5kg pour ta famille.";
+  } else if (saved >= 12000 && saved < 25000) {
+      outcomeText = "C'est un mois de lait pour ta famille.";
+  } else if (saved >= 25000 && saved < 50000) {
+      outcomeText = "C'est une semaine de stock de boissons pour ta boutique.";
+  } else {
+      outcomeText = "C'est assez pour financer une boîte solaire Yobal.";
+  }
+  $('wuOutcome').textContent = outcomeText;
+
   $('sovNum').textContent = fmt(saved)+' FCFA';
   $('sovText').innerHTML = 'laissés sur la table sur ce seul envoi si tu prends <b style="color:#ff8a75">'+worst.p.n+'</b> au lieu de <b style="color:var(--acid)">'+best.p.n+'</b>.<br/>'
     + '× 1 000 envois comme le tien : <b style="color:#fff">'+fmt(saved*1000)+' FCFA</b> restent au Sénégal. <span class="impact">≈ '+impact(saved)+'</span>';
@@ -664,7 +681,8 @@ function buildHourly(from, to){
 }
 async function loadHistory(){
   var k = cor().k;
-  var showChart = (k==='USD'||k==='CAD'||k==='GBP');
+  // TÂCHE 2 : Cacher le graphique pour toutes les devises fixes (EUR) et l'afficher pour les devises flottantes
+  var showChart = !cor().eur; 
   $('chartWrap').classList.toggle('hidden', !showChart);
   $('fixedWrap').classList.toggle('hidden', !cor().eur);
   $('cnyWrap').classList.toggle('hidden', !(k==='CNY'));
