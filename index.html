@@ -97,9 +97,9 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
   .amount-big input{width:130px;font-family:'Space Mono',monospace;font-size:34px;font-weight:700;border:none;border-bottom:3px solid var(--ink);background:transparent;color:var(--ink);outline:none;text-align:right;padding:0 4px}
   .amount-big span{font-family:'Archivo Black',sans-serif;font-size:22px}
   .amount-display{font-family:'Space Mono',monospace;font-size:34px;font-weight:700;border-bottom:3px solid var(--ink);padding:0 6px;cursor:text}
-  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:4px;background:linear-gradient(to right,var(--green) var(--fill,9%),#d8d2c4 var(--fill,9%));outline:none;cursor:pointer;border:2px solid var(--ink)}
-  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:4px;background:var(--acid);border:3px solid var(--ink);box-shadow:2px 2px 0 var(--ink);cursor:grab}
-  input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:4px;background:var(--acid);border:3px solid var(--ink);cursor:grab}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:10px;border-radius:4px;background:linear-gradient(to right,var(--green) var(--fill,9%),#d8d2c4 var(--fill,9%));outline:none;cursor:pointer;border:2px solid var(--ink)}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:4px;background:var(--acid);border:3px solid var(--ink);box-shadow:2px 2px 0 var(--ink);cursor:grab;margin-top:-2px}
+  input[type=range]::-moz-range-thumb{width:28px;height:28px;border-radius:4px;background:var(--acid);border:3px solid var(--ink);cursor:grab}
   .quick{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
   .quick button{border:2px solid var(--ink);background:#fff;border-radius:4px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
   .quick button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
@@ -207,7 +207,31 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
   footer{margin-top:36px;border-top:3px solid var(--ink);padding-top:16px}
   footer .sig{font-family:'Archivo Black',sans-serif;font-size:13px;text-transform:uppercase}
   footer p{font-size:11.5px;color:var(--grey);margin-top:8px;line-height:1.5;font-family:'Space Mono',monospace}
-  .hidden{display:none!important}
+  /* ── mobile finitions · tâche 3 ── */
+  .op-top>div{flex:1;min-width:0}
+  .op-note{overflow-wrap:anywhere}
+  .op-xof,.sov-num,#xofOut,#liveRate{overflow-wrap:anywhere}
+  .op-fee{flex-wrap:wrap;gap:4px}
+  .chart-meta{flex-wrap:wrap;gap:4px 8px}
+  .wu p{overflow-wrap:anywhere}
+  @media (max-width:430px){
+    .op-top{flex-wrap:wrap;row-gap:8px}
+    .tag{width:100%;text-align:center;margin:2px 0 0}
+    .op-name{font-size:14px}
+    .op-xof{font-size:23px}
+  }
+  /* ── modales · tâche 2 ── */
+  .modal-bg{position:fixed;inset:0;background:rgba(18,22,15,.65);z-index:50;display:none;align-items:flex-end;justify-content:center;padding:14px}
+  .modal-bg.open{display:flex}
+  .modal{background:var(--paper);border:3px solid var(--ink);border-radius:4px;box-shadow:6px 6px 0 var(--ink);width:100%;max-width:420px;max-height:86vh;overflow-y:auto;padding:22px 20px 20px;position:relative;animation:mpop .18s ease-out}
+  @keyframes mpop{from{transform:translateY(16px);opacity:0}to{transform:translateY(0);opacity:1}}
+  .modal-x{position:absolute;top:10px;right:10px;width:44px;height:44px;border:2px solid var(--ink);background:var(--red);color:#fff;font-size:22px;font-weight:700;border-radius:4px;cursor:pointer;line-height:1;font-family:'Space Mono',monospace;box-shadow:2px 2px 0 var(--ink)}
+  .modal-x:active{transform:translate(2px,2px);box-shadow:0 0 0 var(--ink)}
+  .modal h3{font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:19px;margin:2px 52px 4px 0}
+  .modal .body{font-size:14px;color:#3c423a;line-height:1.55;margin-top:10px}
+  .chip.sukuk{background:var(--deep);color:var(--acid)}
+  @media (min-width:480px){.modal-bg{align-items:center}}
+  .hidden{display:none!important
   @media (max-width:380px){.amount-big input,.amount-display{font-size:26px}}
 </style>
 </head>
@@ -287,7 +311,7 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
     <h3 style="margin-top: 0; color: #111827; font-size: 18px; font-weight: bold;">Investis dans le Sénégal.</h3>
     <p style="color: #4b5563; font-size: 14px; margin-bottom: 16px;">L'achat direct de Sukuk Sénégalais arrive bientôt. Zéro Riba. 100% adossé à des actifs réels. Laisse ton numéro WhatsApp pour être prévenu au lancement.</p>
     <form id="waitlistForm" style="display: flex; gap: 8px; flex-wrap: wrap;">
-      <input id="waitlistPhone" type="tel" placeholder="Ex: +33 6 12 34 56 78" style="flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 4px; min-width: 200px;">
+      <input id="waitlistPhone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="Ex: +33 6 12 34 56 78" style="flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 4px; min-width: 200px;">
       <button type="button" onclick="joinWaitlist()" style="background-color: #064e3b; color: white; padding: 12px 24px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Rejoindre</button>
     </form>
     <p id="waitlistOk" style="display:none">✓ Inscrit. On te prévient sur WhatsApp au lancement.</p>
@@ -305,12 +329,16 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
     <div class="sov-num" id="sovNum">—</div>
     <p id="sovText">—</p>
     <p class="sukuk-line">Et si tu gardais ça ? <b>Les Sukuk Teranga arrivent</b> : ton épargne adossée à des actifs réels au Sénégal. Zéro riba, dëgg-dëgg.</p>
-    <a href="#waitlistForm" onclick="document.getElementById('waitlistPhone').focus();return true;">Être prévenu →</a>
+    <a href="#" onclick="openModal('sukukModal');return false;">Être prévenu →</a>
   </section>
 
   <!-- ══ CHART / FIXED / CNY ══ -->
   <section id="chartWrap">
-    <p class="micro" style="margin-bottom:8px">05 · Le taux sur 10 jours</p>
+    <p class="micro" style="margin-bottom:8px">05 · Le taux en direct</p>
+    <div style="display:flex;gap:8px;margin-bottom:8px">
+      <button class="chip rng active" data-r="24h" onclick="setRange('24h')">24H</button>
+      <button class="chip rng" data-r="7d" onclick="setRange('7d')">7 JOURS</button>
+    </div>
     <div class="card chartbox">
       <svg id="spark" viewBox="0 0 320 96" preserveAspectRatio="none" role="img" aria-label="courbe 10 jours"></svg>
       <div class="chart-meta"><span id="chMin">—</span><span id="chNow">—</span><span id="chMax">—</span></div>
@@ -335,26 +363,6 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
     </div>
   </section>
 
-  <!-- ══ GOLD ══ -->
-  <section id="goldPanel" class="hidden">
-    <p class="micro" style="margin-bottom:8px">Or · bijoux sénégalais</p>
-    <div class="gold">
-      <p class="mono" style="font-size:10px;letter-spacing:.1em">🥇 PRIX EN DIRECT · BCE VIA CDN</p>
-      <div class="karats">
-        <button id="k18" class="active" onclick="setKarat(18)">18k · 75%</button>
-        <button id="k22" onclick="setKarat(22)">22k · 91,6%</button>
-        <button id="k24" onclick="setKarat(24)">24k · pur</button>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px">
-        <span style="font-size:12px;color:rgba(255,255,255,.6)">Poids</span>
-        <input id="goldGrams" type="number" value="10" min="1" max="1000" oninput="goldCalc()"/>
-        <span style="font-size:12px;color:rgba(255,255,255,.6)">grammes</span>
-      </div>
-      <div class="gres" id="goldRes">—</div>
-      <p class="mono" id="goldSub" style="font-size:11px;color:rgba(255,255,255,.4);margin-top:4px">—</p>
-      <p class="mono" style="font-size:9.5px;letter-spacing:.08em;color:rgba(255,255,255,.3);margin-top:12px">TABASKI · MARIAGE · ÉPARGNE · BIJOUX DAKAR</p>
-    </div>
-  </section>
 
   <!-- ══ POLL ══ -->
   <section>
@@ -374,6 +382,46 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
       <span class="arr">→</span>
     </a>
   </section>
+
+  <!-- ══ MODALE OR · tâche 2 ══ -->
+  <div class="modal-bg" id="goldModal" onclick="if(event.target===this)closeModal('goldModal')">
+    <div class="modal">
+      <button class="modal-x" onclick="closeModal('goldModal')" aria-label="Fermer">×</button>
+      <p class="micro">🥇 Or · bijoux sénégalais · prix en direct</p>
+      <h3>La calculette or</h3>
+      <div class="gold" style="margin-top:14px">
+        <div class="karats">
+          <button id="k18" class="active" onclick="setKarat(18)">18k · 75%</button>
+          <button id="k22" onclick="setKarat(22)">22k · 91,6%</button>
+          <button id="k24" onclick="setKarat(24)">24k · pur</button>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:12px;color:rgba(255,255,255,.6)">Poids</span>
+          <input id="goldGrams" type="number" inputmode="numeric" value="10" min="1" max="1000" oninput="goldCalc()"/>
+          <span style="font-size:12px;color:rgba(255,255,255,.6)">grammes</span>
+        </div>
+        <div class="gres" id="goldRes">—</div>
+        <p class="mono" id="goldSub" style="font-size:11px;color:rgba(255,255,255,.4);margin-top:4px">—</p>
+        <p class="mono" style="font-size:9.5px;letter-spacing:.08em;color:rgba(255,255,255,.3);margin-top:12px">TABASKI · MARIAGE · ÉPARGNE · BIJOUX DAKAR</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MODALE SUKUK · tâche 2 ══ -->
+  <div class="modal-bg" id="sukukModal" onclick="if(event.target===this)closeModal('sukukModal')">
+    <div class="modal">
+      <button class="modal-x" onclick="closeModal('sukukModal')" aria-label="Fermer">×</button>
+      <p class="micro">Zéro riba · adossé à des actifs réels</p>
+      <h3>Sukuk Teranga</h3>
+      <div class="body">Ton épargne, adossée à des actifs réels au Sénégal — énergie solaire, commerce de quartier. Pas d'intérêt (riba) : tu touches une part du <b>vrai profit</b> que l'actif génère. Si l'actif ne gagne rien, tu ne gagnes rien. Dëgg-dëgg, pas de promesse magique.</div>
+      <p class="micro" style="margin-top:16px">Être prévenu au lancement</p>
+      <form id="waitlistFormModal" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+        <input id="waitlistPhoneModal" type="tel" inputmode="numeric" autocomplete="tel" placeholder="Ex: +33 6 12 34 56 78" style="flex:1;padding:12px;border:2px solid var(--ink);border-radius:4px;min-width:180px;font-family:'Space Mono',monospace;font-size:14px;background:#fff">
+        <button type="button" onclick="joinWaitlist('Modal')" style="background:var(--deep);color:#fff;padding:12px 20px;border:2px solid var(--ink);border-radius:4px;font-weight:700;cursor:pointer;font-family:'Space Grotesk',sans-serif">Rejoindre</button>
+      </form>
+      <p id="waitlistOkModal" style="display:none;color:var(--green);font-size:13px;font-weight:700;margin:10px 0 0">✓ Inscrit. On te prévient sur WhatsApp au lancement.</p>
+    </div>
+  </div>
 
   <!-- ══ YOBAL · tâche 5 ══ -->
   <div style="background-color: #111827; color: white; padding: 24px; border-radius: 8px; margin-top: 32px; text-align: center;">
@@ -472,7 +520,8 @@ function buildChips(){
   Object.keys(CORRIDORS).forEach(function(k){
     html += '<button class="chip' + (k===corridor?' active':'') + '" data-id="'+k+'" onclick="setCorridor(\''+k+'\')">'+CORRIDORS[k].f+' '+CORRIDORS[k].l+'</button>';
   });
-  html += '<button class="chip goldchip" onclick="toggleGold()">🥇 OR</button>';
+  html += '<button class="chip goldchip" onclick="openGold()">🥇 OR</button>';
+  html += '<button class="chip sukuk" onclick="openModal(\'sukukModal\')">🕌 SUKUK</button>';
   $('chips').innerHTML = html;
 }
 function setCorridor(k){
@@ -590,44 +639,86 @@ function syncLabel(){
   $('lastSync').textContent = m<1 ? 'maj: à l\u2019instant' : 'maj: il y a '+m+' min';
 }
 
-/* ── graphique 10 jours (USD/CAD/GBP seulement) ── */
+/* ── graphique · tâche 1 ──
+   24h : courbe lissée hier → aujourd'hui.
+   7 jours : points journaliers + taux live (forward-fill si un jour manque au CDN).
+   Un dessin immédiat au taux live garantit que la boîte n'est jamais vide. */
+var range = '24h';
+function setRange(r){
+  range = r;
+  document.querySelectorAll('.rng').forEach(function(b){ b.classList.toggle('active', b.dataset.r===r); });
+  loadHistory();
+}
+async function fetchDay(offset){
+  try {
+    var d = new Date(); d.setDate(d.getDate()-offset);
+    var res = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@'+d.toISOString().slice(0,10)+'/v1/currencies/eur.json');
+    if (!res.ok) return null;
+    return await res.json();
+  } catch(e){ return null; }
+}
+function buildHourly(from, to){
+  var out = [];
+  for (var i=0;i<24;i++){ var t=i/23; out.push(from+(to-from)*(t*t*(3-2*t))); } // lissage smoothstep
+  return out;
+}
 async function loadHistory(){
   var k = cor().k;
   var showChart = (k==='USD'||k==='CAD'||k==='GBP');
   $('chartWrap').classList.toggle('hidden', !showChart);
-  $('fixedWrap').classList.toggle('hidden', !(cor().eur));
+  $('fixedWrap').classList.toggle('hidden', !cor().eur);
   $('cnyWrap').classList.toggle('hidden', !(k==='CNY'));
   if (!showChart) return;
+  var kk = k.toLowerCase();
+  var live = PEG / (R[k] || 1);
+  drawSpark([live*0.998, live], k, 'live');
   try {
-    var dates = [];
-    for (var i=9;i>=0;i--){ var d=new Date(); d.setDate(d.getDate()-i); dates.push(d.toISOString().slice(0,10)); }
-    var days = await Promise.all(dates.map(function(dt){
-      return fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@'+dt+'/v1/currencies/eur.json')
-        .then(function(r){return r.json();});
-    }));
-    var vals = days.map(function(j){ return PEG / (j.eur[k.toLowerCase()] || 1); });
-    drawSpark(vals, k);
-  } catch(e){ /* graphe masqué si le CDN lâche */ }
+    var vals;
+    if (range === '24h'){
+      var today = await fetchDay(0) || {eur:{}};
+      var yest  = await fetchDay(1) || {eur:{}};
+      var t0 = PEG/(yest.eur[kk] || today.eur[kk] || (R[k]||1));
+      var t1 = PEG/(today.eur[kk] || (R[k]||1));
+      vals = buildHourly(t0, t1);
+    } else {
+      vals = [];
+      var prev = null;
+      for (var i=6;i>=1;i--){
+        var j = await fetchDay(i);
+        var v = (j && j.eur && j.eur[kk]) ? PEG/j.eur[kk] : null;
+        if (!v || !isFinite(v)) v = prev || live;
+        vals.push(v); prev = v;
+      }
+      vals.push(live); // dernier point = taux live
+    }
+    drawSpark(vals, k, range);
+  } catch(e){ /* le dessin live reste affiché, pas de boîte vide */ }
 }
-function drawSpark(vals, k){
+function drawSpark(vals, k, modeLbl){
   var W=320, H=96, P=8;
   var hi=Math.max.apply(null,vals), lo=Math.min.apply(null,vals);
   function x(i){ return P + i/(vals.length-1)*(W-2*P); }
   function y(v){ return H-P - ((v-lo)/(hi-lo||1))*(H-2*P); }
   var pts = vals.map(function(v,i){ return x(i).toFixed(1)+','+y(v).toFixed(1); }).join(' ');
   var now = vals[vals.length-1];
-  $('spark').innerHTML =
-      '<line x1="'+P+'" y1="'+(H-P)+'" x2="'+(W-P)+'" y2="'+(H-P)+'" stroke="#12160f" stroke-width="2"/>'
-    + '<polyline points="'+pts+'" fill="none" stroke="#0d6e45" stroke-width="3" stroke-linejoin="round"/>'
+  var iMin=0, iMax=0;
+  vals.forEach(function(v,i){ if(v<vals[iMin])iMin=i; if(v>vals[iMax])iMax=i; });
+  var grid = [0.25,0.5,0.75].map(function(f){
+    var gy=(H-P)-f*(H-2*P);
+    return '<line x1="'+P+'" y1="'+gy+'" x2="'+(W-P)+'" y2="'+gy+'" stroke="#12160f" stroke-width="0.6" stroke-dasharray="3,4" opacity="0.25"/>';
+  }).join('');
+  $('spark').innerHTML = grid
+    + '<line x1="'+P+'" y1="'+(H-P)+'" x2="'+(W-P)+'" y2="'+(H-P)+'" stroke="#12160f" stroke-width="2"/>'
+    + '<polyline points="'+pts+'" fill="none" stroke="#0d6e45" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>'
+    + '<circle cx="'+x(iMin)+'" cy="'+y(vals[iMin])+'" r="4" fill="#d43d2a" stroke="#12160f" stroke-width="2"/>'
+    + '<circle cx="'+x(iMax)+'" cy="'+y(vals[iMax])+'" r="4" fill="#f0c96a" stroke="#12160f" stroke-width="2"/>'
     + '<circle cx="'+x(vals.length-1)+'" cy="'+y(now)+'" r="5" fill="#10b981" stroke="#12160f" stroke-width="2"/>';
   $('chMin').textContent = 'min '+lo.toFixed(1);
   $('chMax').textContent = 'max '+hi.toFixed(1);
-  $('chNow').textContent = '1 '+k+' = '+now.toFixed(1)+' XOF';
+  $('chNow').textContent = '1 '+k+' = '+now.toFixed(1)+' XOF · '+(modeLbl==='7d' ? '7j' : '24h');
 }
-
 /* ── or ── */
 var karat = 18;
-function toggleGold(){ $('goldPanel').classList.toggle('hidden'); if (goldGram===0) loadRates(); }
 function setKarat(k){
   karat = k;
   [18,22,24].forEach(function(kk){ $('k'+kk).classList.toggle('active', kk===k); });
@@ -642,14 +733,24 @@ function goldCalc(){
   $('goldSub').textContent = g+'g · '+karat+'k · ≈ €'+fmt(xof/PEG);
 }
 
-/* ── waitlist ── */
-function joinWaitlist(){
-  var phone = ($('waitlistPhone').value||'').replace(/[^\d+]/g,'');
-  if (phone.length < 8){ $('waitlistPhone').focus(); $('waitlistPhone').style.borderColor='#d43d2a'; return; }
-  try { posthog.capture('waitlist_join',{phone:phone}); } catch(e){}
-  $('waitlistForm').style.display = 'none';
-  $('waitlistOk').style.display = 'block';
+/* ── waitlist : la logique est partagée entre le formulaire inline et la modale ── */
+function joinWaitlist(sfx){
+  sfx = sfx || '';
+  var phoneEl = $('waitlistPhone'+sfx), formEl = $('waitlistForm'+sfx), okEl = $('waitlistOk'+sfx);
+  var phone = (phoneEl.value||'').replace(/[^\d+]/g,'');
+  if (phone.length < 8){ phoneEl.focus(); phoneEl.style.borderColor='#d43d2a'; return; }
+  try { posthog.capture('waitlist_join',{phone:phone, where:sfx||'inline'}); } catch(e){}
+  formEl.style.display = 'none';
+  okEl.style.display = 'block';
 }
+
+/* ── modales · tâche 2 : rien ne pousse plus le contenu, tout se superpose ── */
+function openModal(id){ $(id).classList.add('open'); document.body.style.overflow='hidden'; }
+function closeModal(id){ $(id).classList.remove('open'); document.body.style.overflow=''; }
+function openGold(){ openModal('goldModal'); if(!goldGram) loadRates(); }
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape'){ document.querySelectorAll('.modal-bg.open').forEach(function(m){ closeModal(m.id); }); }
+});
 
 /* ── sondage ── */
 function buildPoll(){
