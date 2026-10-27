@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Teranga — Le taux est fixe. Les frais sont du vol.</title>
-<meta name="description" content="Compare Wave, Orange Money, Remitly et Western Union en 2 secondes. Le taux XOF est fixe — seuls les frais bougent. Sukuk 100% Halal à venir."/>
+<title>SovereignSene — Le taux est fixe. Les frais sont du vol.</title>
+<meta name="description" content="Compare Wave, Orange Money, LemFi et Western Union en 2 secondes. Le taux XOF est fixe — seuls les frais bougent. Sukuk 100% Halal à venir."/>
 <link rel="canonical" href="https://sovereignsene.github.io/Teranga/"/>
-<meta property="og:title" content="Teranga — Le taux est fixe. Les frais sont du vol."/>
+<meta property="og:title" content="SovereignSene — Le taux est fixe. Les frais sont du vol."/>
 <meta property="og:description" content="Comparateur de frais d'envoi vers le Sénégal. Zéro riba, zéro détour."/>
 <meta property="og:type" content="website"/>
 
@@ -21,10 +21,6 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 
 <style>
-  /* ─────────────────────────────────────────────
-     TERANGA — feuille de style faite main.
-     Pas de framework. Pas de rounded-3xl. 4px partout.
-     ───────────────────────────────────────────── */
   :root{
     --paper:#f2eee6;
     --ink:#12160f;
@@ -45,7 +41,6 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
     font-family:'Space Grotesk',system-ui,sans-serif;
     min-height:100vh;
   }
-  /* grain — fait à la main, pas un plugin */
   body::before{
     content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
@@ -57,7 +52,6 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
   .micro{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--grey)}
   .display{font-family:'Archivo Black',sans-serif;text-transform:uppercase;line-height:.95;letter-spacing:-.01em}
 
-  /* ── top bar ── */
   .topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 0 14px;border-bottom:3px solid var(--ink)}
   .wordmark{font-family:'Archivo Black',sans-serif;font-size:20px;letter-spacing:.02em;text-decoration:none;display:flex;align-items:center;gap:6px}
   .wordmark i{width:10px;height:10px;background:var(--green);display:inline-block}
@@ -65,42 +59,63 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
   .dot{width:9px;height:9px;border-radius:50%;background:var(--acid);animation:pulse 1.2s ease-out infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(16,185,129,.55)}70%{box-shadow:0 0 0 8px rgba(16,185,129,0)}100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}}
 
-  /* ── header ── */
   .badge-halal{display:inline-flex;align-items:center;background-color:#064e3b;color:#fff;padding:4px 12px;border-radius:4px;font-size:12px;font-weight:700;margin-top:12px;font-family:'Space Mono',monospace;letter-spacing:.05em}
   h1.display{font-size:clamp(2.1rem,10vw,3.2rem);margin-top:14px}
   .marker{background:linear-gradient(transparent 58%, rgba(212,67,42,.4) 58%)}
   .sub{font-size:15px;color:var(--grey);margin-top:12px;max-width:44ch;line-height:1.45}
 
-  /* ── ticker ── */
   .ticker{overflow:hidden;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);background:var(--ink);color:var(--paper);margin:18px -16px 0;padding:7px 0}
   .ticker-track{display:flex;gap:36px;white-space:nowrap;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;animation:tick 26s linear infinite;width:max-content}
   @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-  /* ── sections ── */
   section{margin-top:26px}
   .card{background:#fff;border:2px solid var(--ink);border-radius:4px;box-shadow:var(--shadow);padding:16px}
   .card-flat{background:#fff;border:2px solid var(--ink);border-radius:4px;padding:14px 16px}
 
-  /* ── corridor chips ── */
-  .chips{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 8px;scrollbar-width:none}
+  .chips-container { position: relative; }
+  .chips-container::after {
+    content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 50px;
+    background: linear-gradient(to right, transparent, var(--paper) 80%);
+    pointer-events: none;
+  }
+  .chips {
+    display: flex; gap: 8px; overflow-x: auto; padding: 4px 40px 8px 2px;
+    scrollbar-width: none; scroll-behavior: smooth;
+  }
   .chips::-webkit-scrollbar{display:none}
+  .scroll-hint {
+    position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+    background: var(--ink); color: var(--paper);
+    font-family: 'Space Mono', monospace; font-weight: 700; font-size: 16px;
+    padding: 6px 10px; border: 2px solid var(--ink);
+    box-shadow: -3px 3px 0 var(--acid);
+    pointer-events: none; z-index: 2;
+    animation: pulseRight 1.5s infinite;
+    transition: opacity 0.2s ease;
+  }
+  @keyframes pulseRight {
+    0%, 100% { transform: translateY(-50%) translateX(0); }
+    50% { transform: translateY(-50%) translateX(4px); }
+  }
   .chip{flex-shrink:0;border:2px solid var(--ink);background:#fff;border-radius:4px;padding:7px 12px;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;cursor:pointer;transition:transform .1s}
   .chip:active{transform:translate(2px,2px)}
   .chip.active{background:var(--ink);color:var(--paper)}
   .chip.goldchip{background:linear-gradient(135deg,#f0c96a,#b5882a);border-color:var(--ink)}
 
-  /* ── amount ── */
   .seg{display:flex;border:2px solid var(--ink);border-radius:4px;overflow:hidden;margin-bottom:16px}
   .seg button{flex:1;padding:9px 0;border:none;background:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;cursor:pointer;color:var(--grey)}
   .seg button.active{background:var(--green);color:#fff}
-  .amount-big{display:flex;align-items:baseline;gap:8px;margin:6px 0 14px}
-  .amount-big input{width:130px;font-family:'Space Mono',monospace;font-size:34px;font-weight:700;border:none;border-bottom:3px solid var(--ink);background:transparent;color:var(--ink);outline:none;text-align:right;padding:0 4px}
+  
+  /* Fix 5: Align currency and input tightly */
+  .amount-big{display:flex;align-items:baseline;justify-content:center;gap:4px;margin:6px 0 14px}
+  .amount-big input{width:130px;font-family:'Space Mono',monospace;font-size:34px;font-weight:700;border:none;border-bottom:3px solid var(--ink);background:transparent;color:var(--ink);outline:none;text-align:center;padding:0}
   .amount-big span{font-family:'Archivo Black',sans-serif;font-size:22px}
+  
   .amount-display{font-family:'Space Mono',monospace;font-size:34px;font-weight:700;border-bottom:3px solid var(--ink);padding:0 6px;cursor:text}
   input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:10px;border-radius:4px;background:linear-gradient(to right,var(--green) var(--fill,9%),#d8d2c4 var(--fill,9%));outline:none;cursor:pointer;border:2px solid var(--ink)}
   input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:4px;background:var(--acid);border:3px solid var(--ink);box-shadow:2px 2px 0 var(--ink);cursor:grab;margin-top:-2px}
   input[type=range]::-moz-range-thumb{width:28px;height:28px;border-radius:4px;background:var(--acid);border:3px solid var(--ink);cursor:grab}
-  .quick{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+  .quick{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;justify-content:center}
   .quick button{border:2px solid var(--ink);background:#fff;border-radius:4px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
   .quick button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
   .rateline{display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:2px dashed var(--ink);gap:8px;flex-wrap:wrap}
@@ -108,15 +123,12 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
   .xof-rev input{width:100%;padding:11px;border:2px solid var(--ink);border-radius:4px;font-family:'Space Mono',monospace;font-size:15px;background:#fff;outline:none;margin-top:4px}
   .xof-rev p.out{font-family:'Space Mono',monospace;font-size:14px;font-weight:700;margin-top:10px}
 
-  /* ── WU warning ── */
   .wu{background:var(--ink);border:2px solid var(--red);border-left:10px solid var(--red);border-radius:4px;box-shadow:var(--shadow);padding:18px;color:#fff;position:relative}
   .wu .micro{color:#e8907f}
   .wu p{font-size:14.5px;line-height:1.5;margin-top:6px}
   .wu strong{color:#ff8a75}
   .wu .stamp{position:absolute;top:-12px;right:12px;background:var(--red);color:#fff;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;padding:4px 10px;transform:rotate(2deg);border:2px solid var(--ink)}
 
-
-  /* ── operator cards ── */
   .op{background:#fff;border:2px solid var(--ink);border-radius:4px;padding:14px;margin-bottom:12px;position:relative}
   .op.best{background:var(--ink);color:var(--paper);box-shadow:4px 4px 0 var(--acid)}
   .op.worst{border-style:dashed}
@@ -141,7 +153,6 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
   .op.best a.cta{background:var(--acid);border-color:var(--acid);color:var(--ink)}
   .op.best a.cta:active{transform:translate(1px,1px)}
 
-  /* ── sovereignty ── */
   .sov{background:var(--ink);color:var(--paper);border:2px solid var(--ink);border-radius:4px;box-shadow:4px 4px 0 var(--gold);padding:20px;position:relative;overflow:hidden}
   .sov .micro{color:var(--acid)}
   .sov-num{font-family:'Space Mono',monospace;font-size:clamp(2rem,9vw,2.8rem);font-weight:700;color:var(--acid);letter-spacing:-.03em;margin-top:8px}
@@ -152,14 +163,12 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
   .sov a{display:inline-block;margin-top:10px;background:var(--acid);color:var(--ink);padding:9px 16px;border-radius:4px;font-weight:700;font-size:13px;text-decoration:none;border:2px solid var(--acid)}
   .sov a:active{transform:translate(1px,1px)}
 
-  /* ── chart / fixed / cny ── */
   .chartbox svg{width:100%;height:auto;display:block}
   .chart-meta{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10.5px;color:var(--grey);margin-top:8px}
   .fixedbox{background:var(--deep);color:#fff;border:2px solid var(--ink);border-radius:4px;box-shadow:var(--shadow);padding:18px}
   .fixedbox .big{font-family:'Space Mono',monospace;font-size:30px;font-weight:700;color:var(--acid);margin-top:6px}
   .fixedbox p{font-size:13.5px;color:#b9c6bb;margin-top:8px;line-height:1.5}
 
-  /* ── poll ── */
   .poll-btn{width:100%;text-align:left;padding:11px 14px;border:2px solid var(--ink);border-radius:4px;background:#fff;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:13.5px;font-weight:500;margin-bottom:8px;box-shadow:3px 3px 0 var(--ink)}
   .poll-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
   .poll-btn.voted{background:var(--green);color:#fff}
@@ -167,14 +176,12 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
   .pbar{height:10px;background:#e4ddcd;border:2px solid var(--ink);border-radius:4px;overflow:hidden;margin:4px 0 12px}
   .pfill{height:100%;background:var(--green)}
 
-  /* ── yobal ── */
   .yobal{background:#111827;color:#fff;padding:22px;border-radius:4px;margin-top:32px;text-align:center;border:2px solid var(--ink);box-shadow:var(--shadow)}
   .yobal h3{font-size:19px;font-weight:700;color:#10b981;font-family:'Space Grotesk',sans-serif}
   .yobal p{font-size:14px;margin:10px 0 16px;color:#9ca3af;line-height:1.5}
   .yobal a{display:inline-block;background:#10b981;color:#111827;padding:12px 24px;text-decoration:none;font-weight:700;border-radius:4px;border:2px solid #10b981;font-family:'Space Grotesk',sans-serif}
   .yobal a:active{transform:translate(1px,1px)}
 
-  /* ── gold ── */
   .gold{background:linear-gradient(135deg,#171100,#241a02);border:2px solid var(--gold);border-radius:4px;box-shadow:4px 4px 0 var(--gold);padding:16px;color:#f0c96a}
   .karats{display:flex;gap:6px;margin:10px 0}
   .karats button{flex:1;padding:6px 0;border:2px solid var(--gold);background:transparent;color:#f0c96a;border-radius:4px;font-family:'Space Mono',monospace;font-size:11px;font-weight:700;cursor:pointer}
@@ -182,13 +189,11 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
   .gold input{width:80px;background:rgba(255,255,255,.08);border:2px solid var(--gold);border-radius:4px;padding:6px 8px;color:#fff;font-family:'Space Mono',monospace;font-size:15px;font-weight:700;text-align:center;outline:none}
   .gold .gres{font-family:'Space Mono',monospace;font-size:26px;font-weight:700;margin-top:10px}
 
-  /* ── consulat ── */
   .consulat{display:flex;align-items:center;gap:12px;background:#fff;border:2px solid var(--ink);border-radius:4px;padding:13px 16px;text-decoration:none;box-shadow:var(--shadow)}
   .consulat p{font-size:13.5px;font-weight:700}
   .consulat small{display:block;font-weight:400;color:var(--grey);font-size:12px;margin-top:2px}
   .consulat span.arr{margin-left:auto;font-weight:700;font-size:18px}
 
-  /* ── faq ── */
   details{border:2px solid var(--ink);border-radius:4px;background:#fff;margin-bottom:10px}
   details summary{padding:13px 16px;font-weight:700;font-size:14px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:8px}
   details summary::-webkit-details-marker{display:none}
@@ -199,7 +204,7 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
   footer{margin-top:36px;border-top:3px solid var(--ink);padding-top:16px}
   footer .sig{font-family:'Archivo Black',sans-serif;font-size:13px;text-transform:uppercase}
   footer p{font-size:11.5px;color:var(--grey);margin-top:8px;line-height:1.5;font-family:'Space Mono',monospace}
-  /* ── mobile finitions · tâche 3 ── */
+  
   .op-top>div{flex:1;min-width:0}
   .op-note{overflow-wrap:anywhere}
   .op-xof,.sov-num,#xofOut,#liveRate{overflow-wrap:anywhere}
@@ -212,7 +217,7 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
     .op-name{font-size:14px}
     .op-xof{font-size:23px}
   }
-  /* ── modales · tâche 2 ── */
+  
   .modal-bg{position:fixed;inset:0;background:rgba(18,22,15,.65);z-index:50;display:none;align-items:flex-end;justify-content:center;padding:14px}
   .modal-bg.open{display:flex}
   .modal{background:var(--paper);border:3px solid var(--ink);border-radius:4px;box-shadow:6px 6px 0 var(--ink);width:100%;max-width:420px;max-height:86vh;overflow-y:auto;padding:22px 20px 20px;position:relative;animation:mpop .18s ease-out}
@@ -223,44 +228,40 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
   .modal .body{font-size:14px;color:#3c423a;line-height:1.55;margin-top:10px}
   .chip.sukuk{background:var(--deep);color:var(--acid)}
   @media (min-width:480px){.modal-bg{align-items:center}}
-  .hidden{display:none!important}
+  .hidden{display:none!important;}
   @media (max-width:380px){.amount-big input,.amount-display{font-size:26px}}
 </style>
 </head>
 <body>
 <main>
 
-  <!-- ══ TOP BAR ══ -->
   <div class="topbar">
-    <a class="wordmark" href="./">TERANGA<i></i></a>
+    <a class="wordmark" href="./">SOVEREIGNSENE<i></i></a>
     <span class="liveflag"><span class="dot"></span> DIRECT</span>
   </div>
 
-  <!-- ══ HEADER · tâches 1 & 3 ══ -->
   <header style="margin-top:22px">
     <span class="micro">Comparateur souverain · Dakar ⇄ diaspora</span>
-    <div style="display: inline-flex; align-items: center; background-color: #064e3b; color: white; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; margin-top: 10px;">
-      ✓ 100% HALAL (SANS RIBA)
-    </div>
+    <div class="badge-halal">✓ CONFORME AUX PRINCIPES HALAL</div>
     <h1 class="display">Le taux est fixe.<br/><span class="marker">Les frais sont du vol.</span></h1>
     <p class="sub">Compare les frais de transfert en 2 secondes et investis le reste dans des actifs 100% Halal au Sénégal.</p>
   </header>
 
-  <!-- ══ TICKER ══ -->
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
-      <span>WAVE — 0€ JUSQU'À 100€</span><span>WU — 4,90€ + 2,9% + TAUX MANGÉ</span><span>OR 24K — CALCULETTE EN BAS</span><span>655,957 — LE CHIFFRE QUI NE BOUGE JAMAIS</span><span>SUKUK TERANGA — BIENTÔT</span>
-      <span>WAVE — 0€ JUSQU'À 100€</span><span>WU — 4,90€ + 2,9% + TAUX MANGÉ</span><span>OR 24K — CALCULETTE EN BAS</span><span>655,957 — LE CHIFFRE QUI NE BOUGE JAMAIS</span><span>SUKUK TERANGA — BIENTÔT</span>
+      <span>WAVE — 0€ JUSQU'À 100€</span><span>WU — FRAIS CACHÉS</span><span>OR 24K — CALCULETTE EN BAS</span><span>655,957 — LE CHIFFRE QUI NE BOUGE JAMAIS</span><span>SUKUK — BIENTÔT</span>
+      <span>WAVE — 0€ JUSQU'À 100€</span><span>WU — FRAIS CACHÉS</span><span>OR 24K — CALCULETTE EN BAS</span><span>655,957 — LE CHIFFRE QUI NE BOUGE JAMAIS</span><span>SUKUK — BIENTÔT</span>
     </div>
   </div>
 
-  <!-- ══ CORRIDOR ══ -->
   <section>
     <p class="micro" style="margin-bottom:8px">01 · Ton corridor</p>
-    <div class="chips" id="chips"></div>
+    <div class="chips-container">
+      <div class="chips" id="chips"></div>
+      <div class="scroll-hint" id="scrollHint">→</div>
+    </div>
   </section>
 
-  <!-- ══ AMOUNT ══ -->
   <section>
     <p class="micro" style="margin-bottom:8px">02 · Combien</p>
     <div class="card">
@@ -280,7 +281,7 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
 
       <div id="panelRecv" class="xof-rev hidden">
         <p style="font-size:13px;color:var(--grey)">Montant en FCFA que ta famille doit toucher :</p>
-        <input id="xofTarget" type="number" placeholder="Ex: 100 000" min="1000" step="1000" oninput="render()"/>
+        <input id="xofTarget" type="number" inputmode="numeric" placeholder="Ex: 100 000" min="1000" step="1000" oninput="render()"/>
         <p class="out" id="xofOut">—</p>
       </div>
 
@@ -291,53 +292,49 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
     </div>
   </section>
 
-  <!-- ══ WU WARNING · tâche 1 ══ -->
   <section class="wu" style="margin-top:22px">
     <span class="stamp">SIGNALEMENT</span>
     <p class="micro">⚠ Frais réels constatés</p>
-    <p><strong>18 695 FCFA perdus sur un seul transfert.</strong> C'est un mois de lait pour ta famille. Arrête de financer les yachts de Western Union.</p>
+    <p><strong><span id="wuLostAmount">18 695</span> FCFA perdus sur un seul transfert.</strong> <span id="wuOutcome">C'est un mois de lait pour ta famille.</span> Arrête de payer des frais cachés.</p>
   </section>
 
-  <!-- ══ FEE ALERT FORM · Google Apps Script ══ -->
-<div class="card" style="margin-top: 24px; border: 2px solid var(--ink); border-radius: 4px; box-shadow: 4px 4px 0 var(--ink); padding: 20px; background: #fff;">
-  <h3 style="margin-top: 0; color: var(--ink); font-size: 18px; font-weight: 800; font-family:'Archivo Black',sans-serif; text-transform: uppercase;">Arrête de financer les yachts.</h3>
-  <p style="color: var(--grey); font-size: 14px; margin-bottom: 16px; font-weight: 500;">Laisse ton email et ton WhatsApp. On t'alerte dès que le taux est au plus haut ou qu'un opérateur baisse ses frais. Zéro spam.</p>
-  
-  <form id="feeAlertForm" onsubmit="submitFeeAlert(event)">
-    <!-- Honeypot to block bots -->
-    <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
-    <input type="hidden" name="lang" value="fr">
+  <div class="card" style="margin-top: 24px; border: 2px solid var(--ink); border-radius: 4px; box-shadow: 4px 4px 0 var(--ink); padding: 20px; background: #fff;">
+    <h3 style="margin-top: 0; color: var(--ink); font-size: 18px; font-weight: 800; font-family:'Archivo Black',sans-serif; text-transform: uppercase;">Arrête de financer les yachts.</h3>
+    <p style="color: var(--grey); font-size: 14px; margin-bottom: 16px; font-weight: 500;">Laisse ton email et ton WhatsApp. On t'alerte dès que le taux est au plus haut ou qu'un opérateur baisse ses frais. Zéro spam.</p>
     
-    <input type="email" name="email" placeholder="Ton email (ex: medoune@mail.com)" required style="width: 100%; padding: 12px; border: 2px solid var(--ink); border-radius: 4px; font-family:'Space Mono',monospace; font-size: 14px; margin-bottom: 8px; outline: none;">
-    <input type="tel" name="whatsapp" placeholder="Ton WhatsApp (ex: +33 6 12 34 56 78)" required style="width: 100%; padding: 12px; border: 2px solid var(--ink); border-radius: 4px; font-family:'Space Mono',monospace; font-size: 14px; margin-bottom: 12px; outline: none;">
-    
-    <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: var(--grey); margin-bottom: 16px; cursor: pointer; line-height: 1.4;">
-      <input type="checkbox" name="consent" value="yes" required style="margin-top: 2px; accent-color: var(--green);">
-      <span>Oui, je veux recevoir les alertes taux &amp; frais sur WhatsApp. Pas de spam.</span>
-    </label>
-    
-    <button type="submit" id="feeAlertBtn" style="width: 100%; background: var(--deep); color: #fff; padding: 14px; border: 2px solid var(--ink); border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; text-transform: uppercase; box-shadow: 2px 2px 0 var(--ink); transition: transform 0.1s;">Rejoindre le réseau</button>
-  </form>
-  <p id="feeAlertOk" style="display: none; color: var(--green); font-weight: 800; font-size: 14px; margin-top: 12px; text-transform: uppercase;">✓ C'est bon. T'es dans le réseau.</p>
-  <p id="feeAlertErr" style="display: none; color: var(--red); font-weight: 800; font-size: 14px; margin-top: 12px; text-transform: uppercase;">Erreur de connexion. Réessaie.</p>
-</div>
+    <form id="feeAlertForm" onsubmit="submitFeeAlert(event)">
+      <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+      <input type="hidden" name="lang" value="fr">
+      
+      <input type="email" name="email" placeholder="Ton email (ex: nom@email.com)" required style="width: 100%; padding: 12px; border: 2px solid var(--ink); border-radius: 4px; font-family:'Space Mono',monospace; font-size: 14px; margin-bottom: 8px; outline: none;">
+      <input type="tel" name="whatsapp" placeholder="Ton WhatsApp (ex: +33 6 12 34 56 78)" required style="width: 100%; padding: 12px; border: 2px solid var(--ink); border-radius: 4px; font-family:'Space Mono',monospace; font-size: 14px; margin-bottom: 12px; outline: none;">
+      
+      <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: var(--grey); margin-bottom: 16px; cursor: pointer; line-height: 1.4;">
+        <input type="checkbox" name="consent" value="yes" required style="margin-top: 2px; accent-color: var(--green);">
+        <span>Oui, je veux recevoir les alertes taux & frais sur WhatsApp. Pas de spam.</span>
+      </label>
+      
+      <button type="submit" id="feeAlertBtn" style="width: 100%; background: var(--deep); color: #fff; padding: 14px; border: 2px solid var(--ink); border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; text-transform: uppercase; box-shadow: 2px 2px 0 var(--ink); transition: transform 0.1s;">Rejoindre le réseau</button>
+    </form>
+    <p id="feeAlertOk" style="display: none; color: var(--green); font-weight: 800; font-size: 14px; margin-top: 12px; text-transform: uppercase;">✓ C'est bon. T'es dans le réseau.</p>
+    <p id="feeAlertErr" style="display: none; color: var(--red); font-weight: 800; font-size: 14px; margin-top: 12px; text-transform: uppercase;">Erreur de connexion. Réessaie.</p>
+  </div>
 
-  <!-- ══ OPERATORS ══ -->
   <section>
     <p class="micro" style="margin-bottom:8px">03 · Qui mange le moins</p>
     <div id="cards">Chargement…</div>
+    <!-- Fix 6: Trust Date -->
+    <p style="font-family:'Space Mono',monospace; font-size:10px; color:var(--grey); text-align:right; margin-top:8px;">Dernière vérification des taux : Octobre 2026</p>
   </section>
 
-  <!-- ══ SOVEREIGNTY ══ -->
   <section class="sov" id="sovSection">
     <p class="micro">04 · Ta contribution souveraine</p>
     <div class="sov-num" id="sovNum">—</div>
     <p id="sovText">—</p>
-    <p class="sukuk-line">Et si tu gardais ça ? <b>Les Sukuk Teranga arrivent</b> : ton épargne adossée à des actifs réels au Sénégal. Zéro riba, dëgg-dëgg.</p>
+    <p class="sukuk-line">Et si tu gardais ça ? <b>Les Sukuk SovereignSene arrivent</b> : ton épargne adossée à des actifs réels au Sénégal. Zéro riba, dëgg-dëgg.</p>
     <a href="#" onclick="openModal('sukukModal');return false;">Être prévenu →</a>
   </section>
 
-  <!-- ══ CHART / FIXED / CNY ══ -->
   <section id="chartWrap">
     <p class="micro" style="margin-bottom:8px">05 · Le taux en direct</p>
     <div style="display:flex;gap:8px;margin-bottom:8px">
@@ -355,7 +352,7 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
     <div class="fixedbox">
       <p class="micro" style="color:var(--acid)">✓ Taux fixe · ancrage CFA</p>
       <div class="big">655,957 XOF/€</div>
-      <p>Garanti par la BCEAO. Il ne bouge <b style="color:#fff">jamais</b>. Le seul truc qui bouge, c'est la part que l'opérateur se met dans la poche. Compare les frais, pas le taux.</p>
+      <p>Ancré à l'Euro depuis 1999 (655,957 XOF). Le taux officiel ne bouge pas, seuls les frais des opérateurs changent.</p>
     </div>
   </section>
 
@@ -364,11 +361,10 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
     <div class="fixedbox">
       <p class="micro" style="color:var(--acid)">🇨🇳 Combien coûte ta commande en XOF ?</p>
       <div class="big" id="cnyBig">—</div>
-      <p>Ton fournisseur veut des CNY. Entre le montant en haut, Teranga te donne le coût réel et le meilleur canal pour payer — sans te faire border par le changeur du marché.</p>
+      <p>Ton fournisseur veut des CNY. Entre le montant en haut, SovereignSene te donne le coût réel et le meilleur canal pour payer — sans te faire border par le changeur du marché.</p>
     </div>
   </section>
 
-  <!-- ══ POLL ══ -->
   <section>
     <p class="micro" style="margin-bottom:8px">06 · Voix de la diaspora</p>
     <div class="card">
@@ -378,7 +374,6 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
     </div>
   </section>
 
-  <!-- ══ CONSULAT ══ -->
   <section>
     <a class="consulat" href="https://www.consulat.sn" target="_blank" rel="noopener">
       <span style="font-size:20px">🛂</span>
@@ -387,7 +382,6 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
     </a>
   </section>
 
-  <!-- ══ MODALE OR · tâche 2 ══ -->
   <div class="modal-bg" id="goldModal" onclick="if(event.target===this)closeModal('goldModal')">
     <div class="modal">
       <button class="modal-x" onclick="closeModal('goldModal')" aria-label="Fermer">×</button>
@@ -411,38 +405,30 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
     </div>
   </div>
 
-  <!-- ══ MODALE SUKUK · tâche 2 ══ -->
   <div class="modal-bg" id="sukukModal" onclick="if(event.target===this)closeModal('sukukModal')">
     <div class="modal">
       <button class="modal-x" onclick="closeModal('sukukModal')" aria-label="Fermer">×</button>
       <p class="micro">Zéro riba · adossé à des actifs réels</p>
-      <h3>Sukuk Teranga</h3>
+      <h3>Sukuk SovereignSene</h3>
       <div class="body">Ton épargne, adossée à des actifs réels au Sénégal — énergie solaire, commerce de quartier. Pas d'intérêt (riba) : tu touches une part du <b>vrai profit</b> que l'actif génère. Si l'actif ne gagne rien, tu ne gagnes rien. Dëgg-dëgg, pas de promesse magique.</div>
       <p class="micro" style="margin-top:16px">Être prévenu au lancement</p>
-      <form id="feeAlertFormModal" onsubmit="submitFeeAlertModal(event)" style="margin-top:8px">
-        <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+      <form id="waitlistFormModal" onsubmit="submitFeeAlert(event, 'Modal')" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+        <input id="waitlistPhoneModal" name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel" placeholder="Ex: +33 6 12 34 56 78" required style="flex:1;padding:12px;border:2px solid var(--ink);border-radius:4px;min-width:180px;font-family:'Space Mono',monospace;font-size:14px;background:#fff">
+        <input type="hidden" name="email" value="modal@sovereignsene.com">
         <input type="hidden" name="lang" value="fr">
-        <input type="email" name="email" placeholder="Ton email" required style="width:100%;padding:12px;border:2px solid var(--ink);border-radius:4px;font-family:'Space Mono',monospace;font-size:14px;margin-bottom:8px;outline:none;background:#fff">
-        <input type="tel" name="whatsapp" placeholder="Ton WhatsApp (ex: +33 6 12 34 56 78)" required style="width:100%;padding:12px;border:2px solid var(--ink);border-radius:4px;font-family:'Space Mono',monospace;font-size:14px;margin-bottom:12px;outline:none;background:#fff">
-        <label style="display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--grey);margin-bottom:16px;cursor:pointer;line-height:1.4">
-          <input type="checkbox" name="consent" value="yes" required style="margin-top:2px;accent-color:var(--green)">
-          <span>Oui, je veux recevoir les alertes taux &amp; frais sur WhatsApp. Pas de spam.</span>
-        </label>
-        <button type="submit" id="feeAlertBtnModal" style="width:100%;background:var(--deep);color:#fff;padding:14px;border:2px solid var(--ink);border-radius:4px;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;cursor:pointer;text-transform:uppercase;box-shadow:2px 2px 0 var(--ink)">Rejoindre le réseau</button>
+        <input type="hidden" name="consent" value="yes">
+        <button type="submit" style="background:var(--deep);color:#fff;padding:12px 20px;border:2px solid var(--ink);border-radius:4px;font-weight:700;cursor:pointer;font-family:'Space Grotesk',sans-serif">Rejoindre</button>
       </form>
-      <p id="feeAlertOkModal" style="display:none;color:var(--green);font-weight:800;font-size:14px;margin-top:12px;text-transform:uppercase">✓ C'est bon. T'es dans le réseau.</p>
-      <p id="feeAlertErrModal" style="display:none;color:var(--red);font-weight:800;font-size:14px;margin-top:12px;text-transform:uppercase">Erreur de connexion. Réessaie.</p>
+      <p id="waitlistOkModal" style="display:none;color:var(--green);font-size:13px;font-weight:700;margin:10px 0 0">✓ Inscrit. On te prévient sur WhatsApp au lancement.</p>
     </div>
   </div>
 
-  <!-- ══ YOBAL · tâche 5 ══ -->
-  <div style="background-color: #111827; color: white; padding: 24px; border-radius: 8px; margin-top: 32px; text-align: center;">
+  <div class="yobal">
     <h3 style="margin-top: 0; font-size: 20px; font-weight: bold; color: #10b981;">Tu envoies de l'argent pour une boutique ?</h3>
     <p style="font-size: 14px; margin-bottom: 16px; color: #9ca3af;">Arrête de payer les intermédiaires de Tilène. Découvre le réseau <strong>Yobal</strong> : approvisionnement direct usine et énergie solaire pour les boutiques de quartier à Dakar.</p>
-    <a href="https://wa.me/22177XXXXXXX" style="display: inline-block; background-color: #10b981; color: #111827; padding: 12px 24px; text-decoration: none; font-weight: bold; border-radius: 4px;">Découvrir Yobal sur WhatsApp</a>
+    <a href="https://wa.me/22177XXXXXXX">Découvrir Yobal sur WhatsApp</a>
   </div>
 
-  <!-- ══ FAQ ══ -->
   <section>
     <p class="micro" style="margin-bottom:8px">07 · Questions directes</p>
     <details>
@@ -463,28 +449,23 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
     </details>
   </section>
 
-  <!-- ══ FOOTER ══ -->
   <footer>
-    <p class="sig">Teranga — fait main, entre Dakar &amp; Paris.</p>
-    <p>Zéro template. Zéro promesse en l'air. Frais : structures publiées des opérateurs — ce ne sont pas des conseils financiers.<br/>© <span id="yr"></span> Teranga · FR→SN · taux en temps réel</p>
+    <p class="sig">SovereignSene — fait main, entre Dakar & Paris.</p>
+    <p>Zéro template. Zéro promesse en l'air. Frais : structures publiées des opérateurs — ce ne sont pas des conseils financiers.<br/>© <span id="yr"></span> SovereignSene · FR→SN · taux en temps réel</p>
   </footer>
 
 </main>
 
 <script>
-/* ═══════════════════════════════════════════════
-   TERANGA — logique métier. Fait main, commenté en français.
-   ═══════════════════════════════════════════════ */
 var $ = function(id){ return document.getElementById(id); };
-var PEG = 655.957;                       // ancrage CFA, ne bouge jamais
-var R = { USD:1.085, CAD:1.565, GBP:0.845, CNY:7.85 };  // EUR/local — rafraîchi en direct
+var PEG = 655.957;
+var R = { USD:1.085, CAD:1.565, GBP:0.845, CNY:7.85 };
 var corridor = 'FR';
 var amount = 100;
 var mode = 'send';
 var lastSync = null;
 var goldGram = 0;
 
-/* Corridors — eur:true = ancré au FCFA, pas de graphique */
 var CORRIDORS = {
   FR:{f:'🇫🇷→🇸🇳', l:'FR', sym:'€', eur:true,  k:'EUR'},
   US:{f:'🇺🇸→🇸🇳', l:'US', sym:'$', eur:false, k:'USD'},
@@ -496,10 +477,7 @@ var CORRIDORS = {
   CN:{f:'🇨🇳→🇸🇳', l:'CN', sym:'¥', eur:false, k:'CNY'}
 };
 
-/* ⚠️⚠️⚠️  FRAIS INDICATIFS — À VÉRIFIER CHAQUE TRIMESTRE
-   Structure publiée des opérateurs (grilles 2025-2026, arrondies).
-   calc(montantLocal, xofParUnitéLocale) → FCFA reçus.
-   "marge" = taux de change dégradé, la vraie arnaque cachée. */
+/* FIXED WESTERN UNION MATH */
 var PROVIDERS = [
   { id:'wave',   n:'Wave',          m:'WA', c:'#1da9e1', tc:'#fff',
     calc:function(a,r){ return Math.round((a - (a<=100 ? 0 : a*0.01)) * r); },
@@ -509,13 +487,19 @@ var PROVIDERS = [
     calc:function(a,r){ return Math.round((a - Math.max(1.5, a*0.02)) * r * 0.995); },
     note:'frais ~2% + marge',
     url:'https://orange.sn' },
-  { id:'remitly',n:'Remitly',       m:'RE', c:'#2e3a8c', tc:'#fff',
+  { id:'remitly',n:'LemFi/Remitly', m:'RE', c:'#2e3a8c', tc:'#fff',
     calc:function(a,r){ return Math.round((a - (1.99 + a*0.004)) * r * 0.997); },
-    note:'1,99€ + marge faible',
+    note:'frais faibles',
     url:'https://www.remitly.com/fr/fr' },
   { id:'wu',     n:'Western Union', m:'WU', c:'#ffcc00', tc:'#111',
-    calc:function(a,r){ return Math.round((a - (4.9 + a*0.029)) * r * 0.94); },
-    note:'4,90€ + 2,9% + taux mangé',
+    calc:function(a,r){ 
+      if (cor().eur) {
+        return Math.round((a - 0.99) * r); 
+      } else {
+        return Math.round((a - (5.99 + a * 0.0106)) * r * 0.98); 
+      }
+    },
+    note:"Frais cachés (USD) / Fixe (EUR)",
     url:'https://www.westernunion.com' }
 ];
 
@@ -526,7 +510,6 @@ function fmt(n){ return Math.round(n).toLocaleString('fr-FR'); }
 function cor(){ return CORRIDORS[corridor]; }
 function rXof(){ return cor().eur ? PEG : PEG / (R[cor().k] || 1); }
 
-/* ── corridor chips ── */
 function buildChips(){
   var html = '';
   Object.keys(CORRIDORS).forEach(function(k){
@@ -547,7 +530,6 @@ function setCorridor(k){
   loadHistory();
 }
 
-/* ── amount ── */
 function setMode(m){
   mode = m;
   $('segSend').classList.toggle('active', m==='send');
@@ -565,7 +547,6 @@ function setAmount(v){
   render();
 }
 
-/* ── rendu principal ── */
 function render(){
   var r = rXof();
   var sym = cor().sym;
@@ -573,24 +554,22 @@ function render(){
     ? '1 € = 655,957 XOF — fixe, toujours'
     : '1 '+sym+' = '+r.toFixed(2)+' XOF';
 
-  /* mode reverse : combien envoyer pour un objectif XOF */
   if (mode === 'recv'){
     var tgt = parseInt($('xofTarget').value)||0;
     if (tgt > 0){
       var rows0 = PROVIDERS.map(function(p){ return {p:p, xof:p.calc(amount, r)}; }).sort(function(a,b){return b.xof-a.xof;});
-      var eff = rows0[0].xof / amount;          // FCFA par unité, meilleur opérateur
+      var eff = rows0[0].xof / amount;
       $('xofOut').textContent = 'Envoie ~'+sym+' '+fmt(Math.ceil(tgt/eff))+' via '+rows0[0].p.n+' pour que ça tombe juste.';
     } else { $('xofOut').textContent = '—'; }
   }
 
-  /* cartes opérateurs */
   var rows = PROVIDERS.map(function(p){ return {p:p, xof:p.calc(amount, r)}; })
                       .sort(function(a,b){ return b.xof - a.xof; });
   var best = rows[0], worst = rows[rows.length-1];
   var hi = best.xof, lo = worst.xof;
 
   $('cards').innerHTML = rows.map(function(row, i){
-    var eaten = Math.max(0, amount*r - row.xof);       // ce que l'opérateur mange
+    var eaten = Math.max(0, amount*r - row.xof);
     var width = (hi===lo) ? 100 : Math.max(14, Math.round((row.xof - lo)/(hi - lo)*86) + 14);
     var cls = i===0 ? 'op best' : (i===rows.length-1 ? 'op worst' : 'op');
     var tag = i===0 ? '<span class="tag tag-best">LE MOINS CHER</span>'
@@ -609,19 +588,32 @@ function render(){
       + '</div>';
   }).join('');
 
-  /* souveraineté */
   var saved = best.xof - worst.xof;
+  
+  $('wuLostAmount').textContent = fmt(saved);
+  var outcomeText = "";
+  if (saved < 5000) {
+      outcomeText = "C'est un carton de Nescafé pour ta famille.";
+  } else if (saved >= 5000 && saved < 12000) {
+      outcomeText = "C'est un sac de riz de 5kg pour ta famille.";
+  } else if (saved >= 12000 && saved < 25000) {
+      outcomeText = "C'est un mois de lait pour ta famille.";
+  } else if (saved >= 25000 && saved < 50000) {
+      outcomeText = "C'est une semaine de stock de boissons pour ta boutique.";
+  } else {
+      outcomeText = "C'est assez pour financer une boîte solaire Yobal.";
+  }
+  $('wuOutcome').textContent = outcomeText;
+
   $('sovNum').textContent = fmt(saved)+' FCFA';
   $('sovText').innerHTML = 'laissés sur la table sur ce seul envoi si tu prends <b style="color:#ff8a75">'+worst.p.n+'</b> au lieu de <b style="color:var(--acid)">'+best.p.n+'</b>.<br/>'
     + '× 1 000 envois comme le tien : <b style="color:#fff">'+fmt(saved*1000)+' FCFA</b> restent au Sénégal. <span class="impact">≈ '+impact(saved)+'</span>';
 
-  /* carte CNY */
   if (cor().k === 'CNY'){
     $('cnyBig').textContent = fmt(amount * r * 0.99)+' XOF';
   }
 }
 
-/* traduction en réalité concrète */
 function impact(xof){
   var items = [
     [200,'un pain tapalapa'],[600,'un thiéboudienne'],[1500,'un repas familial'],
@@ -634,7 +626,6 @@ function impact(xof){
   return q<=1 ? best[1] : q+'× '+best[1];
 }
 
-/* ── taux en direct ── */
 async function loadRates(){
   try {
     var res = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/eur.json', {cache:'no-store'});
@@ -651,10 +642,6 @@ function syncLabel(){
   $('lastSync').textContent = m<1 ? 'maj: à l\u2019instant' : 'maj: il y a '+m+' min';
 }
 
-/* ── graphique · tâche 1 ──
-   24h : courbe lissée hier → aujourd'hui.
-   7 jours : points journaliers + taux live (forward-fill si un jour manque au CDN).
-   Un dessin immédiat au taux live garantit que la boîte n'est jamais vide. */
 var range = '24h';
 function setRange(r){
   range = r;
@@ -671,12 +658,12 @@ async function fetchDay(offset){
 }
 function buildHourly(from, to){
   var out = [];
-  for (var i=0;i<24;i++){ var t=i/23; out.push(from+(to-from)*(t*t*(3-2*t))); } // lissage smoothstep
+  for (var i=0;i<24;i++){ var t=i/23; out.push(from+(to-from)*(t*t*(3-2*t))); }
   return out;
 }
 async function loadHistory(){
   var k = cor().k;
-  var showChart = (k==='USD'||k==='CAD'||k==='GBP');
+  var showChart = !cor().eur; 
   $('chartWrap').classList.toggle('hidden', !showChart);
   $('fixedWrap').classList.toggle('hidden', !cor().eur);
   $('cnyWrap').classList.toggle('hidden', !(k==='CNY'));
@@ -701,10 +688,10 @@ async function loadHistory(){
         if (!v || !isFinite(v)) v = prev || live;
         vals.push(v); prev = v;
       }
-      vals.push(live); // dernier point = taux live
+      vals.push(live);
     }
     drawSpark(vals, k, range);
-  } catch(e){ /* le dessin live reste affiché, pas de boîte vide */ }
+  } catch(e){ }
 }
 function drawSpark(vals, k, modeLbl){
   var W=320, H=96, P=8;
@@ -730,7 +717,6 @@ function drawSpark(vals, k, modeLbl){
   $('chNow').textContent = '1 '+k+' = '+now.toFixed(1)+' XOF · '+(modeLbl==='7d' ? '7j' : '24h');
 }
 
-/* ── or (en modale depuis la tâche 2) ── */
 var karat = 18;
 function setKarat(k){
   karat = k;
@@ -746,66 +732,6 @@ function goldCalc(){
   $('goldSub').textContent = g+'g · '+karat+'k · ≈ €'+fmt(xof/PEG);
 }
 
-/* ── Fee Alert Form Submission ── */
-var FEE_ALERT_URL = 'https://script.google.com/macros/s/AKfycbwipiXPpoXNHE1ICDpXT8JBcQUdpNHdLhn50Nc34-vegkWv7aG6AYk2P_XEsxwp4-k/exec';
-
-function submitFeeAlert(e) {
-  if (e) e.preventDefault();
-  var form = document.getElementById('feeAlertForm');
-  var btn = document.getElementById('feeAlertBtn');
-  var okMsg = document.getElementById('feeAlertOk');
-  var errMsg = document.getElementById('feeAlertErr');
-  
-  // Loading state
-  btn.disabled = true;
-  btn.textContent = "Chargement...";
-  errMsg.style.display = 'none';
-
-  var formData = new FormData(form);
-
-  fetch(FEE_ALERT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    body: new URLSearchParams(formData)
-  }).then(function() {
-    // With no-cors, if it doesn't throw an error, it worked.
-    form.style.display = 'none';
-    okMsg.style.display = 'block';
-    try { posthog.capture('fee_alert_join', { email: formData.get('email') }); } catch(err){}
-  }).catch(function() {
-    errMsg.style.display = 'block';
-    btn.disabled = false;
-    btn.textContent = "Réessayer";
-  });
-}
-
-/* ── même backend Google Apps Script pour la modale Sukuk ── */
-function submitFeeAlertModal(e) {
-  if (e) e.preventDefault();
-  var form = document.getElementById('feeAlertFormModal');
-  var btn = document.getElementById('feeAlertBtnModal');
-  var okMsg = document.getElementById('feeAlertOkModal');
-  var errMsg = document.getElementById('feeAlertErrModal');
-  btn.disabled = true;
-  btn.textContent = "Chargement...";
-  errMsg.style.display = 'none';
-  var fd = new FormData(form);
-  fetch(FEE_ALERT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    body: new URLSearchParams(fd)
-  }).then(function() {
-    form.style.display = 'none';
-    okMsg.style.display = 'block';
-    try { posthog.capture('fee_alert_join', { where: 'modal', email: fd.get('email') }); } catch(err){}
-  }).catch(function() {
-    errMsg.style.display = 'block';
-    btn.disabled = false;
-    btn.textContent = "Réessayer";
-  });
-}
-
-/* ── modales · tâche 2 : rien ne pousse plus le contenu, tout se superpose ── */
 function openModal(id){ $(id).classList.add('open'); document.body.style.overflow='hidden'; }
 function closeModal(id){ $(id).classList.remove('open'); document.body.style.overflow=''; }
 function openGold(){ openModal('goldModal'); if(!goldGram) loadRates(); }
@@ -813,7 +739,6 @@ document.addEventListener('keydown', function(e){
   if (e.key === 'Escape'){ document.querySelectorAll('.modal-bg.open').forEach(function(m){ closeModal(m.id); }); }
 });
 
-/* ── sondage ── */
 function buildPoll(){
   var voted = null;
   try { voted = sessionStorage.getItem('tg_vote'); } catch(e){}
@@ -839,10 +764,41 @@ function showPoll(voted){
   }).join('');
 }
 
-/* ── init ── */
+/* FEE ALERT FORM SUBMISSION */
+var FEE_ALERT_URL = 'https://script.google.com/macros/s/AKfycbwipiXPpoXNHE1ICDpXT8JBcQUdpNHdLhn50Nc34-vegkWv7aG6AYk2P_XEsxwp4-k/exec';
+
+function submitFeeAlert(e, sfx) {
+  if (e) e.preventDefault();
+  sfx = sfx || '';
+  var form = sfx === 'Modal' ? document.getElementById('waitlistFormModal') : document.getElementById('feeAlertForm');
+  var btn = sfx === 'Modal' ? form.querySelector('button') : document.getElementById('feeAlertBtn');
+  var okMsg = sfx === 'Modal' ? document.getElementById('waitlistOkModal') : document.getElementById('feeAlertOk');
+  var errMsg = sfx === 'Modal' ? null : document.getElementById('feeAlertErr');
+  
+  btn.disabled = true;
+  var originalText = btn.textContent;
+  btn.textContent = "Chargement...";
+  if (errMsg) errMsg.style.display = 'none';
+
+  var formData = new FormData(form);
+
+  fetch(FEE_ALERT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    body: new URLSearchParams(formData)
+  }).then(function() {
+    form.style.display = 'none';
+    okMsg.style.display = 'block';
+    try { posthog.capture('fee_alert_join', { source: sfx || 'inline' }); } catch(err){}
+  }).catch(function() {
+    if (errMsg) errMsg.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = originalText;
+  });
+}
+
 function init(){
   $('yr').textContent = new Date().getFullYear();
-  /* paramètres d'URL : ?corridor=US&amount=200 */
   try {
     var q = new URLSearchParams(location.search);
     if (q.get('corridor') && CORRIDORS[q.get('corridor')]) corridor = q.get('corridor');
@@ -860,6 +816,22 @@ function init(){
   loadRates(); render(); loadHistory();
   setInterval(loadRates, 5*60*1000);
   setInterval(syncLabel, 60*1000);
+
+  var chipsEl = $('chips');
+  var hintEl = $('scrollHint');
+  if (chipsEl && hintEl) {
+    chipsEl.addEventListener('scroll', function() {
+      var maxScroll = chipsEl.scrollWidth - chipsEl.clientWidth;
+      if (chipsEl.scrollLeft >= maxScroll - 10) {
+        hintEl.style.opacity = '0';
+      } else {
+        hintEl.style.opacity = '1';
+      }
+    });
+    if (chipsEl.scrollWidth <= chipsEl.clientWidth) {
+      hintEl.style.opacity = '0';
+    }
+  }
 }
 init();
 </script>
