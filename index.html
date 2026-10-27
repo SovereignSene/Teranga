@@ -115,14 +115,6 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
   .wu strong{color:#ff8a75}
   .wu .stamp{position:absolute;top:-12px;right:12px;background:var(--red);color:#fff;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;padding:4px 10px;transform:rotate(2deg);border:2px solid var(--ink)}
 
-  /* ── waitlist ── */
-  .waitlist{background:#f3f4f6;border:1px solid #d1d5db;border-radius:4px;padding:20px;margin-top:20px}
-  .waitlist h3{color:#111827;font-size:18px;font-weight:700}
-  .waitlist p{color:#4b5563;font-size:14px;margin:8px 0 14px;line-height:1.45}
-  .waitlist form{display:flex;gap:8px;flex-wrap:wrap}
-  .waitlist input{flex:1;padding:12px;border:1px solid #ccc;border-radius:4px;min-width:200px;font-family:'Space Mono',monospace;font-size:14px;outline:none}
-  .waitlist button{background:#064e3b;color:#fff;padding:12px 24px;border:none;border-radius:4px;font-weight:700;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:14px}
-  #waitlistOk{color:#064e3b;font-size:13px;font-weight:700;margin:10px 0 0}
 
   /* ── operator cards ── */
   .op{background:#fff;border:2px solid var(--ink);border-radius:4px;padding:14px;margin-bottom:12px;position:relative}
@@ -231,7 +223,7 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
   .modal .body{font-size:14px;color:#3c423a;line-height:1.55;margin-top:10px}
   .chip.sukuk{background:var(--deep);color:var(--acid)}
   @media (min-width:480px){.modal-bg{align-items:center}}
-  .hidden{display:none!important;}
+  .hidden{display:none!important}
   @media (max-width:380px){.amount-big input,.amount-display{font-size:26px}}
 </style>
 </head>
@@ -288,7 +280,7 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
 
       <div id="panelRecv" class="xof-rev hidden">
         <p style="font-size:13px;color:var(--grey)">Montant en FCFA que ta famille doit toucher :</p>
-        <input id="xofTarget" type="number" inputmode="numeric" placeholder="Ex: 100 000" min="1000" step="1000" oninput="render()"/>
+        <input id="xofTarget" type="number" placeholder="Ex: 100 000" min="1000" step="1000" oninput="render()"/>
         <p class="out" id="xofOut">—</p>
       </div>
 
@@ -303,19 +295,32 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
   <section class="wu" style="margin-top:22px">
     <span class="stamp">SIGNALEMENT</span>
     <p class="micro">⚠ Frais réels constatés</p>
-    <p><strong><span id="wuLostAmount">18 695</span> FCFA perdus sur un seul transfert.</strong> <span id="wuOutcome">C'est un mois de lait pour ta famille.</span> Arrête de financer les yachts de Western Union.</p>
+    <p><strong>18 695 FCFA perdus sur un seul transfert.</strong> C'est un mois de lait pour ta famille. Arrête de financer les yachts de Western Union.</p>
   </section>
 
-  <!-- ══ WAITLIST · tâche 4 ══ -->
-  <div style="background-color: #f3f4f6; padding: 24px; border-radius: 8px; margin-top: 24px; border: 1px solid #d1d5db;">
-    <h3 style="margin-top: 0; color: #111827; font-size: 18px; font-weight: bold;">Investis dans le Sénégal.</h3>
-    <p style="color: #4b5563; font-size: 14px; margin-bottom: 16px;">L'achat direct de Sukuk Sénégalais arrive bientôt. Zéro Riba. 100% adossé à des actifs réels. Laisse ton numéro WhatsApp pour être prévenu au lancement.</p>
-    <form id="waitlistForm" style="display: flex; gap: 8px; flex-wrap: wrap;">
-      <input id="waitlistPhone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="Ex: +33 6 12 34 56 78" style="flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 4px; min-width: 200px;">
-      <button type="button" onclick="joinWaitlist()" style="background-color: #064e3b; color: white; padding: 12px 24px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Rejoindre</button>
-    </form>
-    <p id="waitlistOk" style="display:none">✓ Inscrit. On te prévient sur WhatsApp au lancement.</p>
-  </div>
+  <!-- ══ FEE ALERT FORM · Google Apps Script ══ -->
+<div class="card" style="margin-top: 24px; border: 2px solid var(--ink); border-radius: 4px; box-shadow: 4px 4px 0 var(--ink); padding: 20px; background: #fff;">
+  <h3 style="margin-top: 0; color: var(--ink); font-size: 18px; font-weight: 800; font-family:'Archivo Black',sans-serif; text-transform: uppercase;">Arrête de financer les yachts.</h3>
+  <p style="color: var(--grey); font-size: 14px; margin-bottom: 16px; font-weight: 500;">Laisse ton email et ton WhatsApp. On t'alerte dès que le taux est au plus haut ou qu'un opérateur baisse ses frais. Zéro spam.</p>
+  
+  <form id="feeAlertForm" onsubmit="submitFeeAlert(event)">
+    <!-- Honeypot to block bots -->
+    <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+    <input type="hidden" name="lang" value="fr">
+    
+    <input type="email" name="email" placeholder="Ton email (ex: medoune@mail.com)" required style="width: 100%; padding: 12px; border: 2px solid var(--ink); border-radius: 4px; font-family:'Space Mono',monospace; font-size: 14px; margin-bottom: 8px; outline: none;">
+    <input type="tel" name="whatsapp" placeholder="Ton WhatsApp (ex: +33 6 12 34 56 78)" required style="width: 100%; padding: 12px; border: 2px solid var(--ink); border-radius: 4px; font-family:'Space Mono',monospace; font-size: 14px; margin-bottom: 12px; outline: none;">
+    
+    <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: var(--grey); margin-bottom: 16px; cursor: pointer; line-height: 1.4;">
+      <input type="checkbox" name="consent" value="yes" required style="margin-top: 2px; accent-color: var(--green);">
+      <span>Oui, je veux recevoir les alertes taux &amp; frais sur WhatsApp. Pas de spam.</span>
+    </label>
+    
+    <button type="submit" id="feeAlertBtn" style="width: 100%; background: var(--deep); color: #fff; padding: 14px; border: 2px solid var(--ink); border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; text-transform: uppercase; box-shadow: 2px 2px 0 var(--ink); transition: transform 0.1s;">Rejoindre le réseau</button>
+  </form>
+  <p id="feeAlertOk" style="display: none; color: var(--green); font-weight: 800; font-size: 14px; margin-top: 12px; text-transform: uppercase;">✓ C'est bon. T'es dans le réseau.</p>
+  <p id="feeAlertErr" style="display: none; color: var(--red); font-weight: 800; font-size: 14px; margin-top: 12px; text-transform: uppercase;">Erreur de connexion. Réessaie.</p>
+</div>
 
   <!-- ══ OPERATORS ══ -->
   <section>
@@ -362,7 +367,6 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
       <p>Ton fournisseur veut des CNY. Entre le montant en haut, Teranga te donne le coût réel et le meilleur canal pour payer — sans te faire border par le changeur du marché.</p>
     </div>
   </section>
-
 
   <!-- ══ POLL ══ -->
   <section>
@@ -415,11 +419,19 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
       <h3>Sukuk Teranga</h3>
       <div class="body">Ton épargne, adossée à des actifs réels au Sénégal — énergie solaire, commerce de quartier. Pas d'intérêt (riba) : tu touches une part du <b>vrai profit</b> que l'actif génère. Si l'actif ne gagne rien, tu ne gagnes rien. Dëgg-dëgg, pas de promesse magique.</div>
       <p class="micro" style="margin-top:16px">Être prévenu au lancement</p>
-      <form id="waitlistFormModal" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
-        <input id="waitlistPhoneModal" type="tel" inputmode="numeric" autocomplete="tel" placeholder="Ex: +33 6 12 34 56 78" style="flex:1;padding:12px;border:2px solid var(--ink);border-radius:4px;min-width:180px;font-family:'Space Mono',monospace;font-size:14px;background:#fff">
-        <button type="button" onclick="joinWaitlist('Modal')" style="background:var(--deep);color:#fff;padding:12px 20px;border:2px solid var(--ink);border-radius:4px;font-weight:700;cursor:pointer;font-family:'Space Grotesk',sans-serif">Rejoindre</button>
+      <form id="feeAlertFormModal" onsubmit="submitFeeAlertModal(event)" style="margin-top:8px">
+        <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="lang" value="fr">
+        <input type="email" name="email" placeholder="Ton email" required style="width:100%;padding:12px;border:2px solid var(--ink);border-radius:4px;font-family:'Space Mono',monospace;font-size:14px;margin-bottom:8px;outline:none;background:#fff">
+        <input type="tel" name="whatsapp" placeholder="Ton WhatsApp (ex: +33 6 12 34 56 78)" required style="width:100%;padding:12px;border:2px solid var(--ink);border-radius:4px;font-family:'Space Mono',monospace;font-size:14px;margin-bottom:12px;outline:none;background:#fff">
+        <label style="display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--grey);margin-bottom:16px;cursor:pointer;line-height:1.4">
+          <input type="checkbox" name="consent" value="yes" required style="margin-top:2px;accent-color:var(--green)">
+          <span>Oui, je veux recevoir les alertes taux &amp; frais sur WhatsApp. Pas de spam.</span>
+        </label>
+        <button type="submit" id="feeAlertBtnModal" style="width:100%;background:var(--deep);color:#fff;padding:14px;border:2px solid var(--ink);border-radius:4px;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;cursor:pointer;text-transform:uppercase;box-shadow:2px 2px 0 var(--ink)">Rejoindre le réseau</button>
       </form>
-      <p id="waitlistOkModal" style="display:none;color:var(--green);font-size:13px;font-weight:700;margin:10px 0 0">✓ Inscrit. On te prévient sur WhatsApp au lancement.</p>
+      <p id="feeAlertOkModal" style="display:none;color:var(--green);font-weight:800;font-size:14px;margin-top:12px;text-transform:uppercase">✓ C'est bon. T'es dans le réseau.</p>
+      <p id="feeAlertErrModal" style="display:none;color:var(--red);font-weight:800;font-size:14px;margin-top:12px;text-transform:uppercase">Erreur de connexion. Réessaie.</p>
     </div>
   </div>
 
@@ -453,7 +465,7 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
 
   <!-- ══ FOOTER ══ -->
   <footer>
-    <p class="sig">Teranga — fait main, entre Dakar & Paris.</p>
+    <p class="sig">Teranga — fait main, entre Dakar &amp; Paris.</p>
     <p>Zéro template. Zéro promesse en l'air. Frais : structures publiées des opérateurs — ce ne sont pas des conseils financiers.<br/>© <span id="yr"></span> Teranga · FR→SN · taux en temps réel</p>
   </footer>
 
@@ -597,25 +609,8 @@ function render(){
       + '</div>';
   }).join('');
 
-  /* souveraineté + WU Warning (TÂCHE 1) */
+  /* souveraineté */
   var saved = best.xof - worst.xof;
-  
-  // Mise à jour du bandeau d'avertissement dynamique
-  $('wuLostAmount').textContent = fmt(saved);
-  var outcomeText = "";
-  if (saved < 5000) {
-      outcomeText = "C'est un carton de Nescafé pour ta famille.";
-  } else if (saved >= 5000 && saved < 12000) {
-      outcomeText = "C'est un sac de riz de 5kg pour ta famille.";
-  } else if (saved >= 12000 && saved < 25000) {
-      outcomeText = "C'est un mois de lait pour ta famille.";
-  } else if (saved >= 25000 && saved < 50000) {
-      outcomeText = "C'est une semaine de stock de boissons pour ta boutique.";
-  } else {
-      outcomeText = "C'est assez pour financer une boîte solaire Yobal.";
-  }
-  $('wuOutcome').textContent = outcomeText;
-
   $('sovNum').textContent = fmt(saved)+' FCFA';
   $('sovText').innerHTML = 'laissés sur la table sur ce seul envoi si tu prends <b style="color:#ff8a75">'+worst.p.n+'</b> au lieu de <b style="color:var(--acid)">'+best.p.n+'</b>.<br/>'
     + '× 1 000 envois comme le tien : <b style="color:#fff">'+fmt(saved*1000)+' FCFA</b> restent au Sénégal. <span class="impact">≈ '+impact(saved)+'</span>';
@@ -681,8 +676,7 @@ function buildHourly(from, to){
 }
 async function loadHistory(){
   var k = cor().k;
-  // TÂCHE 2 : Cacher le graphique pour toutes les devises fixes (EUR) et l'afficher pour les devises flottantes
-  var showChart = !cor().eur; 
+  var showChart = (k==='USD'||k==='CAD'||k==='GBP');
   $('chartWrap').classList.toggle('hidden', !showChart);
   $('fixedWrap').classList.toggle('hidden', !cor().eur);
   $('cnyWrap').classList.toggle('hidden', !(k==='CNY'));
@@ -735,7 +729,8 @@ function drawSpark(vals, k, modeLbl){
   $('chMax').textContent = 'max '+hi.toFixed(1);
   $('chNow').textContent = '1 '+k+' = '+now.toFixed(1)+' XOF · '+(modeLbl==='7d' ? '7j' : '24h');
 }
-/* ── or ── */
+
+/* ── or (en modale depuis la tâche 2) ── */
 var karat = 18;
 function setKarat(k){
   karat = k;
@@ -751,15 +746,63 @@ function goldCalc(){
   $('goldSub').textContent = g+'g · '+karat+'k · ≈ €'+fmt(xof/PEG);
 }
 
-/* ── waitlist : la logique est partagée entre le formulaire inline et la modale ── */
-function joinWaitlist(sfx){
-  sfx = sfx || '';
-  var phoneEl = $('waitlistPhone'+sfx), formEl = $('waitlistForm'+sfx), okEl = $('waitlistOk'+sfx);
-  var phone = (phoneEl.value||'').replace(/[^\d+]/g,'');
-  if (phone.length < 8){ phoneEl.focus(); phoneEl.style.borderColor='#d43d2a'; return; }
-  try { posthog.capture('waitlist_join',{phone:phone, where:sfx||'inline'}); } catch(e){}
-  formEl.style.display = 'none';
-  okEl.style.display = 'block';
+/* ── Fee Alert Form Submission ── */
+var FEE_ALERT_URL = 'https://script.google.com/macros/s/AKfycbwipiXPpoXNHE1ICDpXT8JBcQUdpNHdLhn50Nc34-vegkWv7aG6AYk2P_XEsxwp4-k/exec';
+
+function submitFeeAlert(e) {
+  if (e) e.preventDefault();
+  var form = document.getElementById('feeAlertForm');
+  var btn = document.getElementById('feeAlertBtn');
+  var okMsg = document.getElementById('feeAlertOk');
+  var errMsg = document.getElementById('feeAlertErr');
+  
+  // Loading state
+  btn.disabled = true;
+  btn.textContent = "Chargement...";
+  errMsg.style.display = 'none';
+
+  var formData = new FormData(form);
+
+  fetch(FEE_ALERT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    body: new URLSearchParams(formData)
+  }).then(function() {
+    // With no-cors, if it doesn't throw an error, it worked.
+    form.style.display = 'none';
+    okMsg.style.display = 'block';
+    try { posthog.capture('fee_alert_join', { email: formData.get('email') }); } catch(err){}
+  }).catch(function() {
+    errMsg.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = "Réessayer";
+  });
+}
+
+/* ── même backend Google Apps Script pour la modale Sukuk ── */
+function submitFeeAlertModal(e) {
+  if (e) e.preventDefault();
+  var form = document.getElementById('feeAlertFormModal');
+  var btn = document.getElementById('feeAlertBtnModal');
+  var okMsg = document.getElementById('feeAlertOkModal');
+  var errMsg = document.getElementById('feeAlertErrModal');
+  btn.disabled = true;
+  btn.textContent = "Chargement...";
+  errMsg.style.display = 'none';
+  var fd = new FormData(form);
+  fetch(FEE_ALERT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    body: new URLSearchParams(fd)
+  }).then(function() {
+    form.style.display = 'none';
+    okMsg.style.display = 'block';
+    try { posthog.capture('fee_alert_join', { where: 'modal', email: fd.get('email') }); } catch(err){}
+  }).catch(function() {
+    errMsg.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = "Réessayer";
+  });
 }
 
 /* ── modales · tâche 2 : rien ne pousse plus le contenu, tout se superpose ── */
