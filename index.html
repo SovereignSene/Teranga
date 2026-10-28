@@ -3,17 +3,12 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>SovereignSene — Le taux est fixe. Les frais sont du vol.</title>
-<meta name="description" content="Compare Wave, Orange Money, LemFi et Western Union en 2 secondes. Le taux XOF est fixe — seuls les frais bougent."/>
+<title>SovereignSene — Le taux est fixe. Les marges sont du vol.</title>
+<meta name="description" content="Compare Wave, Orange Money, LemFi et Western Union en 2 secondes. Le taux XOF est fixe — seules les marges bougent."/>
 <link rel="canonical" href="https://sovereignsene.github.io/Teranga/"/>
-<meta property="og:title" content="SovereignSene — Le taux est fixe. Les frais sont du vol."/>
+<meta property="og:title" content="SovereignSene — Le taux est fixe. Les marges sont du vol."/>
 <meta property="og:description" content="Comparateur de frais d'envoi vers le Sénégal."/>
 <meta property="og:type" content="website"/>
-
-<script>
-!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]);t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapture:true,capture_pageview:true});
-</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -49,7 +44,6 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
   .dot{width:9px;height:9px;border-radius:50%;background:var(--acid);animation:pulse 1.2s ease-out infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(16,185,129,.55)}70%{box-shadow:0 0 0 8px rgba(16,185,129,0)}100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}}
 
-  .badge-halal{display:inline-flex;align-items:center;background-color:#064e3b;color:#fff;padding:4px 12px;border-radius:4px;font-size:12px;font-weight:700;margin-top:12px;font-family:'Space Mono',monospace;letter-spacing:.05em}
   h1.display{font-size:clamp(2.1rem,10vw,3.2rem);margin-top:14px}
   .marker{background:linear-gradient(transparent 58%, rgba(212,67,42,.4) 58%)}
   .sub{font-size:15px;color:var(--grey);margin-top:12px;max-width:44ch;line-height:1.45}
@@ -134,13 +128,6 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
   .fixedbox .big{font-family:'Space Mono',monospace;font-size:30px;font-weight:700;color:var(--acid);margin-top:6px}
   .fixedbox p{font-size:13.5px;color:#b9c6bb;margin-top:8px;line-height:1.5}
 
-  .poll-btn{width:100%;text-align:left;padding:11px 14px;border:2px solid var(--ink);border-radius:4px;background:#fff;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:13.5px;font-weight:500;margin-bottom:8px;box-shadow:3px 3px 0 var(--ink)}
-  .poll-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
-  .poll-btn.voted{background:var(--green);color:#fff}
-  .poll-btn:disabled{opacity:.45;cursor:default}
-  .pbar{height:10px;background:#e4ddcd;border:2px solid var(--ink);border-radius:4px;overflow:hidden;margin:4px 0 12px}
-  .pfill{height:100%;background:var(--green)}
-
   .consulat{display:flex;align-items:center;gap:12px;background:#fff;border:2px solid var(--ink);border-radius:4px;padding:13px 16px;text-decoration:none;box-shadow:var(--shadow)}
   .consulat p{font-size:13.5px;font-weight:700}
   .consulat small{display:block;font-weight:400;color:var(--grey);font-size:12px;margin-top:2px}
@@ -191,15 +178,14 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
 
   <header style="margin-top:22px">
     <span class="micro">Comparateur souverain · Dakar ⇄ diaspora</span>
-    <div class="badge-halal">✓ CONFORME AUX PRINCIPES HALAL</div>
     <h1 class="display">Le taux est fixe.<br/><span class="marker">Les frais sont du vol.</span></h1>
     <p class="sub">Compare les frais de transfert en 2 secondes. Zéro blabla, juste les vrais chiffres.</p>
   </header>
 
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
-      <span>WAVE — 0€ JUSQU'À 100€</span><span>WU — ÉCART VS MARCHÉ</span><span>OR 24K — CALCULETTE EN BAS</span><span>655,957 — LE CHIFFRE QUI NE BOUGE JAMAIS</span>
-      <span>WAVE — 0€ JUSQU'À 100€</span><span>WU — ÉCART VS MARCHÉ</span><span>OR 24K — CALCULETTE EN BAS</span><span>655,957 — LE CHIFFRE QUI NE BOUGE JAMAIS</span>
+      <span>WAVE — FRAIS RÉDUITS</span><span>WU — TAUX VARIABLE (USD)</span><span>OR 24K — CALCULETTE EN BAS</span><span>655,957 — LE CHIFFRE QUI NE BOUGE JAMAIS</span>
+      <span>WAVE — FRAIS RÉDUITS</span><span>WU — TAUX VARIABLE (USD)</span><span>OR 24K — CALCULETTE EN BAS</span><span>655,957 — LE CHIFFRE QUI NE BOUGE JAMAIS</span>
     </div>
   </div>
 
@@ -272,7 +258,7 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
   <section>
     <p class="micro" style="margin-bottom:8px">03 · Qui mange le moins</p>
     <div id="cards">Chargement…</div>
-    <p style="font-family:'Space Mono',monospace; font-size:10px; color:var(--grey); text-align:right; margin-top:8px;">Dernière vérification des taux : 26 Oct 2026 (Sources: Sites officiels)</p>
+    <p style="font-family:'Space Mono',monospace; font-size:10px; color:var(--grey); text-align:right; margin-top:8px;">relevés 26-27 Oct, sites des opérateurs et comparateurs</p>
   </section>
 
   <section class="sov" id="sovSection">
@@ -308,15 +294,6 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
       <p class="micro" style="color:var(--acid)">🇨🇳 Combien coûte ta commande en XOF ?</p>
       <div class="big" id="cnyBig">—</div>
       <p>Ton fournisseur veut des CNY. Entre le montant en haut, SovereignSene te donne le coût réel et le meilleur canal pour payer — sans te faire border par le changeur du marché.</p>
-    </div>
-  </section>
-
-  <section>
-    <p class="micro" style="margin-bottom:8px">06 · Voix de la diaspora</p>
-    <div class="card">
-      <p style="font-weight:700;font-size:14.5px;margin-bottom:12px">Ton plus gros problème avec les envois d'argent ?</p>
-      <div id="pollOpts"></div>
-      <div id="pollRes" class="hidden"></div>
     </div>
   </section>
 
@@ -365,7 +342,7 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
 
   <footer>
     <p class="sig">SovereignSene — fait main, entre Dakar & Paris.</p>
-    <p>Zéro template. Zéro promesse en l'air. Frais : structures publiées des opérateurs — ce ne sont pas des conseils financiers.<br/>© <span id="yr"></span> SovereignSene · FR→SN · taux en temps réel</p>
+    <p>Zéro template. Zéro promesse en l'air. Frais : structures publiées des opérateurs — ce ne sont pas des conseils financiers.<br/>© <span id="yr"></span> SovereignSene · taux mis à jour manuellement</p>
   </footer>
 
 </main>
@@ -383,20 +360,15 @@ var goldGram = 0;
 var CORRIDORS = {
   FR:{f:'🇫🇷→🇸🇳', l:'FR', sym:'€', eur:true,  k:'EUR'},
   US:{f:'🇺🇸→🇸🇳', l:'US', sym:'$', eur:false, k:'USD'},
-  CA:{f:'🇨🇦→🇸🇳', l:'CA', sym:'$', eur:false, k:'CAD'},
   IT:{f:'🇮🇹→🇸🇳', l:'IT', sym:'€', eur:true,  k:'EUR'},
-  ES:{f:'🇪🇸→🇸🇳', l:'ES', sym:'€', eur:true,  k:'EUR'},
-  GB:{f:'🇬🇧→🇸🇳', l:'UK', sym:'£', eur:false, k:'GBP'},
-  BE:{f:'🇧🇪→🇸🇳', l:'BE', sym:'€', eur:true,  k:'EUR'},
-  CN:{f:'🇨🇳→🇸🇳', l:'CN', sym:'¥', eur:false, k:'CNY'}
+  BE:{f:'🇧🇪→🇸🇳', l:'BE', sym:'€', eur:true,  k:'EUR'}
 };
 
-/* GROK VERIFIED DATA - 26/27 OCT */
 var PROVIDERS = [
   { id:'wave',   n:'Wave',          m:'WA', c:'#1da9e1', tc:'#fff',
     calc:function(a,r){ return Math.round((a - (a<=100 ? 0 : a*0.01)) * r); },
-    note:"0€ jusqu'à 100€ puis ~1%",
-    url:'https://www.wave.com/sn/' },
+    note:"Frais réduits",
+    url:'https://www.wave.com/fr/' },
   { id:'om',     n:'Orange Money',  m:'OM', c:'#ff7900', tc:'#fff',
     calc:function(a,r){ return Math.round((a - Math.max(1.5, a*0.02)) * r * 0.995); },
     note:'frais ~2% + marge',
@@ -427,12 +399,9 @@ var PROVIDERS = [
       if (cor().eur) return Math.round((a - 0.99) * r); 
       return Math.round((a - 5.99) * 578.58); // $5.99 fee, 578.58 rate
     },
-    note:"Frais cachés (USD) / Fixe (EUR)",
+    note:"Taux variable (USD)",
     url:'https://www.westernunion.com' }
 ];
-
-var POLL = { fees:1847, rate:923, speed:634, trust:412, access:289 };
-var POLL_L = { fees:'💸 Frais trop élevés', rate:'📉 Mauvais taux', speed:'⏳ Délais trop longs', trust:'🔒 Manque de confiance', access:'📱 Accès difficile' };
 
 function fmt(n){ return Math.round(n).toLocaleString('fr-FR'); }
 function cor(){ return CORRIDORS[corridor]; }
@@ -515,7 +484,7 @@ function render(){
       + '</div>'
       + '<div class="op-xof">'+fmt(row.xof)+' <span style="font-size:13px">XOF</span></div>'
       + '<div class="op-feebar"><div class="op-fill" style="width:'+width+'%;background:'+fill+'"></div></div>'
-      + '<div class="op-fee"><span>'+sym+' '+fmt(amount)+' envoyés</span><span>écart vs marché : <b>−'+fmt(eaten)+' FCFA</b></span></div>'
+      + '<div class="op-fee"><span>'+sym+' '+fmt(amount)+' envoyés</span><span>écart vs taux du marché : <b>−'+fmt(eaten)+' FCFA</b></span></div>'
       + '<a class="cta" href="'+row.p.url+'" target="_blank" rel="noopener">Envoyer →</a>'
       + '</div>';
   }).join('');
@@ -533,7 +502,7 @@ function render(){
   } else if (saved >= 25000 && saved < 50000) {
       outcomeText = "C'est une semaine de stock de boissons pour ta boutique.";
   } else {
-      outcomeText = "C'est assez pour financer une boîte solaire Yobal.";
+      outcomeText = "C'est un mois de loyer pour ta famille.";
   }
   $('wuOutcome').textContent = outcomeText;
 
@@ -671,31 +640,6 @@ document.addEventListener('keydown', function(e){
   if (e.key === 'Escape'){ document.querySelectorAll('.modal-bg.open').forEach(function(m){ closeModal(m.id); }); }
 });
 
-function buildPoll(){
-  var voted = null;
-  try { voted = sessionStorage.getItem('tg_vote'); } catch(e){}
-  if (voted) return showPoll(voted);
-  $('pollOpts').innerHTML = Object.keys(POLL).map(function(k){
-    return '<button class="poll-btn" data-key="'+k+'" onclick="vote(\''+k+'\')">'+POLL_L[k]+'</button>';
-  }).join('');
-}
-function vote(k){
-  POLL[k]++;
-  try { sessionStorage.setItem('tg_vote', k); } catch(e){}
-  try { posthog.capture('poll_vote',{choice:k}); } catch(e){}
-  showPoll(k);
-}
-function showPoll(voted){
-  $('pollOpts').classList.add('hidden');
-  var res = $('pollRes'); res.classList.remove('hidden');
-  var total = Object.keys(POLL).reduce(function(a,b){return a+POLL[b];},0);
-  res.innerHTML = Object.keys(POLL).sort(function(a,b){return POLL[b]-POLL[a];}).map(function(k){
-    var pct = Math.round(POLL[k]/total*100);
-    return '<div class="mono" style="font-size:11.5px;display:flex;justify-content:space-between;margin-bottom:4px;color:'+(k===voted?'var(--green)':'var(--ink)')+';font-weight:'+(k===voted?'700':'400')+'"><span>'+POLL_L[k]+'</span><span>'+pct+'%</span></div>'
-      + '<div class="pbar"><div class="pfill" style="width:'+pct+'%;background:'+(k===voted?'var(--green)':'#9aa79b')+'"></div></div>';
-  }).join('');
-}
-
 var FEE_ALERT_URL = 'https://script.google.com/macros/s/AKfycbwipiXPpoXNHE1ICDpXT8JBcQUdpNHdLhn50Nc34-vegkWv7aG6AYk2P_XEsxwp4-k/exec';
 
 function submitFeeAlert(e, sfx) {
@@ -720,7 +664,6 @@ function submitFeeAlert(e, sfx) {
   }).then(function() {
     form.style.display = 'none';
     okMsg.style.display = 'block';
-    try { posthog.capture('fee_alert_join', { source: sfx || 'inline' }); } catch(err){}
   }).catch(function() {
     if (errMsg) errMsg.style.display = 'block';
     btn.disabled = false;
@@ -742,8 +685,6 @@ function init(){
   $('amountInput').value = amount;
   $('slider').value = amount;
   $('slider').style.setProperty('--fill', ((amount-10)/990*100)+'%');
-  buildPoll();
-  try { posthog.capture('page_view',{version:'v5-audit'}); } catch(e){}
   loadRates(); render(); loadHistory();
   setInterval(loadRates, 5*60*1000);
   setInterval(syncLabel, 60*1000);
