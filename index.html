@@ -3,12 +3,18 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>SovereignSene — Le taux est fixe. Les marges sont du vol.</title>
+<title>SovereignSene — Le taux est fixe. Les frais sont du vol.</title>
 <meta name="description" content="Compare Wave, Orange Money, LemFi et Western Union en 2 secondes. Le taux XOF est fixe — seules les marges bougent."/>
 <link rel="canonical" href="https://sovereignsene.github.io/Teranga/"/>
-<meta property="og:title" content="SovereignSene — Le taux est fixe. Les marges sont du vol."/>
-<meta property="og:description" content="Comparateur de frais d'envoi vers le Sénégal."/>
+<meta property="og:title" content="SovereignSene — Le taux est fixe. Les frais sont du vol."/>
+<meta property="og:description" content="Comparateur de frais d'envoi vers le Sénégal. Zéro blabla, juste les vrais chiffres."/>
 <meta property="og:type" content="website"/>
+
+<!-- PostHog — replace with real key -->
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]);t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapture:true,capture_pageview:true});
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -44,6 +50,7 @@
   .dot{width:9px;height:9px;border-radius:50%;background:var(--acid);animation:pulse 1.2s ease-out infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(16,185,129,.55)}70%{box-shadow:0 0 0 8px rgba(16,185,129,0)}100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}}
 
+  .badge-halal{display:inline-flex;align-items:center;background-color:#064e3b;color:#fff;padding:4px 12px;border-radius:4px;font-size:12px;font-weight:700;margin-top:12px;font-family:'Space Mono',monospace;letter-spacing:.05em}
   h1.display{font-size:clamp(2.1rem,10vw,3.2rem);margin-top:14px}
   .marker{background:linear-gradient(transparent 58%, rgba(212,67,42,.4) 58%)}
   .sub{font-size:15px;color:var(--grey);margin-top:12px;max-width:44ch;line-height:1.45}
@@ -70,9 +77,10 @@
   .seg button{flex:1;padding:9px 0;border:none;background:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;cursor:pointer;color:var(--grey)}
   .seg button.active{background:var(--green);color:#fff}
   
-  .amount-big{display:flex;align-items:baseline;justify-content:center;gap:4px;margin:6px 0 14px}
+  .amount-big{display:flex;align-items:baseline;justify-content:center;gap:4px;margin:6px 0 4px}
   .amount-big input{width:130px;font-family:'Space Mono',monospace;font-size:34px;font-weight:700;border:none;border-bottom:3px solid var(--ink);background:transparent;color:var(--ink);outline:none;text-align:center;padding:0}
   .amount-big span{font-family:'Archivo Black',sans-serif;font-size:22px}
+  .xof-equivalent{text-align:center;font-family:'Space Mono',monospace;font-size:14px;color:var(--green);font-weight:700;margin-bottom:14px}
   
   input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:10px;border-radius:4px;background:linear-gradient(to right,var(--green) var(--fill,9%),#d8d2c4 var(--fill,9%));outline:none;cursor:pointer;border:2px solid var(--ink)}
   input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:4px;background:var(--acid);border:3px solid var(--ink);box-shadow:2px 2px 0 var(--ink);cursor:grab;margin-top:-2px}
@@ -121,12 +129,29 @@
   .sov-num{font-family:'Space Mono',monospace;font-size:clamp(2rem,9vw,2.8rem);font-weight:700;color:var(--acid);letter-spacing:-.03em;margin-top:8px}
   .sov p{font-size:14px;line-height:1.5;margin-top:8px;color:#cfd6cc}
   .sov .impact{color:var(--gold);font-weight:700}
+  .sov .sukuk-line{margin-top:14px;padding-top:12px;border-top:2px dashed #3a453b;font-size:13.5px}
+  .sov .sukuk-line b{color:var(--acid)}
+  .sov a{display:inline-block;margin-top:10px;background:var(--acid);color:var(--ink);padding:9px 16px;border-radius:4px;font-weight:700;font-size:13px;text-decoration:none;border:2px solid var(--acid)}
+  .sov a:active{transform:translate(1px,1px)}
 
   .chartbox svg{width:100%;height:auto;display:block}
   .chart-meta{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10.5px;color:var(--grey);margin-top:8px}
   .fixedbox{background:var(--deep);color:#fff;border:2px solid var(--ink);border-radius:4px;box-shadow:var(--shadow);padding:18px}
   .fixedbox .big{font-family:'Space Mono',monospace;font-size:30px;font-weight:700;color:var(--acid);margin-top:6px}
   .fixedbox p{font-size:13.5px;color:#b9c6bb;margin-top:8px;line-height:1.5}
+
+  .poll-btn{width:100%;text-align:left;padding:11px 14px;border:2px solid var(--ink);border-radius:4px;background:#fff;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:13.5px;font-weight:500;margin-bottom:8px;box-shadow:3px 3px 0 var(--ink)}
+  .poll-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+  .poll-btn.voted{background:var(--green);color:#fff}
+  .poll-btn:disabled{opacity:.45;cursor:default}
+  .pbar{height:10px;background:#e4ddcd;border:2px solid var(--ink);border-radius:4px;overflow:hidden;margin:4px 0 12px}
+  .pfill{height:100%;background:var(--green)}
+
+  .yobal{background:#111827;color:#fff;padding:22px;border-radius:4px;margin-top:32px;text-align:center;border:2px solid var(--ink);box-shadow:var(--shadow)}
+  .yobal h3{font-size:19px;font-weight:700;color:#10b981;font-family:'Space Grotesk',sans-serif}
+  .yobal p{font-size:14px;margin:10px 0 16px;color:#9ca3af;line-height:1.5}
+  .yobal a{display:inline-block;background:#10b981;color:#111827;padding:12px 24px;text-decoration:none;font-weight:700;border-radius:4px;border:2px solid #10b981;font-family:'Space Grotesk',sans-serif}
+  .yobal a:active{transform:translate(1px,1px)}
 
   .consulat{display:flex;align-items:center;gap:12px;background:#fff;border:2px solid var(--ink);border-radius:4px;padding:13px 16px;text-decoration:none;box-shadow:var(--shadow)}
   .consulat p{font-size:13.5px;font-weight:700}
@@ -178,14 +203,15 @@
 
   <header style="margin-top:22px">
     <span class="micro">Comparateur souverain · Dakar ⇄ diaspora</span>
+    <div class="badge-halal">✓ CONFORME AUX PRINCIPES HALAL</div>
     <h1 class="display">Le taux est fixe.<br/><span class="marker">Les frais sont du vol.</span></h1>
-    <p class="sub">Compare les frais de transfert en 2 secondes. Zéro blabla, juste les vrais chiffres.</p>
+    <p class="sub">Compare les frais de transfert en 2 secondes et investis le reste dans des actifs 100% Halal au Sénégal.</p>
   </header>
 
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
-      <span>WAVE — FRAIS RÉDUITS</span><span>WU — TAUX VARIABLE (USD)</span><span>OR 24K — CALCULETTE EN BAS</span><span>655,957 — LE CHIFFRE QUI NE BOUGE JAMAIS</span>
-      <span>WAVE — FRAIS RÉDUITS</span><span>WU — TAUX VARIABLE (USD)</span><span>OR 24K — CALCULETTE EN BAS</span><span>655,957 — LE CHIFFRE QUI NE BOUGE JAMAIS</span>
+      <span>WAVE — 0€ JUSQU'À 100€</span><span>WU — ÉCART VS MARCHÉ</span><span>OR 24K — CALCULETTE EN BAS</span><span>655,957 — LE CHIFFRE QUI NE BOUGE JAMAIS</span><span>SUKUK TERANGA — BIENTÔT</span>
+      <span>WAVE — 0€ JUSQU'À 100€</span><span>WU — ÉCART VS MARCHÉ</span><span>OR 24K — CALCULETTE EN BAS</span><span>655,957 — LE CHIFFRE QUI NE BOUGE JAMAIS</span><span>SUKUK TERANGA — BIENTÔT</span>
     </div>
   </div>
 
@@ -210,6 +236,7 @@
           <span id="curSym">€</span>
           <input id="amountInput" type="number" value="100" min="10" max="1000" oninput="setAmount(this.value)"/>
         </div>
+        <div class="xof-equivalent" id="liveXofEquiv">≈ 65 595 XOF</div>
         <input id="slider" type="range" min="10" max="1000" step="10" value="100" oninput="setAmount(this.value)"/>
         <div class="quick" id="quick"></div>
       </div>
@@ -230,7 +257,7 @@
   <section class="wu" style="margin-top:22px">
     <span class="stamp">SIGNALEMENT</span>
     <p class="micro">⚠ Frais réels constatés</p>
-    <p><strong><span id="wuLostAmount">18 695</span> FCFA perdus sur un seul transfert.</strong> <span id="wuOutcome">C'est un mois de lait pour ta famille.</span> Compare avant d'envoyer.</p>
+    <p><strong><span id="wuLostAmount">18 695</span> FCFA perdus sur un seul transfert.</strong> <span id="wuOutcome">C'est un mois de lait pour ta famille.</span> Arrête de payer des frais cachés.</p>
   </section>
 
   <div class="card" style="margin-top: 24px; border: 2px solid var(--ink); border-radius: 4px; box-shadow: 4px 4px 0 var(--ink); padding: 20px; background: #fff;">
@@ -242,7 +269,7 @@
       <input type="hidden" name="lang" value="fr">
       
       <input type="email" name="email" placeholder="Ton email (ex: nom@email.com)" required style="width: 100%; padding: 12px; border: 2px solid var(--ink); border-radius: 4px; font-family:'Space Mono',monospace; font-size: 14px; margin-bottom: 8px; outline: none;">
-      <input type="tel" name="whatsapp" placeholder="Ton WhatsApp (ex: +33 6 12 34 56 78)" required style="width: 100%; padding: 12px; border: 2px solid var(--ink); border-radius: 4px; font-family:'Space Mono',monospace; font-size: 14px; margin-bottom: 12px; outline: none;">
+      <input id="waitlistPhone" type="tel" name="whatsapp" placeholder="Ton WhatsApp (ex: +33 6 12 34 56 78)" required style="width: 100%; padding: 12px; border: 2px solid var(--ink); border-radius: 4px; font-family:'Space Mono',monospace; font-size: 14px; margin-bottom: 12px; outline: none;">
       
       <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: var(--grey); margin-bottom: 16px; cursor: pointer; line-height: 1.4;">
         <input type="checkbox" name="consent" value="yes" required style="margin-top: 2px; accent-color: var(--green);">
@@ -255,26 +282,37 @@
     <p id="feeAlertErr" style="display: none; color: var(--red); font-weight: 800; font-size: 14px; margin-top: 12px; text-transform: uppercase;">Erreur de connexion. Réessaie.</p>
   </div>
 
+  <!-- ══ PI-SPI PARADOX ══ -->
+  <section class="card" style="margin-top:24px; border: 2px solid var(--red); box-shadow: 4px 4px 0 var(--red); padding: 20px; background: #fff; position: relative;">
+    <button onclick="this.parentElement.style.display='none'" style="position:absolute; top:10px; right:10px; background:var(--ink); color:#fff; border:none; padding:4px 8px; cursor:pointer; font-weight:bold;">X</button>
+    <p class="micro" style="color: var(--red); font-weight: bold; margin-bottom: 8px;">⚡ ALERTE SOUVERAINETÉ FINANCIÈRE</p>
+    <h3 style="font-family: 'Archivo Black', sans-serif; font-size: 20px; text-transform: uppercase; margin-bottom: 10px;">Le paradoxe PI-SPI</h3>
+    <p style="font-size: 14px; line-height: 1.5; color: var(--ink); margin-bottom: 12px;">Depuis le 2 novembre, la BCEAO impose des rails ouverts : <strong>frais plafonnés à 0,8%</strong> sur les transferts locaux.</p>
+    <p style="font-size: 14px; line-height: 1.5; color: var(--ink); font-weight: 700;">Alors pourquoi la diaspora paie-t-elle encore jusqu'à 8% de frais cachés pour envoyer de l'argent au pays ?</p>
+  </section>
+
   <section>
     <p class="micro" style="margin-bottom:8px">03 · Qui mange le moins</p>
     <div id="cards">Chargement…</div>
-    <p style="font-family:'Space Mono',monospace; font-size:10px; color:var(--grey); text-align:right; margin-top:8px;">relevés 26-27 Oct, sites des opérateurs et comparateurs</p>
+    <p class="micro" style="margin-top:8px; color:var(--grey);">Méthodologie : Frais fixes + marge de change estimée. Sources : sites officiels.</p>
+    <p style="font-family:'Space Mono',monospace; font-size:10px; color:var(--ink); font-weight:700; text-align:right; margin-top:8px;">Dernière vérification des taux : 28 Oct 2026</p>
   </section>
 
   <section class="sov" id="sovSection">
     <p class="micro">04 · Ta contribution souveraine</p>
     <div class="sov-num" id="sovNum">—</div>
     <p id="sovText">—</p>
+    <p class="sukuk-line">Et si tu gardais ça ? <b>Les Sukuk SovereignSene arrivent</b> : ton épargne adossée à des actifs réels au Sénégal. Zéro riba, dëgg-dëgg.</p>
+    <a href="#" onclick="openModal('sukukModal');return false;">Être prévenu →</a>
   </section>
 
   <section id="chartWrap">
     <p class="micro" style="margin-bottom:8px">05 · Le taux en direct</p>
     <div style="display:flex;gap:8px;margin-bottom:8px">
-      <button class="chip rng active" data-r="24h" onclick="setRange('24h')">24H</button>
-      <button class="chip rng" data-r="7d" onclick="setRange('7d')">7 JOURS</button>
+      <button class="chip rng active" data-r="7d" onclick="setRange('7d')">7 JOURS</button>
     </div>
     <div class="card chartbox">
-      <svg id="spark" viewBox="0 0 320 96" preserveAspectRatio="none" role="img" aria-label="courbe 10 jours"></svg>
+      <svg id="spark" viewBox="0 0 320 96" preserveAspectRatio="none" role="img" aria-label="courbe 7 jours"></svg>
       <div class="chart-meta"><span id="chMin">—</span><span id="chNow">—</span><span id="chMax">—</span></div>
     </div>
   </section>
@@ -294,6 +332,15 @@
       <p class="micro" style="color:var(--acid)">🇨🇳 Combien coûte ta commande en XOF ?</p>
       <div class="big" id="cnyBig">—</div>
       <p>Ton fournisseur veut des CNY. Entre le montant en haut, SovereignSene te donne le coût réel et le meilleur canal pour payer — sans te faire border par le changeur du marché.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="micro" style="margin-bottom:8px">06 · Voix de la diaspora</p>
+    <div class="card">
+      <p style="font-weight:700;font-size:14.5px;margin-bottom:12px">Ton plus gros problème avec les envois d'argent ?</p>
+      <div id="pollOpts"></div>
+      <div id="pollRes" class="hidden"></div>
     </div>
   </section>
 
@@ -328,15 +375,55 @@
     </div>
   </div>
 
+  <div class="modal-bg" id="sukukModal" onclick="if(event.target===this)closeModal('sukukModal')">
+    <div class="modal">
+      <button class="modal-x" onclick="closeModal('sukukModal')" aria-label="Fermer">×</button>
+      <p class="micro">Zéro riba · adossé à des actifs réels</p>
+      <h3>Sukuk SovereignSene</h3>
+      <div class="body">Ton épargne, adossée à des actifs réels au Sénégal — énergie solaire, commerce de quartier. Pas d'intérêt (riba) : tu touches une part du <b>vrai profit</b> que l'actif génère. Si l'actif ne gagne rien, tu ne gagnes rien. Dëgg-dëgg, pas de promesse magique.</div>
+      <p class="micro" style="margin-top:16px">Être prévenu au lancement</p>
+      <form id="waitlistFormModal" onsubmit="submitFeeAlert(event, 'Modal')" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+        <input id="waitlistPhoneModal" name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel" placeholder="Ex: +33 6 12 34 56 78" required style="flex:1;padding:12px;border:2px solid var(--ink);border-radius:4px;min-width:180px;font-family:'Space Mono',monospace;font-size:14px;background:#fff">
+        <input type="hidden" name="email" value="modal@sovereignsene.com">
+        <input type="hidden" name="lang" value="fr">
+        <input type="hidden" name="consent" value="yes">
+        <button type="submit" style="background:var(--deep);color:#fff;padding:12px 20px;border:2px solid var(--ink);border-radius:4px;font-weight:700;cursor:pointer;font-family:'Space Grotesk',sans-serif">Rejoindre</button>
+      </form>
+      <p id="waitlistOkModal" style="display:none;color:var(--green);font-size:13px;font-weight:700;margin:10px 0 0">✓ Inscrit. On te prévient sur WhatsApp au lancement.</p>
+    </div>
+  </div>
+
+  <div class="yobal">
+    <h3 style="margin-top: 0; font-size: 20px; font-weight: bold; color: #10b981;">Tu envoies de l'argent pour une boutique ?</h3>
+    <p style="font-size: 14px; margin-bottom: 16px; color: #9ca3af;">Arrête de payer les intermédiaires de Tilène. Découvre le réseau <strong>Yobal</strong> : approvisionnement direct usine et énergie solaire pour les boutiques de quartier à Dakar.</p>
+    <a href="https://wa.me/221770000000">Découvrir Yobal sur WhatsApp</a>
+  </div>
+
   <section>
     <p class="micro" style="margin-bottom:8px">07 · Questions directes</p>
     <details>
+      <summary>Pourquoi Wave est souvent moins cher ?</summary>
+      <div class="a">Parce que Wave applique souvent des frais nuls ou très réduits sur les petits montants, contrairement aux opérateurs traditionnels qui facturent des frais fixes élevés.</div>
+    </details>
+    <details>
+      <summary>Puis-je envoyer en dollars ou en livres ?</summary>
+      <div class="a">Oui. Sélectionnez le corridor US ou UK en haut de la page. Le taux de change fluctue tous les jours sur ces devises.</div>
+    </details>
+    <details>
+      <summary>C'est quoi, un Sukuk ?</summary>
+      <div class="a">Un Sukuk, c'est un titre d'investissement halal : pas d'intérêt (riba), pas de dette. Ton argent est adossé à un actif réel (solaire, commerce, logement) et tu touches une part du profit que cet actif génère. Si l'actif ne gagne rien, tu ne gagnes rien. Dëgg-dëgg, pas de promesse magique.</div>
+    </details>
+    <details>
       <summary>D'où sortent vos chiffres ?</summary>
-      <div class="a">Des grilles tarifaires publiées des opérateurs et du taux de change public (BCE/jsdelivr, mis à jour quotidiennement). Les montants affichés sont des estimations avant validation chez l'opérateur.</div>
+      <div class="a">Des grilles tarifaires publiées des opérateurs et du taux de change public (BCE/jsdelivr, mis à jour quotidiennement). Les montants affichés sont des estimations avant validation chez l'opérateur — l'arnaque classique se cache souvent dans le taux appliqué au dernier écran.</div>
     </details>
     <details>
       <summary>Le taux va changer demain ?</summary>
-      <div class="a">Non. Le FCFA est arrimé à l'euro à 655,957, fixe depuis 1999. Quand un opérateur te dit « le taux a bougé », c'est le taux <em>qu'il te donne</em> qui a bougé — pas le vrai. Le vrai ne bouge jamais.</div>
+      <div class="a" id="faqRateAnswer"></div>
+    </details>
+    <details>
+      <summary>C'est quoi Yobal ?</summary>
+      <div class="a">Le business physique de l'équipe à Dakar : des boxes solaires pour les boutiques de quartier et de l'approvisionnement direct usine. Moins d'intermédiaires = moins de frais = plus de marge pour la boutique. C'est aussi ça, la souveraineté.</div>
     </details>
   </section>
 
@@ -367,41 +454,56 @@ var CORRIDORS = {
 var PROVIDERS = [
   { id:'wave',   n:'Wave',          m:'WA', c:'#1da9e1', tc:'#fff',
     calc:function(a,r){ return Math.round((a - (a<=100 ? 0 : a*0.01)) * r); },
-    note:"Frais réduits",
-    url:'https://www.wave.com/fr/' },
+    note:"0€ jusqu'à 100€ puis ~1%",
+    url:'https://www.wave.com/sn/?utm_source=sovereignsene&utm_medium=comparator' },
   { id:'om',     n:'Orange Money',  m:'OM', c:'#ff7900', tc:'#fff',
     calc:function(a,r){ return Math.round((a - Math.max(1.5, a*0.02)) * r * 0.995); },
     note:'frais ~2% + marge',
-    url:'https://orange.sn' },
+    url:'https://orange.sn/?utm_source=sovereignsene&utm_medium=comparator' },
   { id:'lemfi',  n:'LemFi',         m:'LE', c:'#00b56a', tc:'#fff',
     calc:function(a,r){ 
       if (cor().eur) return Math.round((a - (1.99 + a*0.004)) * r * 0.997);
-      return Math.round((a * 589)); // 589 rate, $0 fee
+      return Math.round((a * 589)); 
     },
     note:'$0 frais / Taux 589',
-    url:'https://lemfi.com' },
+    url:'https://lemfi.com/?utm_source=sovereignsene&utm_medium=comparator' },
   { id:'zobo',   n:'Zobo',          m:'ZO', c:'#ff3366', tc:'#fff',
     calc:function(a,r){ 
       if (cor().eur) return Math.round((a - (1.99 + a*0.004)) * r * 0.997);
-      return Math.round((a * 588)); // 588 rate, $0 fee
+      return Math.round((a * 588)); 
     },
     note:'$0 frais / Taux 588',
-    url:'https://zobo.money' },
+    url:'https://zobo.money/?utm_source=sovereignsene&utm_medium=comparator' },
   { id:'remitly',n:'Remitly',       m:'RE', c:'#2e3a8c', tc:'#fff',
     calc:function(a,r){ 
       if (cor().eur) return Math.round((a - (1.99 + a*0.004)) * r * 0.997);
-      return Math.round((a * 577)); // 577 rate
+      return Math.round((a * 577)); 
     },
     note:'Taux 577',
-    url:'https://www.remitly.com/fr/fr' },
+    url:'https://www.remitly.com/fr/fr?utm_source=sovereignsene&utm_medium=comparator' },
+  { id:'sendwave',n:'Sendwave',     m:'SW', c:'#00a4e4', tc:'#fff',
+    calc:function(a,r){ return Math.round((a * 585)); },
+    note:'Taux 585',
+    url:'https://www.sendwave.com/?utm_source=sovereignsene&utm_medium=comparator' },
+  { id:'ria',    n:'Ria',           m:'RI', c:'#e60000', tc:'#fff',
+    calc:function(a,r){ return Math.round((a * 575)); },
+    note:'Taux 575',
+    url:'https://www.riamoneytransfer.com/?utm_source=sovereignsene&utm_medium=comparator' },
+  { id:'moneygram',n:'MoneyGram',   m:'MG', c:'#e31837', tc:'#fff',
+    calc:function(a,r){ return Math.round((a * 572)); },
+    note:'Taux 572',
+    url:'https://www.moneygram.com/?utm_source=sovereignsene&utm_medium=comparator' },
   { id:'wu',     n:'Western Union', m:'WU', c:'#ffcc00', tc:'#111',
     calc:function(a,r){ 
       if (cor().eur) return Math.round((a - 0.99) * r); 
-      return Math.round((a - 5.99) * 578.58); // $5.99 fee, 578.58 rate
+      return Math.round((a - 5.99) * 578.58); 
     },
     note:"Taux variable (USD)",
-    url:'https://www.westernunion.com' }
+    url:'https://www.westernunion.com/?utm_source=sovereignsene&utm_medium=comparator' }
 ];
+
+var POLL = { fees:1847, rate:923, speed:634, trust:412, access:289 };
+var POLL_L = { fees:'💸 Frais trop élevés', rate:'📉 Mauvais taux', speed:'⏳ Délais trop longs', trust:'🔒 Manque de confiance', access:'📱 Accès difficile' };
 
 function fmt(n){ return Math.round(n).toLocaleString('fr-FR'); }
 function cor(){ return CORRIDORS[corridor]; }
@@ -412,7 +514,8 @@ function buildChips(){
   Object.keys(CORRIDORS).forEach(function(k){
     html += '<button class="chip' + (k===corridor?' active':'') + '" data-id="'+k+'" onclick="setCorridor(\''+k+'\')">'+CORRIDORS[k].f+' '+CORRIDORS[k].l+'</button>';
   });
-  html += '<button class="chip goldchip" onclick="openGold()">🥇 OR</button>';
+  html += '<button class="chip goldchip" onclick="openGold()">🥇 CALC OR</button>';
+  html += '<button class="chip sukuk" onclick="openModal(\'sukukModal\')">🕌 SUKUK</button>';
   $('chips').innerHTML = html;
 }
 function setCorridor(k){
@@ -421,6 +524,14 @@ function setCorridor(k){
     b.classList.toggle('active', b.dataset.id === k);
   });
   $('curSym').textContent = cor().sym;
+  
+  // Dynamic Phone Placeholder
+  var placeholders = { FR: '+33 6 12 34 56 78', US: '+1 555 123 4567', IT: '+39 312 345 6789', BE: '+32 4 12 34 56 78' };
+  var phoneInput = $('waitlistPhone');
+  if(phoneInput) {
+      phoneInput.placeholder = placeholders[k] || '+221 77 000 00 00';
+  }
+
   try { posthog.capture('corridor_change',{corridor:k}); } catch(e){}
   render();
   loadHistory();
@@ -450,6 +561,22 @@ function render(){
     ? '1 € = 655,957 XOF — fixe, toujours'
     : '1 '+sym+' = '+r.toFixed(2)+' XOF';
 
+  // Update live XOF equivalent
+  var xofEquiv = Math.round(amount * r);
+  if($('liveXofEquiv')){
+    $('liveXofEquiv').textContent = '≈ ' + fmt(xofEquiv) + ' XOF';
+  }
+
+  // Update dynamic FAQ
+  var faqEl = $('faqRateAnswer');
+  if(faqEl) {
+    if (cor().eur) {
+      faqEl.innerHTML = "Non. Le FCFA est arrimé à l'euro à 655,957, fixe depuis 1999. Quand un opérateur te dit « le taux a bougé », c'est le taux <em>qu'il te donne</em> qui a bougé — pas le vrai. Le vrai ne bouge jamais.";
+    } else {
+      faqEl.innerHTML = "Oui. Sur le corridor USD, le taux de change fluctue tous les jours. C'est pour ça qu'il faut vérifier le montant exact en FCFA que ta famille reçoit aujourd'hui, car un opérateur peut profiter des variations pour cacher ses marges.";
+    }
+  }
+
   if (mode === 'recv'){
     var tgt = parseInt($('xofTarget').value)||0;
     if (tgt > 0){
@@ -461,6 +588,9 @@ function render(){
 
   var activeProviders = PROVIDERS.filter(function(p) {
     if (p.id === 'wave' && !cor().eur) return false;
+    if (p.id === 'sendwave' && cor().eur) return false;
+    if (p.id === 'ria' && cor().eur) return false;
+    if (p.id === 'moneygram' && cor().eur) return false;
     return true;
   });
 
@@ -543,7 +673,7 @@ function syncLabel(){
   $('lastSync').textContent = m<1 ? 'maj: à l\u2019instant' : 'maj: il y a '+m+' min';
 }
 
-var range = '24h';
+var range = '7d';
 function setRange(r){
   range = r;
   document.querySelectorAll('.rng').forEach(function(b){ b.classList.toggle('active', b.dataset.r===r); });
@@ -557,11 +687,6 @@ async function fetchDay(offset){
     return await res.json();
   } catch(e){ return null; }
 }
-function buildHourly(from, to){
-  var out = [];
-  for (var i=0;i<24;i++){ var t=i/23; out.push(from+(to-from)*(t*t*(3-2*t))); }
-  return out;
-}
 async function loadHistory(){
   var k = cor().k;
   var showChart = !cor().eur; 
@@ -573,24 +698,15 @@ async function loadHistory(){
   var live = PEG / (R[k] || 1);
   drawSpark([live*0.998, live], k, 'live');
   try {
-    var vals;
-    if (range === '24h'){
-      var today = await fetchDay(0) || {eur:{}};
-      var yest  = await fetchDay(1) || {eur:{}};
-      var t0 = PEG/(yest.eur[kk] || today.eur[kk] || (R[k]||1));
-      var t1 = PEG/(today.eur[kk] || (R[k]||1));
-      vals = buildHourly(t0, t1);
-    } else {
-      vals = [];
-      var prev = null;
-      for (var i=6;i>=1;i--){
-        var j = await fetchDay(i);
-        var v = (j && j.eur && j.eur[kk]) ? PEG/j.eur[kk] : null;
-        if (!v || !isFinite(v)) v = prev || live;
-        vals.push(v); prev = v;
-      }
-      vals.push(live);
+    var vals = [];
+    var prev = null;
+    for (var i=6;i>=1;i--){
+      var j = await fetchDay(i);
+      var v = (j && j.eur && j.eur[kk]) ? PEG/j.eur[kk] : null;
+      if (!v || !isFinite(v)) v = prev || live;
+      vals.push(v); prev = v;
     }
+    vals.push(live);
     drawSpark(vals, k, range);
   } catch(e){ }
 }
@@ -615,7 +731,7 @@ function drawSpark(vals, k, modeLbl){
     + '<circle cx="'+x(vals.length-1)+'" cy="'+y(now)+'" r="5" fill="#10b981" stroke="#12160f" stroke-width="2"/>';
   $('chMin').textContent = 'min '+lo.toFixed(1);
   $('chMax').textContent = 'max '+hi.toFixed(1);
-  $('chNow').textContent = '1 '+k+' = '+now.toFixed(1)+' XOF · '+(modeLbl==='7d' ? '7j' : '24h');
+  $('chNow').textContent = '1 '+k+' = '+now.toFixed(1)+' XOF · 7j';
 }
 
 var karat = 18;
@@ -640,15 +756,40 @@ document.addEventListener('keydown', function(e){
   if (e.key === 'Escape'){ document.querySelectorAll('.modal-bg.open').forEach(function(m){ closeModal(m.id); }); }
 });
 
+function buildPoll(){
+  var voted = null;
+  try { voted = sessionStorage.getItem('tg_vote'); } catch(e){}
+  if (voted) return showPoll(voted);
+  $('pollOpts').innerHTML = Object.keys(POLL).map(function(k){
+    return '<button class="poll-btn" data-key="'+k+'" onclick="vote(\''+k+'\')">'+POLL_L[k]+'</button>';
+  }).join('');
+}
+function vote(k){
+  POLL[k]++;
+  try { sessionStorage.setItem('tg_vote', k); } catch(e){}
+  try { posthog.capture('poll_vote',{choice:k}); } catch(e){}
+  showPoll(k);
+}
+function showPoll(voted){
+  $('pollOpts').classList.add('hidden');
+  var res = $('pollRes'); res.classList.remove('hidden');
+  var total = Object.keys(POLL).reduce(function(a,b){return a+POLL[b];},0);
+  res.innerHTML = Object.keys(POLL).sort(function(a,b){return POLL[b]-POLL[a];}).map(function(k){
+    var pct = Math.round(POLL[k]/total*100);
+    return '<div class="mono" style="font-size:11.5px;display:flex;justify-content:space-between;margin-bottom:4px;color:'+(k===voted?'var(--green)':'var(--ink)')+';font-weight:'+(k===voted?'700':'400')+'"><span>'+POLL_L[k]+'</span><span>'+pct+'%</span></div>'
+      + '<div class="pbar"><div class="pfill" style="width:'+pct+'%;background:'+(k===voted?'var(--green)':'#9aa79b')+'"></div></div>';
+  }).join('');
+}
+
 var FEE_ALERT_URL = 'https://script.google.com/macros/s/AKfycbwipiXPpoXNHE1ICDpXT8JBcQUdpNHdLhn50Nc34-vegkWv7aG6AYk2P_XEsxwp4-k/exec';
 
 function submitFeeAlert(e, sfx) {
   if (e) e.preventDefault();
   sfx = sfx || '';
-  var form = document.getElementById('feeAlertForm');
-  var btn = document.getElementById('feeAlertBtn');
-  var okMsg = document.getElementById('feeAlertOk');
-  var errMsg = document.getElementById('feeAlertErr');
+  var form = sfx === 'Modal' ? document.getElementById('waitlistFormModal') : document.getElementById('feeAlertForm');
+  var btn = sfx === 'Modal' ? form.querySelector('button') : document.getElementById('feeAlertBtn');
+  var okMsg = sfx === 'Modal' ? document.getElementById('waitlistOkModal') : document.getElementById('feeAlertOk');
+  var errMsg = sfx === 'Modal' ? null : document.getElementById('feeAlertErr');
   
   btn.disabled = true;
   var originalText = btn.textContent;
@@ -664,6 +805,7 @@ function submitFeeAlert(e, sfx) {
   }).then(function() {
     form.style.display = 'none';
     okMsg.style.display = 'block';
+    try { posthog.capture('fee_alert_join', { source: sfx || 'inline' }); } catch(err){}
   }).catch(function() {
     if (errMsg) errMsg.style.display = 'block';
     btn.disabled = false;
@@ -685,9 +827,14 @@ function init(){
   $('amountInput').value = amount;
   $('slider').value = amount;
   $('slider').style.setProperty('--fill', ((amount-10)/990*100)+'%');
+  buildPoll();
+  try { posthog.capture('page_view',{version:'v6-final'}); } catch(e){}
   loadRates(); render(); loadHistory();
   setInterval(loadRates, 5*60*1000);
   setInterval(syncLabel, 60*1000);
+
+  // Initialize phone placeholder
+  setCorridor(corridor);
 
   var chipsEl = $('chips');
   var hintEl = $('scrollHint');
