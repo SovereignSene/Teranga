@@ -289,18 +289,33 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
     <h3 style="font-family: 'Archivo Black', sans-serif; font-size: 20px; text-transform: uppercase; margin-bottom: 10px;">Le paradoxe PI-SPI</h3>
     
     <p style="font-size: 14px; line-height: 1.5; color: var(--ink); margin-bottom: 12px;">
-      La BCEAO impose 0,8% de frais. Mais l'addition réelle est plus lourde :
+      La BCEAO impose des rails ouverts. Mais l'addition réelle est plus lourde :
     </p>
     
     <div style="background: var(--paper); padding: 12px; border: 2px solid var(--ink); margin-bottom: 16px;">
-      <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 4px;">Montant à envoyer ou retirer (FCFA) :</label>
+      <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 4px;">Montant à envoyer (FCFA) :</label>
       <input id="pispiInput" type="number" value="50000" min="1000" step="1000" oninput="calcPiSpi()" style="width: 100%; padding: 10px; border: 2px solid var(--ink); font-family: 'Space Mono', monospace; font-size: 16px; font-weight: 700; outline: none;">
       
-      <div style="display: flex; justify-content: space-between; font-size: 12px; margin-top: 12px; color: var(--red); font-weight: 700;">
-        <span>Frais de retrait (1%) + Taxes :</span>
+      <div style="font-size: 11px; color: var(--ink); margin-top: 12px; line-height: 1.4;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+          <span>Frais de transfert (0,8%)</span>
+          <span id="pispiFeeTrans">- 400 FCFA</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+          <span>Taxe d'État (0,14%)</span>
+          <span id="pispiFeeTax">- 70 FCFA</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+          <span>Frais de retrait cash (1%)</span>
+          <span id="pispiFeeWithdraw">- 500 FCFA</span>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; font-size: 13px; margin-top: 10px; color: var(--red); font-weight: 700; border-top: 1px solid var(--ink); padding-top: 8px;">
+        <span>Total des frais cachés</span>
         <span id="pispiFees">- 970 FCFA</span>
       </div>
-      <div style="display: flex; justify-content: space-between; font-size: 14px; margin-top: 8px; padding-top: 8px; border-top: 2px dashed var(--ink); font-weight: 800;">
+      <div style="display: flex; justify-content: space-between; font-size: 14px; margin-top: 6px; font-weight: 800;">
         <span>Reçu réellement :</span>
         <span id="pispiNet">49 030 FCFA</span>
       </div>
@@ -656,22 +671,6 @@ function render(){
   }
   $('wuOutcome').textContent = outcomeText;
 
-  // Update Real Cost Breakdown Box
-  var worstProvider = worst.p; 
-  var liveRate = rXof(); 
-  var sentAmount = amount;
-  var receivedAmount = worst.xof;
-  
-  var theoreticalReceived = sentAmount * liveRate;
-  var totalFeesXof = theoreticalReceived - receivedAmount;
-  var totalFeesLocal = totalFeesXof / liveRate;
-  var feePercentage = (totalFeesLocal / sentAmount) * 100;
-
-  if($('fbSent')) $('fbSent').textContent = fmt(sentAmount) + ' ' + sym;
-  if($('fbFees')) $('fbFees').textContent = '- ' + fmt(totalFeesLocal) + ' ' + sym;
-  if($('fbTotal')) $('fbTotal').textContent = '- ' + fmt(totalFeesLocal) + ' ' + sym + ' (' + feePercentage.toFixed(1) + '%)';
-  if($('fbReceived')) $('fbReceived').textContent = fmt(receivedAmount) + ' XOF';
-
   $('sovNum').textContent = fmt(saved)+' FCFA';
   $('sovText').innerHTML = 'laissés sur la table sur ce seul envoi si tu prends <b style="color:#ff8a75">'+worst.p.n+'</b> au lieu de <b style="color:var(--acid)">'+best.p.n+'</b>.<br/>'
     + '× 1 000 envois comme le tien : <b style="color:#fff">'+fmt(saved*1000)+' FCFA</b> restent au Sénégal. <span class="impact">≈ '+impact(saved)+'</span>';
@@ -853,18 +852,29 @@ function calcPiSpi() {
   var input = document.getElementById('pispiInput');
   var feesEl = document.getElementById('pispiFees');
   var netEl = document.getElementById('pispiNet');
+  var feeTransEl = document.getElementById('pispiFeeTrans');
+  var feeTaxEl = document.getElementById('pispiFeeTax');
+  var feeWithdrawEl = document.getElementById('pispiFeeWithdraw');
+
   if (!input || !feesEl || !netEl) return;
 
   var amount = parseFloat(input.value) || 0;
+  var transferFee = 0, tax = 0, withdrawalFee = 0;
   
-  // PI-SPI math: 0.8% (transfer) + 0.14% (tax) + 1% (withdrawal)
-  var transferFee = amount > 8000 ? amount * 0.008 : 0;
-  var tax = amount * 0.0014;
-  var withdrawalFee = amount * 0.01;
+  // Rule: Transfers are free up to 8,000 FCFA.
+  if (amount > 8000) {
+    transferFee = amount * 0.008; // 0.8%
+    tax = amount * 0.0014; // 0.14%
+    withdrawalFee = amount * 0.01; // 1%
+  }
   
   var totalFees = transferFee + tax + withdrawalFee;
   var netAmount = amount - totalFees;
 
+  if (feeTransEl) feeTransEl.textContent = "- " + Math.round(transferFee).toLocaleString('fr-FR') + " FCFA";
+  if (feeTaxEl) feeTaxEl.textContent = "- " + Math.round(tax).toLocaleString('fr-FR') + " FCFA";
+  if (feeWithdrawEl) feeWithdrawEl.textContent = "- " + Math.round(withdrawalFee).toLocaleString('fr-FR') + " FCFA";
+  
   feesEl.textContent = "- " + Math.round(totalFees).toLocaleString('fr-FR') + " FCFA";
   netEl.textContent = Math.round(netAmount).toLocaleString('fr-FR') + " FCFA";
 }
@@ -884,7 +894,7 @@ function init(){
   $('slider').value = amount;
   $('slider').style.setProperty('--fill', ((amount-10)/990*100)+'%');
   buildPoll();
-  try { posthog.capture('page_view',{version:'v7-final'}); } catch(e){}
+  try { posthog.capture('page_view',{version:'v8-final'}); } catch(e){}
   loadRates(); render(); loadHistory();
   setInterval(loadRates, 5*60*1000);
   setInterval(syncLabel, 60*1000);
