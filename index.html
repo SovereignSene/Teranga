@@ -10,7 +10,7 @@
 <meta property="og:description" content="Comparateur de frais d'envoi vers le Sénégal. Zéro blabla, juste les vrais chiffres."/>
 <meta property="og:type" content="website"/>
 
-<!-- PostHog — replace with real key -->
+<!-- PostHog -->
 <script>
 !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]);t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
 posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapture:true,capture_pageview:true});
@@ -282,13 +282,33 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
     <p id="feeAlertErr" style="display: none; color: var(--red); font-weight: 800; font-size: 14px; margin-top: 12px; text-transform: uppercase;">Erreur de connexion. Réessaie.</p>
   </div>
 
-  <!-- ══ PI-SPI PARADOX ══ -->
+  <!-- ══ PI-SPI PARADOX & CALCULATOR ══ -->
   <section class="card" style="margin-top:24px; border: 2px solid var(--red); box-shadow: 4px 4px 0 var(--red); padding: 20px; background: #fff; position: relative;">
     <button onclick="this.parentElement.style.display='none'" style="position:absolute; top:10px; right:10px; background:var(--ink); color:#fff; border:none; padding:4px 8px; cursor:pointer; font-weight:bold;">X</button>
     <p class="micro" style="color: var(--red); font-weight: bold; margin-bottom: 8px;">⚡ ALERTE SOUVERAINETÉ FINANCIÈRE</p>
     <h3 style="font-family: 'Archivo Black', sans-serif; font-size: 20px; text-transform: uppercase; margin-bottom: 10px;">Le paradoxe PI-SPI</h3>
-    <p style="font-size: 14px; line-height: 1.5; color: var(--ink); margin-bottom: 12px;">Depuis le 2 novembre, la BCEAO impose des rails ouverts : <strong>frais plafonnés à 0,8%</strong> sur les transferts locaux.</p>
-    <p style="font-size: 14px; line-height: 1.5; color: var(--ink); font-weight: 700;">Alors pourquoi la diaspora paie-t-elle encore jusqu'à 8% de frais cachés pour envoyer de l'argent au pays ?</p>
+    
+    <p style="font-size: 14px; line-height: 1.5; color: var(--ink); margin-bottom: 12px;">
+      La BCEAO impose 0,8% de frais. Mais l'addition réelle est plus lourde :
+    </p>
+    
+    <div style="background: var(--paper); padding: 12px; border: 2px solid var(--ink); margin-bottom: 16px;">
+      <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 4px;">Montant à envoyer ou retirer (FCFA) :</label>
+      <input id="pispiInput" type="number" value="50000" min="1000" step="1000" oninput="calcPiSpi()" style="width: 100%; padding: 10px; border: 2px solid var(--ink); font-family: 'Space Mono', monospace; font-size: 16px; font-weight: 700; outline: none;">
+      
+      <div style="display: flex; justify-content: space-between; font-size: 12px; margin-top: 12px; color: var(--red); font-weight: 700;">
+        <span>Frais de retrait (1%) + Taxes :</span>
+        <span id="pispiFees">- 970 FCFA</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; font-size: 14px; margin-top: 8px; padding-top: 8px; border-top: 2px dashed var(--ink); font-weight: 800;">
+        <span>Reçu réellement :</span>
+        <span id="pispiNet">49 030 FCFA</span>
+      </div>
+    </div>
+    
+    <p style="font-size: 13px; line-height: 1.5; color: var(--ink); font-weight: 700;">
+      Alors pourquoi la diaspora paie-t-elle encore jusqu'à 8% de frais cachés pour envoyer au pays ?
+    </p>
   </section>
 
   <section>
@@ -636,6 +656,22 @@ function render(){
   }
   $('wuOutcome').textContent = outcomeText;
 
+  // Update Real Cost Breakdown Box
+  var worstProvider = worst.p; 
+  var liveRate = rXof(); 
+  var sentAmount = amount;
+  var receivedAmount = worst.xof;
+  
+  var theoreticalReceived = sentAmount * liveRate;
+  var totalFeesXof = theoreticalReceived - receivedAmount;
+  var totalFeesLocal = totalFeesXof / liveRate;
+  var feePercentage = (totalFeesLocal / sentAmount) * 100;
+
+  if($('fbSent')) $('fbSent').textContent = fmt(sentAmount) + ' ' + sym;
+  if($('fbFees')) $('fbFees').textContent = '- ' + fmt(totalFeesLocal) + ' ' + sym;
+  if($('fbTotal')) $('fbTotal').textContent = '- ' + fmt(totalFeesLocal) + ' ' + sym + ' (' + feePercentage.toFixed(1) + '%)';
+  if($('fbReceived')) $('fbReceived').textContent = fmt(receivedAmount) + ' XOF';
+
   $('sovNum').textContent = fmt(saved)+' FCFA';
   $('sovText').innerHTML = 'laissés sur la table sur ce seul envoi si tu prends <b style="color:#ff8a75">'+worst.p.n+'</b> au lieu de <b style="color:var(--acid)">'+best.p.n+'</b>.<br/>'
     + '× 1 000 envois comme le tien : <b style="color:#fff">'+fmt(saved*1000)+' FCFA</b> restent au Sénégal. <span class="impact">≈ '+impact(saved)+'</span>';
@@ -813,6 +849,26 @@ function submitFeeAlert(e, sfx) {
   });
 }
 
+function calcPiSpi() {
+  var input = document.getElementById('pispiInput');
+  var feesEl = document.getElementById('pispiFees');
+  var netEl = document.getElementById('pispiNet');
+  if (!input || !feesEl || !netEl) return;
+
+  var amount = parseFloat(input.value) || 0;
+  
+  // PI-SPI math: 0.8% (transfer) + 0.14% (tax) + 1% (withdrawal)
+  var transferFee = amount > 8000 ? amount * 0.008 : 0;
+  var tax = amount * 0.0014;
+  var withdrawalFee = amount * 0.01;
+  
+  var totalFees = transferFee + tax + withdrawalFee;
+  var netAmount = amount - totalFees;
+
+  feesEl.textContent = "- " + Math.round(totalFees).toLocaleString('fr-FR') + " FCFA";
+  netEl.textContent = Math.round(netAmount).toLocaleString('fr-FR') + " FCFA";
+}
+
 function init(){
   $('yr').textContent = new Date().getFullYear();
   try {
@@ -828,13 +884,18 @@ function init(){
   $('slider').value = amount;
   $('slider').style.setProperty('--fill', ((amount-10)/990*100)+'%');
   buildPoll();
-  try { posthog.capture('page_view',{version:'v6-final'}); } catch(e){}
+  try { posthog.capture('page_view',{version:'v7-final'}); } catch(e){}
   loadRates(); render(); loadHistory();
   setInterval(loadRates, 5*60*1000);
   setInterval(syncLabel, 60*1000);
 
   // Initialize phone placeholder
   setCorridor(corridor);
+
+  // Init PI-SPI calc
+  if(document.getElementById('pispiInput')) {
+    calcPiSpi();
+  }
 
   var chipsEl = $('chips');
   var hintEl = $('scrollHint');
