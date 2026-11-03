@@ -490,51 +490,51 @@ var PROVIDERS = [
   { id:'wave',   n:'Wave',          m:'WA', c:'#1da9e1', tc:'#fff',
     calc:function(a,r){ return Math.round((a - (a<=100 ? 0 : a*0.01)) * r); },
     note:"0€ jusqu'à 100€ puis ~1%",
-    url:'https://www.wave.com/sn/?utm_source=sovereignsene&utm_medium=comparator' },
+    url:'https://www.wave.com/sn/' },
   { id:'om',     n:'Orange Money',  m:'OM', c:'#ff7900', tc:'#fff',
     calc:function(a,r){ return Math.round((a - Math.max(1.5, a*0.02)) * r * 0.995); },
     note:'frais ~2% + marge',
-    url:'https://orange.sn/?utm_source=sovereignsene&utm_medium=comparator' },
+    url:'https://orange.sn/' },
   { id:'lemfi',  n:'LemFi',         m:'LE', c:'#00b56a', tc:'#fff',
     calc:function(a,r){ 
       if (cor().eur) return Math.round((a - (1.99 + a*0.004)) * r * 0.997);
       return Math.round((a * 589)); 
     },
     note:'$0 frais / Taux 589',
-    url:'https://lemfi.com/?utm_source=sovereignsene&utm_medium=comparator' },
+    url:'https://lemfi.com/' },
   { id:'zobo',   n:'Zobo',          m:'ZO', c:'#ff3366', tc:'#fff',
     calc:function(a,r){ 
       if (cor().eur) return Math.round((a - (1.99 + a*0.004)) * r * 0.997);
       return Math.round((a * 588)); 
     },
     note:'$0 frais / Taux 588',
-    url:'https://zobo.money/?utm_source=sovereignsene&utm_medium=comparator' },
+    url:'https://zobo.money/' },
   { id:'remitly',n:'Remitly',       m:'RE', c:'#2e3a8c', tc:'#fff',
     calc:function(a,r){ 
       if (cor().eur) return Math.round((a - (1.99 + a*0.004)) * r * 0.997);
       return Math.round((a * 577)); 
     },
     note:'Taux 577',
-    url:'https://www.remitly.com/fr/fr?utm_source=sovereignsene&utm_medium=comparator' },
+    url:'https://www.remitly.com/fr/fr' },
   { id:'sendwave',n:'Sendwave',     m:'SW', c:'#00a4e4', tc:'#fff',
     calc:function(a,r){ return Math.round((a * 585)); },
     note:'Taux 585',
-    url:'https://www.sendwave.com/?utm_source=sovereignsene&utm_medium=comparator' },
+    url:'https://www.sendwave.com/' },
   { id:'ria',    n:'Ria',           m:'RI', c:'#e60000', tc:'#fff',
     calc:function(a,r){ return Math.round((a * 575)); },
     note:'Taux 575',
-    url:'https://www.riamoneytransfer.com/?utm_source=sovereignsene&utm_medium=comparator' },
+    url:'https://www.riamoneytransfer.com/' },
   { id:'moneygram',n:'MoneyGram',   m:'MG', c:'#e31837', tc:'#fff',
     calc:function(a,r){ return Math.round((a * 572)); },
     note:'Taux 572',
-    url:'https://www.moneygram.com/?utm_source=sovereignsene&utm_medium=comparator' },
+    url:'https://www.moneygram.com/' },
   { id:'wu',     n:'Western Union', m:'WU', c:'#ffcc00', tc:'#111',
     calc:function(a,r){ 
       if (cor().eur) return Math.round((a - 0.99) * r); 
       return Math.round((a - 5.99) * 578.58); 
     },
     note:"Taux variable (USD)",
-    url:'https://www.westernunion.com/?utm_source=sovereignsene&utm_medium=comparator' }
+    url:'https://www.westernunion.com/' }
 ];
 
 var POLL = { fees:1847, rate:923, speed:634, trust:412, access:289 };
@@ -894,7 +894,7 @@ function init(){
   $('slider').value = amount;
   $('slider').style.setProperty('--fill', ((amount-10)/990*100)+'%');
   buildPoll();
-  try { posthog.capture('page_view',{version:'v8-final'}); } catch(e){}
+  try { posthog.capture('page_view',{version:'v9-final'}); } catch(e){}
   loadRates(); render(); loadHistory();
   setInterval(loadRates, 5*60*1000);
   setInterval(syncLabel, 60*1000);
