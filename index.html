@@ -10,12 +10,6 @@
 <meta property="og:description" content="Comparateur de frais d'envoi vers le Sénégal. Zéro blabla, juste les vrais chiffres."/>
 <meta property="og:type" content="website"/>
 
-<!-- PostHog -->
-<script>
-!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]);t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapture:true,capture_pageview:true});
-</script>
-
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
@@ -289,40 +283,40 @@ posthog.init('YOUR_POSTHOG_API_KEY',{api_host:'https://app.posthog.com',autocapt
     <h3 style="font-family: 'Archivo Black', sans-serif; font-size: 20px; text-transform: uppercase; margin-bottom: 10px;">Le paradoxe PI-SPI</h3>
     
     <p style="font-size: 14px; line-height: 1.5; color: var(--ink); margin-bottom: 12px;">
-      La BCEAO impose des rails ouverts. Mais l'addition réelle est plus lourde :
+      Simulation exacte pour un transfert reçu d'une banque via PI-SPI, puis retiré en espèces.
     </p>
     
     <div style="background: var(--paper); padding: 12px; border: 2px solid var(--ink); margin-bottom: 16px;">
-      <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 4px;">Montant à envoyer (FCFA) :</label>
-      <input id="pispiInput" type="number" value="50000" min="1000" step="1000" oninput="calcPiSpi()" style="width: 100%; padding: 10px; border: 2px solid var(--ink); font-family: 'Space Mono', monospace; font-size: 16px; font-weight: 700; outline: none;">
+      <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 4px;">Montant reçu via PI-SPI (FCFA) :</label>
+      <input id="pispiInput" type="number" value="100000" min="1000" step="1000" oninput="calcPiSpi()" style="width: 100%; padding: 10px; border: 2px solid var(--ink); font-family: 'Space Mono', monospace; font-size: 16px; font-weight: 700; outline: none;">
       
       <div style="font-size: 11px; color: var(--ink); margin-top: 12px; line-height: 1.4;">
         <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
           <span>Frais de transfert (0,8%)</span>
-          <span id="pispiFeeTrans">- 400 FCFA</span>
+          <span id="pispiFeeTrans">- 800 FCFA</span>
         </div>
         <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-          <span>Taxe d'État (0,14%)</span>
-          <span id="pispiFeeTax">- 70 FCFA</span>
+          <span>Taxe TTA (0,5%, max 2k)</span>
+          <span id="pispiFeeTax">- 500 FCFA</span>
         </div>
         <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-          <span>Frais de retrait cash (1%)</span>
-          <span id="pispiFeeWithdraw">- 500 FCFA</span>
+          <span>Frais de retrait cash (1%, max 5k)</span>
+          <span id="pispiFeeWithdraw">- 1 000 FCFA</span>
         </div>
       </div>
 
       <div style="display: flex; justify-content: space-between; font-size: 13px; margin-top: 10px; color: var(--red); font-weight: 700; border-top: 1px solid var(--ink); padding-top: 8px;">
         <span>Total des frais cachés</span>
-        <span id="pispiFees">- 970 FCFA</span>
+        <span id="pispiFees">- 2 300 FCFA</span>
       </div>
       <div style="display: flex; justify-content: space-between; font-size: 14px; margin-top: 6px; font-weight: 800;">
         <span>Reçu réellement :</span>
-        <span id="pispiNet">49 030 FCFA</span>
+        <span id="pispiNet">97 700 FCFA</span>
       </div>
     </div>
     
     <p style="font-size: 13px; line-height: 1.5; color: var(--ink); font-weight: 700;">
-      Alors pourquoi la diaspora paie-t-elle encore jusqu'à 8% de frais cachés pour envoyer au pays ?
+      "Vive le retour au Moyen Âge" comme dit le tweet. Ils te taxent sur l'origine invisible de ton argent. Exigeons la transparence.
     </p>
   </section>
 
@@ -861,11 +855,16 @@ function calcPiSpi() {
   var amount = parseFloat(input.value) || 0;
   var transferFee = 0, tax = 0, withdrawalFee = 0;
   
-  // Rule: Transfers are free up to 8,000 FCFA.
+  // Free up to 8,000 FCFA
   if (amount > 8000) {
-    transferFee = amount * 0.008; // 0.8%
-    tax = amount * 0.0014; // 0.14%
-    withdrawalFee = amount * 0.01; // 1%
+    // 0.8% Transfer Fee
+    transferFee = amount * 0.008; 
+    
+    // 0.5% TTA Tax (capped at 2,000 FCFA)
+    tax = Math.min(amount * 0.005, 2000); 
+    
+    // 1% Withdrawal Fee (capped at 5,000 FCFA)
+    withdrawalFee = Math.min(amount * 0.01, 5000); 
   }
   
   var totalFees = transferFee + tax + withdrawalFee;
@@ -894,7 +893,6 @@ function init(){
   $('slider').value = amount;
   $('slider').style.setProperty('--fill', ((amount-10)/990*100)+'%');
   buildPoll();
-  try { posthog.capture('page_view',{version:'v9-final'}); } catch(e){}
   loadRates(); render(); loadHistory();
   setInterval(loadRates, 5*60*1000);
   setInterval(syncLabel, 60*1000);
